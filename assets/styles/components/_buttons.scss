@@ -1,0 +1,40 @@
+.primary-button {
+  display: inline-block;
+  min-width: 188px;
+  min-height: 40px;
+  padding: 10px 20px;
+  background-color: $color-aquamarine;
+  border: solid 2px $color-aquamarine;
+
+  font-family: $base-font;
+  font-size: 14px;
+  letter-spacing: .3px;
+  color: $color-white;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+
+  -webkit-transition: background-color .5s ease-out;
+  -moz-transition: background-color .5s ease-out;
+  -o-transition: background-color .5s ease-out;
+  transition: background-color .5s ease-out;
+}
+
+.primary-button:hover {
+  background-color: $color-aquamarine-2;
+  border: solid 2px $color-aquamarine-2;
+}
+
+.cta-button {
+
+}
+
+.round-corner {
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.container {
+  margin: 2%;
+}
