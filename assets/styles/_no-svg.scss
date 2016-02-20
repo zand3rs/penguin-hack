@@ -1,3 +1,5 @@
 html.no-svg {
-
-}  
+  .penguin-logo {
+    background-image: url($img-dir + "penguin-logo.png");
+  }
+}

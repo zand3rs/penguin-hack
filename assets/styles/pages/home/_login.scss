@@ -1,0 +1,15 @@
+.home.login {
+  text-align: center;
+
+  .penguin-logo {
+    width: 197px;
+    height: 183px;
+    display: block;
+    margin: 4em auto 2em;
+    @include hideText();
+  }
+
+  .logo-title {
+    margin-bottom: 2em;
+  }
+}
