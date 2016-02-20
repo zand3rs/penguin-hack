@@ -1,32 +1,50 @@
-.primary-button {
+.button {
   display: inline-block;
-  min-width: 188px;
+
+  font-family: $base-font;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: background-color .3s ease-out;
+  -moz-transition: background-color .3s ease-out;
+  -o-transition: background-color .3s ease-out;
+  transition: background-color .3s ease-out;
+}
+
+.primary {
+  min-width: 180px;
   min-height: 40px;
   padding: 10px 20px;
   background-color: $color-aquamarine;
   border: solid 2px $color-aquamarine;
 
-  font-family: $base-font;
   font-size: 14px;
   letter-spacing: .3px;
   color: $color-white;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-
-  -webkit-transition: background-color .5s ease-out;
-  -moz-transition: background-color .5s ease-out;
-  -o-transition: background-color .5s ease-out;
-  transition: background-color .5s ease-out;
 }
 
-.primary-button:hover {
+.primary:hover {
   background-color: $color-aquamarine-2;
   border: solid 2px $color-aquamarine-2;
 }
 
-.cta-button {
+.cta {
+  min-width: 180px;
+  min-height: 46px;
+  padding: 13px 20px;
+  background-color: $color-aquamarine;
+  border: solid 2px $color-aquamarine;
 
+  font-size: 18px;
+  letter-spacing: .7px;
+  color: $color-white;
+  font-weight: bold;
+}
+
+.cta:hover {
+  background-color: $color-aquamarine-2;
+  border: solid 2px $color-aquamarine-2;
 }
 
 .round-corner {
