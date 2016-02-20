@@ -47,12 +47,21 @@ select ::after {
   padding-left: 10px;
   padding-top: 7px;
   padding-bottom: 7px;
+  position: relative;
+
+  .icon-select {
+    zoom: .7;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+  }
 
 }
 
 .select-small {
  border: 0;
- background: $color-white;
+ background: none;
  padding: 5px -2px 5px 10px;
  width: 90px;
  font-size: 13px;
@@ -61,4 +70,5 @@ select ::after {
  -webkit-appearance: none;
  -moz-appearance: none;
  appearance: none;
+ z-index: 100;
 }

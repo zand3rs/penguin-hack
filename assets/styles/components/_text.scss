@@ -32,6 +32,80 @@
   text-transform: capitalize;
 }
 
+.page-title-2 {
+  font-family: $base-font;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: $color-black;
+  text-transform: capitalize;
+}
+
+.page-text-1 {
+  font-family: $base-font;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: .3px;
+  color: $color-black;
+}
+
+.page-text-2 {
+  font-family: $base-font;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: .3px;
+  color: $color-gray-2;
+}
+
+.table-title {
+  font-family: $base-font;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .3px;
+  color: $color-black-2;
+  text-transform: uppercase;
+}
+
+.table-text-big {
+  font-family: $base-font;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  color: $color-black-2;
+  text-transform: capitalize;
+}
+
+.table-text {
+  font-family: $base-font;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .3px;
+  color: $color-gray-3;
+  text-transform: capitalize;
+}
+
+.check-label {
+  margin-left: 2px;
+  font-family: $base-font;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .3px;
+  color: $color-gray-5;
+  text-transform: capitalize;
+}
+
+.icon-text-link {
+  display: inline-block;
+  font-family: $base-font;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: .3px;
+  color: $color-gray-2;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid $color-gray-4;
+}
+
 .menu-drawer {
   font-family: $base-font;
   font-size: 15px;
@@ -60,4 +134,22 @@
 
 .error {
   color: $color-red;
+}
+
+.error-big-text {
+  display: inline-block;
+  font-family: $base-font;
+  font-size: 144px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: $color-black;
+}
+
+.error-small-text {
+  display: inline-block;
+  font-family: $base-font;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: .3px;
+  color: $color-gray-5;
 }
