@@ -1,0 +1,113 @@
+$color-white-3: #f1f1f1;
+$header-height: 50px;
+
+.page-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 7;
+}
+
+
+#site-header {
+  height: $header-height;
+  background: $color-white;
+  border-bottom: 1px solid $color-white-3;
+  width: 100%;
+
+  .drawer-label {
+    width: 30%;
+    max-width: 260px;
+    height: $header-height;
+    padding: 0 pxEm(16);
+    float: left;
+  }
+
+  #drawer-menu-link {
+    width: 32px;
+    height: $header-height;
+    float: left;
+    padding: 12.5px 4px;
+    margin-right: pxEm(10);
+  }
+
+  .current-app {
+    float: left;
+  }
+
+  .app-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-color: gray;
+    margin: pxEm(10) pxEm(8) pxEm(10) 0;
+    float: left;
+  }
+
+  .app-name {
+    float: left;
+    line-height: $header-height;
+    width: 140px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: block;
+    overflow: hidden;    
+  }
+}
+
+
+#section-nav {
+  float: left;
+  width: 50%;
+
+  li {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: $header-height;
+  }
+
+  a {
+    display: block;
+    position: relative;
+    padding: 0 pxEm(20);
+    text-align: center;
+    min-width: 150px;
+
+    &.current-menu:after {
+      content: " ";
+      width: 100%;
+      background: $color-aquamarine;
+      height: 5px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+
+#current-user-nav {
+  float: right;
+  max-width: 20%;
+  padding: 0 1em;
+
+  .name {
+    width: 150px;
+    line-height: $header-height;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: block;
+    overflow: hidden;
+  }
+}
+
+
+#drawer {
+
+  padding: 0 pxEm(16);
+}
