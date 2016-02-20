@@ -5,7 +5,7 @@
   color: $color-black;
 }
 
-.application-title {
+.app-title {
   font-family: $base-font;
   font-size: 20px;
   font-weight: 700;
@@ -23,7 +23,16 @@
   text-transform: uppercase;
 }
 
-.menu-title-2 {
+.page-title {
+  font-family: $base-font;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: $color-black;
+  text-transform: capitalize;
+}
+
+.menu-drawer {
   font-family: $base-font;
   font-size: 15px;
   font-weight: 700;
@@ -38,15 +47,6 @@
   font-weight: 400;
   letter-spacing: .3px;
   color: $color-gray-2;
-}
-
-.text-title {
-  font-family: $base-font;
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: .5px;
-  color: $color-black;
-  text-transform: capitalize;
 }
 
 .text-label {
