@@ -18,7 +18,8 @@ module.exports = function sendOK (data, options) {
   var res = this.res;
   var sails = req._sails;
 
-  sails.log.silly('res.ok() :: Sending 200 ("OK") response');
+  // Use default layout
+  res.locals.layout = "layout/default";
 
   // Set status code
   res.status(200);

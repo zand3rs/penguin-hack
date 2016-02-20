@@ -19,6 +19,9 @@ module.exports = function serverError (data, options) {
   var res = this.res;
   var sails = req._sails;
 
+  // Use default layout
+  res.locals.layout = "layout/default";
+
   // Set status code
   res.status(500);
 
@@ -74,4 +77,3 @@ module.exports = function serverError (data, options) {
   });
 
 };
-

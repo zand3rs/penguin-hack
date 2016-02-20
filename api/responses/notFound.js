@@ -24,6 +24,9 @@ module.exports = function notFound (data, options) {
   var res = this.res;
   var sails = req._sails;
 
+  // Use default layout
+  res.locals.layout = "layout/default";
+
   // Set status code
   res.status(404);
 
@@ -79,4 +82,3 @@ module.exports = function notFound (data, options) {
   });
 
 };
-
