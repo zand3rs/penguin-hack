@@ -12,7 +12,11 @@
     </script>
     <link rel="stylesheet" href="/styles/style.css">
   </head>
-  <body>
+  <%
+  var controllerClass = req.options.controller || "";
+  controllerClass = controllerClass.replace(/\//g, " ");
+  %>
+  <body class="<%- controllerClass %> <%- req.options.action %>">
     <%- body %>
     <div id="dialog-region" class="popup"></div>
     <script async src="/js/main.js"></script>
