@@ -1,0 +1,526 @@
+.ico {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url($svg-dir + "sprite.svg");
+  width: 24px;
+  height: 24px;
+}
+
+.ico-eye2 {
+  background-position: 0 0;
+}
+
+.ico-paper-clip {
+  background-position: -40px 0;
+}
+
+.ico-mail5 {
+  background-position: -80px 0;
+}
+
+.ico-toggle {
+  background-position: -120px 0;
+}
+
+.ico-layout {
+  background-position: -160px 0;
+}
+
+.ico-link2 {
+  background-position: -200px 0;
+}
+
+.ico-bell2 {
+  background-position: -240px 0;
+}
+
+.ico-lock2 {
+  background-position: -280px 0;
+}
+
+.ico-unlock {
+  background-position: -320px 0;
+}
+
+.ico-ribbon {
+  background-position: -360px 0;
+}
+
+.ico-image2 {
+  background-position: -400px 0;
+}
+
+.ico-signal {
+  background-position: -440px 0;
+}
+
+.ico-target2 {
+  background-position: -480px 0;
+}
+
+.ico-clipboard2 {
+  background-position: -520px 0;
+}
+
+.ico-clock3 {
+  background-position: -560px 0;
+}
+
+.ico-watch {
+  background-position: -600px 0;
+}
+
+.ico-air-play {
+  background-position: 0 -40px;
+}
+
+.ico-camera2 {
+  background-position: -40px -40px;
+}
+
+.ico-video {
+  background-position: -80px -40px;
+}
+
+.ico-disc {
+  background-position: -120px -40px;
+}
+
+.ico-printer2 {
+  background-position: -160px -40px;
+}
+
+.ico-monitor {
+  background-position: -200px -40px;
+}
+
+.ico-server {
+  background-position: -240px -40px;
+}
+
+.ico-cog2 {
+  background-position: -280px -40px;
+}
+
+.ico-heart2 {
+  background-position: -320px -40px;
+}
+
+.ico-paragraph {
+  background-position: -360px -40px;
+}
+
+.ico-align-justify {
+  background-position: -400px -40px;
+}
+
+.ico-align-left {
+  background-position: -440px -40px;
+}
+
+.ico-align-center {
+  background-position: -480px -40px;
+}
+
+.ico-align-right {
+  background-position: -520px -40px;
+}
+
+.ico-book2 {
+  background-position: -560px -40px;
+}
+
+.ico-layers {
+  background-position: -600px -40px;
+}
+
+.ico-stack2 {
+  background-position: 0 -80px;
+}
+
+.ico-stack-2 {
+  background-position: -40px -80px;
+}
+
+.ico-paper {
+  background-position: -80px -80px;
+}
+
+.ico-paper-stack {
+  background-position: -120px -80px;
+}
+
+.ico-search2 {
+  background-position: -160px -80px;
+}
+
+.ico-zoom-in2 {
+  background-position: -200px -80px;
+}
+
+.ico-zoom-out2 {
+  background-position: -240px -80px;
+}
+
+.ico-reply2 {
+  background-position: -280px -80px;
+}
+
+.ico-circle-plus {
+  background-position: -320px -80px;
+}
+
+.ico-circle-minus {
+  background-position: -360px -80px;
+}
+
+.ico-circle-check {
+  background-position: -400px -80px;
+}
+
+.ico-circle-cross {
+  background-position: -440px -80px;
+}
+
+.ico-square-plus {
+  background-position: -480px -80px;
+}
+
+.ico-square-minus {
+  background-position: -520px -80px;
+}
+
+.ico-square-check {
+  background-position: -560px -80px;
+}
+
+.ico-square-cross {
+  background-position: -600px -80px;
+}
+
+.ico-microphone {
+  background-position: 0 -120px;
+}
+
+.ico-record {
+  background-position: -40px -120px;
+}
+
+.ico-skip-back {
+  background-position: -80px -120px;
+}
+.ico-rewind {
+  background-position: -120px -120px;
+}
+
+.ico-play4 {
+  background-position: -160px -120px;
+}
+
+.ico-pause3 {
+  background-position: -200px -120px;
+}
+
+.ico-stop3 {
+  background-position: -240px -120px;
+}
+
+.ico-fast-forward {
+  background-position: -280px -120px;
+}
+
+.ico-skip-forward {
+  background-position: -320px -120px;
+}
+
+.ico-shuffle2 {
+  background-position: -360px -120px;
+}
+
+.ico-repeat {
+  background-position: -400px -120px;
+}
+
+.ico-folder2 {
+  background-position: -440px -120px;
+}
+
+.ico-umbrella {
+  background-position: -480px -120px;
+}
+
+.ico-moon3 {
+  background-position: -520px -120px;
+}
+
+.ico-thermometer2 {
+  background-position: -560px -120px;
+}
+
+.ico-drop {
+  background-position: -600px -120px;
+}
+
+.ico-sun5 {
+  background-position: 0 -160px;
+}
+
+.ico-cloud7 {
+  background-position: -40px -160px;
+}
+
+.ico-cloud-upload2 {
+  background-position: -80px -160px;
+}
+
+.ico-cloud-download2 {
+  background-position: -120px -160px;
+}
+
+.ico-upload4 {
+  background-position: -160px -160px;
+}
+
+.ico-download4 {
+  background-position: -200px -160px;
+}
+
+.ico-location3 {
+  background-position: -240px -160px;
+}
+
+.ico-location-2 {
+  background-position: -280px -160px;
+}
+
+.ico-map3 {
+  background-position: -320px -160px;
+}
+
+.ico-battery {
+  background-position: -360px -160px;
+}
+
+.ico-head {
+  background-position: -400px -160px;
+}
+
+.ico-briefcase2 {
+  background-position: -440px -160px;
+}
+
+.ico-speech-bubble {
+  background-position: -480px -160px;
+}
+
+.ico-anchor {
+  background-position: -520px -160px;
+}
+
+.ico-globe {
+  background-position: -560px -160px;
+}
+
+.ico-box {
+  background-position: -600px -160px;
+}
+
+.ico-reload {
+  background-position: 0 -200px;
+}
+
+.ico-share3 {
+  background-position: -40px -200px;
+}
+
+.ico-marquee {
+  background-position: -80px -200px;
+}
+
+.ico-marquee-plus {
+  background-position: -120px -200px;
+}
+
+.ico-marquee-minus {
+  background-position: -160px -200px;
+}
+
+.ico-tag {
+  background-position: -200px -200px;
+}
+
+.ico-power2 {
+  background-position: -240px -200px;
+}
+
+.ico-command2 {
+  background-position: -280px -200px;
+}
+
+.ico-alt {
+  background-position: -320px -200px;
+}
+
+.ico-esc {
+  background-position: -360px -200px;
+}
+
+.ico-bar-graph {
+  background-position: -400px -200px;
+}
+
+.ico-bar-graph-2 {
+  background-position: -440px -200px;
+}
+
+.ico-pie-graph {
+  background-position: -480px -200px;
+}
+
+.ico-star {
+  background-position: -520px -200px;
+}
+
+.ico-arrow-left3 {
+  background-position: -560px -200px;
+}
+
+.ico-arrow-right3 {
+  background-position: -600px -200px;
+}
+
+.ico-arrow-up3 {
+  background-position: 0 -240px;
+}
+
+.ico-arrow-down3 {
+  background-position: -40px -240px;
+}
+
+.ico-volume {
+  background-position: -80px -240px;
+}
+
+.ico-mute {
+  background-position: -120px -240px;
+}
+
+.ico-content-right {
+  background-position: -160px -240px;
+}
+
+.ico-content-left {
+  background-position: -200px -240px;
+}
+
+.ico-grid {
+  background-position: -240px -240px;
+}
+
+.ico-grid-2 {
+  background-position: -280px -240px;
+}
+
+.ico-columns {
+  background-position: -320px -240px;
+}
+
+.ico-loader {
+  background-position: -360px -240px;
+}
+
+.ico-bag {
+  background-position: -400px -240px;
+}
+
+.ico-ban {
+  background-position: -440px -240px;
+}
+
+.ico-flag2 {
+  background-position: -480px -240px;
+}
+
+.ico-trash {
+  background-position: -520px -240px;
+}
+
+.ico-expand {
+  background-position: -560px -240px;
+}
+
+.ico-contract {
+  background-position: -600px -240px;
+}
+
+.ico-maximize {
+  background-position: 0 -280px;
+}
+
+.ico-minimize {
+  background-position: -40px -280px;
+}
+
+.ico-plus2 {
+  background-position: -80px -280px;
+}
+
+.ico-minus2 {
+  background-position: -120px -280px;
+}
+
+.ico-check {
+  background-position: -160px -280px;
+}
+
+.ico-cross2 {
+  background-position: -200px -280px;
+}
+
+.ico-move {
+  background-position: -240px -280px;
+}
+
+.ico-delete {
+  background-position: -280px -280px;
+}
+
+.ico-menu5 {
+  background-position: -320px -280px;
+}
+
+.ico-archive {
+  background-position: -360px -280px;
+}
+
+.ico-inbox {
+  background-position: -400px -280px;
+}
+
+.ico-outbox {
+  background-position: -440px -280px;
+}
+
+.ico-file {
+  background-position: -480px -280px;
+}
+
+.ico-file-add {
+  background-position: -520px -280px;
+}
+
+.ico-file-subtract {
+  background-position: -560px -280px;
+}
+
+.ico-help {
+  background-position: -600px -280px;
+}
+
+.ico-open {
+  background-position: 0 -320px;
+}
+
+.ico-ellipsis {
+  background-position: -40px -320px;
+}
