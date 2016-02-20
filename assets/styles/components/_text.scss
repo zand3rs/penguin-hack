@@ -1,0 +1,42 @@
+.logo-title {
+  font-family: $base-font;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: .2px;
+  color: $color-black;
+}
+
+.application-title {
+  font-family: $base-font;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: $color-gray-2;
+  text-transform: capitalize;
+}
+
+.menu-title {
+  font-family: $base-font;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: $color-gray-2;
+  text-transform: uppercase;
+}
+
+.menu-title-2 {
+  font-family: $base-font;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: $color-gray-2;
+  text-transform: uppercase;
+}
+
+.menu-text {
+  font-family: $base-font;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .3px;
+  color: $color-gray-2;
+}
