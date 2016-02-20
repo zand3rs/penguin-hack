@@ -24,7 +24,7 @@ module.exports.routes = {
 
   "/test": {
     view: "test"
-  }
+  },
 
   //-- Home
   "GET /"       : "Home.index",
