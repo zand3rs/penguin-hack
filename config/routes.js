@@ -30,6 +30,10 @@ module.exports.routes = {
   "GET /"       : "Home.index",
   "GET /login"  : "Home.login",
 
+  //-- Session / Authentication
+  "GET /authenticate": "Session.authenticate",
+  "GET /authorize": "Session.authorize",
+  
   //-- App
   "GET    /apps"           : "App.index",
   "POST   /apps"           : "App.create",

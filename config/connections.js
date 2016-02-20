@@ -25,7 +25,7 @@ module.exports.connections = {
     host: "localhost",
     user: "",
     password: "",
-    database: "penguin"
+    database: "penguin_development"
   }
 
 };
