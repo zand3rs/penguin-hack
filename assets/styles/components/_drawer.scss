@@ -1,0 +1,44 @@
+$drawer-z-index: 10;
+
+#drawer.expanded {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: hidden;
+  z-index: $drawer-z-index;
+
+  .drawer-main {
+    left: 0;
+  }
+
+  .overlay {
+    opacity: 1;
+    z-index: $drawer-z-index - 2;
+    position: absolute;
+    display: block;
+  }
+}
+
+#drawer .overlay {
+  display: none;
+}
+
+#drawer .drawer-main {
+  background: $color-white;
+  position: fixed;
+  left: -100%;
+  width: 100%;
+  top: 50px;
+  bottom: 0;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  z-index: $drawer-z-index - 1;
+  transition: all 0.25s ease;
+}
+
+@include breakpoint( tablet-and-up ) {
+  #drawer .drawer-main {
+    left: -320px;
+    width: 320px;
+  }
+}
