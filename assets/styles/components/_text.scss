@@ -40,3 +40,25 @@
   letter-spacing: .3px;
   color: $color-gray-2;
 }
+
+.text-title {
+  font-family: $base-font;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: $color-black;
+  text-transform: capitalize;
+}
+
+.text-label {
+  display: inline-block;
+  font-family: $base-font;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .3px;
+  color: $color-black;
+}
+
+.error {
+  color: $color-red;
+}
