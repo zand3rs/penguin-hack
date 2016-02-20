@@ -7,7 +7,16 @@ module.exports = {
 
   tableName: "apps",
   attributes: {
-
+    name: {
+      type: "string",
+      required: true,
+      columnName: "name"
+    },
+    description: {
+      type: "string",
+      required: true,
+      columnName: "description"
+    }
   },
   createdAt: {
     type: "datetime",
@@ -19,4 +28,3 @@ module.exports = {
   }
 
 };
-
