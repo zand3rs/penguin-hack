@@ -31,9 +31,10 @@ module.exports.routes = {
   "GET /login"  : "Home.login",
 
   //-- App
-  "GET /apps"         : "App.index",
-  "POST /apps"        : "App.create",
-  "PUT /apps/:id"     : "App.update",
-  "DELETE /apps/:id"  : "App.destroy",
+  "GET    /apps"           : "App.index",
+  "POST   /apps"           : "App.create",
+  "GET    /apps/:id/edit"  : "App.edit",
+  "PUT    /apps/:id"       : "App.update",
+  "DELETE /apps/:id"       : "App.destroy",
 
 };
