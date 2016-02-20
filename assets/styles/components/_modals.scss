@@ -1,0 +1,61 @@
+$modal-body-bg: $color-white;
+
+.popup {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  overflow: hidden;
+  opacity: 0;
+  @include transition(opacity 0.1s linear);
+
+  &.modal-show {
+    opacity: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .modal {
+      @include transform(translate3d(0,0,0));
+    }
+  }
+
+  .modal {
+    width: 430px;
+    max-width: 95%;
+    margin: 75px auto;
+    position: relative;
+    background: $modal-body-bg;
+    @include border-radius( 4px );
+    @include transition(transform 0.2s ease-out);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    @include transform(translate3d(0,-25%,0));
+    max-height: 80%;
+    z-index: 1;
+    -webkit-perspective: 1000;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  @include transition(opacity 0.1s linear);
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  &.overlay-show {
+    opacity: 1;
+  }
+}
+
+.popup-open {
+  overflow: hidden;
+}
