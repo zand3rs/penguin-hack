@@ -14,7 +14,33 @@ module.exports = {
 
   _deserializeUser: function(user, done) {
     var userId = _.isObject(user) ? user.id : user;
-    User.findOne({id: userId}, done);
+    async.auto({
+      user: function(next) {
+        User.findOne({id: userId}, next);
+      },
+      userApps: ["user", function(next, result) {
+        var userId = _.get(result.user, "id");
+        AppUser.find({userId: userId}, next);
+      }],
+      apps: ["userApps", function(next, result) {
+        var appIds = _.map(result.userApps, "appId");
+        App.find({id: appIds}, next);
+      }],
+      roles: ["userApps", function(next, result) {
+        var roleIds = _.map(result.userApps, "roleId");
+        Role.find({id: roleIds}, next);
+      }]
+    }, function(err, result) {
+      var user = result.user || {};
+      var apps = result.apps || [];
+      var roles = result.roles || [];
+
+      if (!err) {
+        user.apps = apps;
+        user.roles = roles;
+      }
+      done(err, user);
+    });
   },  
 
   //----------------------------------------------------------------------------
