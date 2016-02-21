@@ -7,9 +7,26 @@
 module.exports = {
 
   index: function(req, res) {
+    var page = parseInt(req.param("page")) || 1;
+    var limit = sails.config.limits.pageLimit;
+    var skip = (page-1) * limit;
+
     async.auto({
+      page: function(next) {
+        Role.count({}, function(err, result) {
+          if (err) {
+            return next(err);
+          }
+
+          var page = _.ceil(result/limit);
+          return next(null, page);
+        });
+      }
       roles: function(next) {
-        Role.find({}, function(err, roles) {
+        App.find()
+        .limit(limit)
+        .skip(skip)
+        .exec(function(err, roles) {
           if (err) {
             return next(err);
           }
@@ -19,7 +36,21 @@ module.exports = {
       }
     }, function(err, result) {
       var roles = result.roles;
+      var totalPage = result.page;
       var payload = {};
+
+      var meta = {
+        currentPage: page,
+        totalPage: totalPage
+      };
+
+      if (_.gt(page, 1)) {
+        meta.previousPage = page - 1;
+      }
+
+      if (_.lt(page, totalPage)) {
+        meta.nextPage = page + 1;
+      }
 
       res.format({
         html: function() {
@@ -27,6 +58,7 @@ module.exports = {
             req.addFlash("error", "Error loading roles");
           } else {
             payload.roles = roles;
+            payload.meta = meta;
           }
 
           res.view(payload);
@@ -37,7 +69,7 @@ module.exports = {
           if (err) {
             return res.apiError(payload);
           } else {
-            res.apiSuccess(payload);
+            res.apiSuccess(payload, meta);
           }
         }
       });
