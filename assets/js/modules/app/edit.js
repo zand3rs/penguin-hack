@@ -13,6 +13,7 @@ Penguin.module("App.Update", function(Update, Penguin, Backbone, Marionette, $, 
 
 Penguin.module("App.Update.Views", function(Views, Penguin, Backbone, Marionette, $, _) {
   var AppEntities = Penguin.module("App.Entities");
+  var CommonViews = Penguin.module("Common.Views");
 
   Views.UpdateForm = Marionette.ItemView.extend({
     el: "#update-app-form",
@@ -28,10 +29,12 @@ Penguin.module("App.Update.Views", function(Views, Penguin, Backbone, Marionette
       "click @ui.deleteButton": "deleteApp"
     },
     showSuccess: function() {
-      console.log("success!");
+      CommonViews.showGrowl("success", "Congratulations! App successfully updated!", function() {
+        window.location.reload();
+      });
     },
     showErrors: function(invalid) {
-      console.log("error", invalid);
+      CommonViews.showGrowl("error", "You have errors: " + invalid.join(", "));
     },
     submitForm: function(e) {
       var self = this;

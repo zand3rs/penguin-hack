@@ -17,6 +17,7 @@
   controllerClass = controllerClass.replace(/\//g, " ");
   %>
   <body class="<%- controllerClass %> <%- req.options.action %>">
+    <div id="growl-region"></div>
     <%- body %>
     <div id="dialog-region" class="popup"></div>
     <%- partial("../common/templates") %>
