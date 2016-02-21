@@ -3,8 +3,8 @@
 *
 */
 
-var validPermissions = ["canAdd", "canEdit", "canView", "canPublish", "canDelete", "canArchive"];
-var status = ["draft", "submitted", "published", "archived"];
+var validPermission = ["canAdd", "canEdit", "canView", "canPublish", "canDelete", "canArchive"];
+var validStatus = ["draft", "submitted", "published", "archived"];
 
 module.exports = {
 
@@ -51,6 +51,20 @@ module.exports = {
   updatedAt: {
     type: "datetime",
     columnName: "updated_at"
+  },
+
+  //-- lifecycle callbacks
+  beforeValidate: function(values, next) {
+    var permission = values.permission;
+
+    var newPermission = _.transform(permission, function(result, value, key) {
+      if (_.includes(validStatus, key)) {
+        result[key] = _.pick(value, validPermission);
+      }
+    }, {});
+
+    values.permission = newPermission;
+    next();
   }
 
 };
