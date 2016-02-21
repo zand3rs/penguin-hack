@@ -6,7 +6,7 @@
     <%- message %>
   <% }) %>
 
-  <%- partial("../common/settings-nav", {currentMenu: "apps"}) %>
+  <%- partial("../common/settings-nav", {currentMenu: "roles"}) %>
 
   <div class="wrap">
     <div class="page-header">
@@ -27,16 +27,67 @@
         <hr>
         <h2 class="page-title-2">Admin Rights</h2>
         <div class="field">
-          <label><input type="checkbox" name="checkbox" value="value">Text</label>
+          <label class="checkbox"><input type="checkbox" name="checkbox" value="value">Applications</label>
         </div>
         <div class="field">
-          <label><input type="checkbox" name="checkbox" value="value">Text</label>
+          <label class="checkbox"><input type="checkbox" name="checkbox" value="value">Models</label>
         </div>
         <div class="field">
-          <label><input type="checkbox" name="checkbox" value="value">Text</label>
+          <label class="checkbox"><input type="checkbox" name="checkbox" value="value">Media</label>
         </div>
         <hr>
         <h2 class="page-title-2">Permissions</h2>
+        <div class="list">
+          <div class="list-header">
+            <ul>
+              <li class="roles">&nbsp;</li>
+              <li class="roles">ADD</li>
+              <li class="roles">EDIT</li>
+              <li class="roles">VIEW</li>
+              <li class="roles">PUBLISH</li>
+              <li class="roles">DELETE</li>
+              <li class="roles">ARCHIVE</li>
+            </ul>
+          </div>
+          <div class="list-body">
+              <div class="item">
+                <div class="roles title">Draft</div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+              </div>
+              <div class="item">
+                <div class="roles">Submitted</div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+              </div>
+              <div class="item">
+                <div class="roles">Published</div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+              </div>
+              <div class="item">
+                <div class="roles">Archived</div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+              </div>
+          </div>
+        </div>
       </div>
 
       <div class="actions">

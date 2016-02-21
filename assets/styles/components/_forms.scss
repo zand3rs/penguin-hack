@@ -98,6 +98,19 @@ select ::after {
         text-decoration: underline;
       };
     }
+
+    .checkbox {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: .3px;
+      color: $color-gray-5;
+      text-transform: capitalize;
+      margin-bottom: -20px;
+    }
+
+    label input {
+       margin-right:5px;
+    }
   }
 
   label {
