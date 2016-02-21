@@ -62,7 +62,7 @@ module.exports.http = {
     passportSession : require("passport").session(),
     poweredBy : middlewares.poweredBy()
 
-
+  },
   /***************************************************************************
   *                                                                          *
   * The body parser that will handle incoming multipart HTTP requests. By    *
@@ -72,9 +72,7 @@ module.exports.http = {
   *                                                                          *
   ***************************************************************************/
 
-    // bodyParser: require('skipper')
-
-  }
+  bodyParser: require('skipper')  
 
   /***************************************************************************
   *                                                                          *
