@@ -11,10 +11,11 @@ module.exports = {
 
     var page = parseInt(req.param("page")) || 1;
     var limit = sails.config.limits.pageLimit;
+    var appId = req.param("app_id");
 
     var tasks = {
       page: function(next) {
-        Image.count({}, function(err, result) {
+        Image.count({appId: appId}, function(err, result) {
           if (err) {
             return next(err);
           }
@@ -23,17 +24,12 @@ module.exports = {
         });
       },      
       images: function (next) {
-        var criteria = {};
-        var appId = req.param("app_id");
-
-        if (!_.isEmpty(appId)) {
-          criteria = {
-            or: [
-              {appId: appId}, 
-              {public: true}
-            ]
-          }
-        }
+        var criteria = {
+          or: [
+            {appId: appId}, 
+            {public: true}
+          ]
+        };
 
         Image.find()
           .where(criteria)
@@ -137,8 +133,9 @@ module.exports = {
   //--------------------------------------------------------------------------------------------------------------  
   edit: function (req, res) {
     var id = req.param("id");
+    var appId = req.param("app_id");
 
-    Image.findOne({id: id}, function (err, image) {
+    Image.findOne({id: id, appId: appId}, function (err, image) {
       var payload = {};
       res.format({
         html: function() {
@@ -161,11 +158,12 @@ module.exports = {
   //--------------------------------------------------------------------------------------------------------------  
   update: function (req, res) {
     var id = req.param("id");
+    var appId = req.param("app_id");
     var params = _.omitBy({
       name: req.param("name"),
       description : req.param("description"),
       public: req.param("public"),
-      appId: req.param("app_id")
+      appId: appId
     }, _.isNil);
 
     Image.update({id: id}, params, function(err, image) {
@@ -190,8 +188,9 @@ module.exports = {
   //--------------------------------------------------------------------------------------------------------------  
   destroy: function(req, res) {
     var id = req.param("id");
+    var appId = req.param("app_id");
 
-    Image.destroy({id: id}, function(err, image) {
+    Image.destroy({id: id, appId: appId}, function(err, image) {
       var payload = (err) ? err : image;
 
       res.format({

@@ -64,19 +64,19 @@ module.exports.routes = {
   "DELETE /apps/:app_id/models/:id"       : "Model.destroy",
 
   //-- Image | media
-  "GET /media"              : "Image.index",
-  "GET /media/new"          : "Image.new",
-  "POST /media"             : "Image.create",
-  "GET /media/:id/edit"     : "Image.edit",
-  "PUT /media/:id"          : "Image.update",
-  "DELETE /media/:id"       : "Image.destroy",
+  "GET    /apps/:app_id/images"            : "Image.index",
+  "GET    /apps/:app_id/images/new"        : "Image.new",
+  "POST   /apps/:app_id/images"            : "Image.create",
+  "GET    /apps/:app_id/images/:id/edit"   : "Image.edit",
+  "PUT    /apps/:app_id/images/:id"        : "Image.update",
+  "DELETE /apps/:app_id/images/:id"        : "Image.destroy",
 
   //-- Categories
-  "GET /apps/:app_id/categories"              : "Category.index",
-  "GET /apps/:app_id/categories/new"          : "Category.new",
-  "POST /apps/:app_id/categories"             : "Category.create",
-  "GET /apps/:app_id/categories/:id/edit"     : "Category.edit",
-  "PUT /apps/:app_id/categories/:id"          : "Category.update",
+  "GET    /apps/:app_id/categories"           : "Category.index",
+  "GET    /apps/:app_id/categories/new"       : "Category.new",
+  "POST   /apps/:app_id/categories"           : "Category.create",
+  "GET    /apps/:app_id/categories/:id/edit"  : "Category.edit",
+  "PUT    /apps/:app_id/categories/:id"       : "Category.update",
   "DELETE /apps/:app_id/categories/:id"       : "Category.destroy",
 
 
