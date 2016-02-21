@@ -1,7 +1,6 @@
-$color-white-3: #f1f1f1;
 $header-height: 50px;
 
-.page-top {
+#site-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -55,7 +54,7 @@ $header-height: 50px;
     text-overflow: ellipsis;
     text-align: left;
     display: block;
-    overflow: hidden;    
+    overflow: hidden;
   }
 }
 
