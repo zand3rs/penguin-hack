@@ -48,6 +48,7 @@ module.exports.http = {
       'router',
       'www',
       'favicon',
+      'staticFiles',      
       '404',
       '500'
     ],
@@ -60,7 +61,8 @@ module.exports.http = {
 
     passportInit    : require("passport").initialize(),
     passportSession : require("passport").session(),
-    poweredBy : middlewares.poweredBy()
+    poweredBy : middlewares.poweredBy(),
+    staticFiles     : middlewares.staticFiles()
 
   },
 
@@ -73,7 +75,7 @@ module.exports.http = {
   *                                                                          *
   ***************************************************************************/
 
-  //bodyParser: require('skipper')
+  // bodyParser: require('skipper')  
 
   /***************************************************************************
   *                                                                          *

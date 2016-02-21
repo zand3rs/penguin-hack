@@ -3,5 +3,6 @@
  */
 
 module.exports = {
-  poweredBy     : require("./powered-by")
+  poweredBy     : require("./powered-by"),
+  staticFiles     : require("./static-files"),
 };
