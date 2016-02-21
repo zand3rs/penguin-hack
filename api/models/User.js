@@ -8,9 +8,13 @@ module.exports = {
   tableName: "users",
   attributes: {
 
-    userId: {
+    authId: {
       type: "string",
-      columnName: "user_id"
+      columnName: "auth_id"
+    },
+    authType: {
+      type: "string",
+      columnName: "auth_type"
     },
     displayName: {
       type: "string",
@@ -28,13 +32,9 @@ module.exports = {
       type: "email",
       columnName: "name"
     },
-    gender: {
+    picture: {
       type: "string",
-      columnName: "gender"
-    },
-    photo: {
-      type: "string",
-      columnName: "photo"
+      columnName: "picture"
     }
 
   },

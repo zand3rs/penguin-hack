@@ -29,18 +29,18 @@ module.exports = {
 
   _saveUser: function(user, done) {
     var self = this;
-    User.findOne({userId: user.id}, function (err, foundUser) {
+    User.findOne({authId: user.id}, function (err, foundUser) {
       if (!_.isEmpty(foundUser)) {
         done(err, foundUser)
       } else {
         var newUser = {
-          userId: user.id,
+          authId: user.id,
+          authType: "google",
           displayName: user.displayName,
           firstName: user.name.givenName,
           lastName: user.name.familyName,
           email: _.first(user.emails).value,
-          gender: user.gender,
-          photo: _.first(user.photos).value
+          picture: _.first(user.photos).value
         };
         User.create(newUser, done);
       }
