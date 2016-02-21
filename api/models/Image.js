@@ -30,15 +30,15 @@ module.exports = {
       type: "string",
       columnName: "app_id",
       required: true
+    },
+    createdAt: {
+      type: "datetime",
+      columnName: "created_at"
+    },
+    updatedAt: {
+      type: "datetime",
+      columnName: "updated_at"
     }
-  },
-  createdAt: {
-    type: "datetime",
-    columnName: "created_at"
-  },
-  updatedAt: {
-    type: "datetime",
-    columnName: "updated_at"
   }
 
 };

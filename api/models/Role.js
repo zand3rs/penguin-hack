@@ -42,15 +42,15 @@ module.exports = {
       required: true,
       defaultsTo: false,
       columnName: "manage_images"
+    },
+    createdAt: {
+      type: "datetime",
+      columnName: "created_at"
+    },
+    updatedAt: {
+      type: "datetime",
+      columnName: "updated_at"
     }
-  },
-  createdAt: {
-    type: "datetime",
-    columnName: "created_at"
-  },
-  updatedAt: {
-    type: "datetime",
-    columnName: "updated_at"
   },
 
   //-- lifecycle callbacks

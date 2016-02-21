@@ -7,7 +7,6 @@ module.exports = {
 
   tableName: "users",
   attributes: {
-
     authId: {
       type: "string",
       columnName: "auth_id"
@@ -35,16 +34,15 @@ module.exports = {
     picture: {
       type: "string",
       columnName: "picture"
+    },
+    createdAt: {
+      type: "datetime",
+      columnName: "created_at"
+    },
+    updatedAt: {
+      type: "datetime",
+      columnName: "updated_at"
     }
-
-  },
-  createdAt: {
-    type: "datetime",
-    columnName: "created_at"
-  },
-  updatedAt: {
-    type: "datetime",
-    columnName: "updated_at"
   }
 
 };
