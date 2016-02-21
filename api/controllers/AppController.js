@@ -7,9 +7,26 @@
 module.exports = {
 
   index: function(req, res) {
+    var page = parseInt(req.param("page")) || 1;
+    var limit = sails.config.limits.pageLimit;
+    var skip = (page-1) * limit;
+
     async.auto({
+      page: function(next) {
+        App.count({}, function(err, result) {
+          if (err) {
+            return next(err);
+          }
+
+          var page = _.ceil(result/limit);
+          return next(null, page);
+        });
+      },
       apps: function(next) {
-        App.find({}, function(err, apps) {
+        App.find()
+        .limit(limit)
+        .skip(skip)
+        .exec(function(err, apps) {
           if (err) {
             return next(err);
           }
@@ -19,6 +36,7 @@ module.exports = {
       }
     }, function(err, result) {
       var apps = result.apps;
+      var totalPage = result.page;
       var payload = {};
 
       res.format({
@@ -27,17 +45,31 @@ module.exports = {
             req.addFlash("error", "Error loading apps");
           } else {
             payload.apps = apps;
+            payload.totalPage = page;
           }
 
           res.view(payload);
         },
         json: function() {
+          var meta = {
+            currentPage: page,
+            totalPage: totalPage
+          };
+
+          if (_.gt(page, 1)) {
+            meta.previousPage = page - 1;
+          }
+
+          if (_.lt(page, totalPage)) {
+            meta.nextPage = page + 1;
+          }
+
           payload = (err) ? err : apps;
 
           if (err) {
             return res.apiError(payload);
           } else {
-            res.apiSuccess(payload);
+            res.apiSuccess(payload, meta);
           }
         }
       });
