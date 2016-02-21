@@ -203,7 +203,7 @@ module.exports = {
             res.apiSuccess(payload);
           }
         }
-      })
-    })
+      });
+    });
   }
 };
