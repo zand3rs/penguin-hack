@@ -13,6 +13,11 @@
 module.exports = {
 
   host: "penguin.koding.io",
-  port: 8080
+  port: 8080,
+  google: {
+    key: "688356610593-vt2h2a3lsd0g7beh4fdboq1nuhrr1ipi.apps.googleusercontent.com",
+    secret: "D8zYy2ddORfgBYf6w2ahH-xM",
+    callbackUrl: "http://169.45.108.228:8080/authorize"
+  }
 
 };
