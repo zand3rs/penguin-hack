@@ -1,0 +1,39 @@
+<%- partial("../common/header") %>
+
+<div class="page-wrap">
+  <%- partial("../common/settings-nav", {currentMenu: "apps"}) %>
+
+  <div id="apps-index-view" class="wrap">
+    <div class="page-header">
+      <h1 class="page-title">Roles</h1> <a href="/apps/<%- req.param('app_id') %>/roles/new" class="add-new"><span class="ico ico-circle-plus"></span></a>
+    </div>
+
+    <div class="list">
+      <div class="list-header">
+        <ul>
+          <li class="role">Role</li>
+          <li class="description">Description</li>
+          <li class="date">Date</li>
+        </ul>
+      </div>
+      <div class="list-body">
+        <% for(var i=0;i<10;i++) { %>
+          <div class="item">
+            <div class="role main"><a href="#">Editor</a></div>
+            <div class="description">Desc</div>
+            <div class="date">Feb 20, 2016 08:00 AM</div>
+          </div>
+        <% } %>
+      </div>
+      <div class="pagination-region"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var listItems = <%- JSON.stringify(roles) %>;
+  var listMeta = <%- JSON.stringify(meta) %>;
+</script>
+
+<%- partial("role-templates") %>
