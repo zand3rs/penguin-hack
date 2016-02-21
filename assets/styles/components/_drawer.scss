@@ -24,7 +24,7 @@ $drawer-z-index: 10;
 }
 
 #drawer .drawer-main {
-  background: $color-white;
+  background: $color-white-4;
   position: fixed;
   left: -100%;
   width: 100%;
@@ -34,6 +34,46 @@ $drawer-z-index: 10;
   overflow: auto;
   z-index: $drawer-z-index - 1;
   transition: all 0.25s ease;
+
+  .drawer-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-color: gray;
+    margin: pxEm(-8) pxEm(8) pxEm(10) 0;
+    float: left;
+  }
+
+  .ico-circle-plus {
+    float: right;
+    margin-right: 20px;
+    zoom: .9;
+    margin-top: 15px;
+  }
+
+  li {
+    height: 50px;
+    border-bottom: 1px solid $color-white-2;
+    @include transition(background-color .1s ease-out);
+
+    @include hoverStyles() {
+      background: $color-white-2;
+    }
+  }
+
+  li:first-child {
+    border-top: 1px solid $color-white-2;
+  }
+
+  li a {
+    display: block;
+    padding: 18px 15px;
+    text-decoration: none;
+    color: $color-gray-2;
+    font-size: 14px;
+  }
 }
 
 @include breakpoint( tablet-and-up ) {

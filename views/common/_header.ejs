@@ -6,21 +6,21 @@
       </a>
       <div class="current-app">
         <span class="app-icon"></span>
-        <span class="app-name">Penguin</span>
+        <span class="app-title">Penguin</span>
       </div>
     </div>
 
     <nav id="section-nav">
       <ul>
-        <li><a href="#" class="current-menu">Entries</a></li>
-        <li><a href="#">Media</a></li>
-        <li><a href="#">Models</a></li>
+        <li><a href="#" class="menu-title current-menu">Entries</a></li>
+        <li><a href="#" class="menu-title">Media</a></li>
+        <li><a href="#" class="menu-title">Models</a></li>
       </ul>
     </nav>
 
     <% if (req.user) { %>
     <div id="current-user-nav">
-      <a href="#" id="user-menu-link"><%- req.user.firstName %></a>
+      <a href="#" id="user-menu-link" class="menu-title"><%- req.user.firstName %><span class="ico ico-arrow-down3 profile-arrow"></span></a>
       <nav id="user-menu">
         <ul>
           <li><a href="/profile">Profile</a></li>
@@ -34,14 +34,14 @@
 
   <div id="drawer">
     <div class="drawer-main">
-      <div>Applications</div>
+      <div class="menu-drawer-title">Applications <a href="#"><span class="ico ico-circle-plus"></a></div>
       <ul>
-        <li><a href="#"><span class="app-icon"></span>Amaterasu</a></li>
-        <li><a href="#"><span class="app-icon"></span>Byakugan</a></li>
-        <li><a href="#"><span class="app-icon"></span>Voltron</a></li>
+        <li><a href="#"><span class="drawer-icon"></span><span class="app-icon"></span>Amaterasu</a></li>
+        <li><a href="#"><span class="drawer-icon"></span><span class="app-icon"></span>Byakugan</a></li>
+        <li><a href="#"><span class="drawer-icon"></span><span class="app-icon"></span>Voltron</a></li>
       </ul>
 
-      <div>Help</div>
+      <div class="menu-drawer-title">Help</div>
       <ul>
         <li><a href="#">FAQ</a></li>
         <li><a href="#">Terms and Conditions</a></li>
