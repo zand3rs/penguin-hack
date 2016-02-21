@@ -13,8 +13,14 @@ module.exports = {
     },
     crumbs: {
       type: "array",
-      columnName: "crumbs"
+      columnName: "crumbs",
+      defaultsTo: []
     },
+
+    name: function() {
+      return this.crumbs.join("/");
+    },
+
     createdAt: {
       type: "datetime",
       columnName: "created_at"

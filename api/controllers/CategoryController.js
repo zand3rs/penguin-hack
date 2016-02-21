@@ -10,19 +10,20 @@ module.exports = {
   index: function (req, res) {
     var page = parseInt(req.param("page")) || 1;
     var limit = sails.config.limits.pageLimit;
+    var appId = req.param("app_id");
 
     var tasks = {
       page: function(next) {
-        Category.count({}, function(err, result) {
+        Category.count({appId: appId}, function(err, result) {
           if (err) {
             return next(err);
           }
           var page = _.ceil(result/limit);
           return next(null, page);
         });
-      },      
+      },
       categories: function (next) {
-        Category.find()
+        Category.find({appId: appId})
         .paginate({page: page, limit: limit})
         .exec(function(err, categories) {
           if (err) {
@@ -112,8 +113,9 @@ module.exports = {
   //--------------------------------------------------------------------------------------------------------------  
   edit: function (req, res) {
     var id = req.param("id");
+    var appId = req.param("app_id");
 
-    Category.findOne({id: id}, function (err, category) {
+    Category.findOne({id: id, appId: appId}, function (err, category) {
       var payload = {};
       res.format({
         html: function() {
@@ -162,8 +164,9 @@ module.exports = {
 
   destroy: function (req, res) {
     var id = req.param("id");
+    var appId = req.param("app_id");
 
-    Category.destroy({id: id}, function(err, category) {
+    Category.destroy({id: id, appId: appId}, function(err, category) {
       var payload = (err) ? err : category;
 
       res.format({

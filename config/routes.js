@@ -47,14 +47,6 @@ module.exports.routes = {
   "PUT    /apps/:id"       : "App.update",
   "DELETE /apps/:id"       : "App.destroy",
 
-  //-- User
-  "GET    /apps/:app_id/users"           : "User.index",
-  "GET    /apps/:app_id/users/new"       : "User.new",
-  "POST   /apps/:app_id/users"           : "User.create",
-  "GET    /apps/:app_id/users/:id/edit"  : "User.edit",
-  "PUT    /apps/:app_id/users/:id"       : "User.update",
-  "DELETE /apps/:app_id/users/:id"       : "User.destroy",
-
   //-- Role
   "GET    /apps/:app_id/roles"           : "Role.index",
   "GET    /apps/:app_id/roles/new"       : "Role.new",
@@ -80,11 +72,12 @@ module.exports.routes = {
   "DELETE /media/:id"       : "Image.destroy",
 
   //-- Categories
-  "GET /categories"              : "Category.index",
-  "GET /categories/new"          : "Category.new",
-  "POST /categories"             : "Category.create",
-  "GET /categories/:id/edit"     : "Category.edit",
-  "PUT /categories/:id"          : "Category.update",
-  "DELETE /categories/:id"       : "Category.destroy",
+  "GET /apps/:app_id/categories"              : "Category.index",
+  "GET /apps/:app_id/categories/new"          : "Category.new",
+  "POST /apps/:app_id/categories"             : "Category.create",
+  "GET /apps/:app_id/categories/:id/edit"     : "Category.edit",
+  "PUT /apps/:app_id/categories/:id"          : "Category.update",
+  "DELETE /apps/:app_id/categories/:id"       : "Category.destroy",
+
 
 };
