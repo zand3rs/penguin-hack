@@ -48,7 +48,6 @@ module.exports = {
   //----------------------------------------------------------------------------
 
   initialize: function(options) {
-    sails.log.info("Penguin Passport Initialize");
     var self = this;
 
     passport.serializeUser(self._serializeUser);
