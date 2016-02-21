@@ -39,31 +39,31 @@ module.exports = {
       var totalPage = result.page;
       var payload = {};
 
+      var meta = {
+        currentPage: page,
+        totalPage: totalPage
+      };
+
+      if (_.gt(page, 1)) {
+        meta.previousPage = page - 1;
+      }
+
+      if (_.lt(page, totalPage)) {
+        meta.nextPage = page + 1;
+      }
+
       res.format({
         html: function() {
           if (err) {
             req.addFlash("error", "Error loading apps");
           } else {
             payload.apps = apps;
-            payload.totalPage = page;
+            payload.meta = meta;
           }
 
           res.view(payload);
         },
         json: function() {
-          var meta = {
-            currentPage: page,
-            totalPage: totalPage
-          };
-
-          if (_.gt(page, 1)) {
-            meta.previousPage = page - 1;
-          }
-
-          if (_.lt(page, totalPage)) {
-            meta.nextPage = page + 1;
-          }
-
           payload = (err) ? err : apps;
 
           if (err) {
