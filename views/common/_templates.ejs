@@ -1,0 +1,9 @@
+<script type="text/template" id="pagination-template">
+  <? if(previousPage) { ?>
+    <a href="#" class="prev" data-prev-page="<?- previousPage ?>"><span class="ico ico-arrow-left3"></span></a>
+  <? } ?>
+  <input type="text" value="<?- currentPage ?>" class="page" /> of <?- totalPage ?>
+  <? if(nextPage) { ?>
+  <a href="#" class="next" data-next-page="<?- nextPage ?>"><span class="ico ico-arrow-right3"></span></a>
+  <? } ?>
+</script>
