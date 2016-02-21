@@ -54,8 +54,4 @@ module.exports.routes = {
   "GET    /roles/:id/edit"  : "Role.edit",
   "PUT    /roles/:id"       : "Role.update",
   "DELETE /roles/:id"       : "Role.destroy",
-
-  //-- Permission
-  "POST /permissions"    : "Permission.create",
-  "PUT /permissions/:id"    : "Permission.update",
 };
