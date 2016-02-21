@@ -1,16 +1,45 @@
 #growl-region {
   position: fixed;
-  top: 50px;
+  top: 120px;
   right: 50px;
-  width: 300px;
+  width: 400px;
+  height: 50px;
 }
 
 .growl {
   &.success {
+    background-color: #c7e7a2;
+    box-shadow: 0 2px 3px 0 rgba(206, 206, 206, 0.5);
+    border: solid 3px $color-white;
+    @include border-radius(7px);
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    color: $color-black-3;
 
+    a {
+      float: right;
+      margin-right: 5px;
+      margin-top: 0;
+    }
   }
 
   &.error {
+    background-color: rgba(249, 147, 137, 0.9);
+    box-shadow: 0 2px 3px 0 rgba(206, 206, 206, 0.5);
+    border: solid 3px $color-white;
+    @include border-radius(7px);
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    color: $color-black-3;
 
+    a {
+      float: right;
+      margin-right: 5px;
+      margin-top: 0;
+    }
   }
 }
