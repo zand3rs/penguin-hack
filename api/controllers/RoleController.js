@@ -21,7 +21,7 @@ module.exports = {
           var page = _.ceil(result/limit);
           return next(null, page);
         });
-      }
+      },
       roles: function(next) {
         App.find()
         .limit(limit)
