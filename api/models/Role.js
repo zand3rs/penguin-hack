@@ -24,7 +24,7 @@ module.exports = {
       type: "json",
       required: true,
       columnName: "permission"
-    }
+    },
     manageApps: {
       type: "boolean",
       required: true,
