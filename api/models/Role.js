@@ -3,6 +3,9 @@
 *
 */
 
+var validPermissions = ["canAdd", "canEdit", "canView", "canPublish", "canDelete", "canArchive"];
+var status = ["draft", "submitted", "published", "archived"];
+
 module.exports = {
 
   tableName: "roles",
@@ -17,6 +20,11 @@ module.exports = {
       required: true,
       columnName: "description"
     },
+    permission: {
+      type: "json",
+      required: true,
+      columnName: "permission"
+    }
     manageApps: {
       type: "boolean",
       required: true,
@@ -29,11 +37,11 @@ module.exports = {
       defaultsTo: false,
       columnName: "manage_models"
     },
-    manageMedia: {
+    manageImages: {
       type: "boolean",
       required: true,
-      defaultsTo: false, 
-      columnName: "manage_media"
+      defaultsTo: false,
+      columnName: "manage_images"
     }
   },
   createdAt: {

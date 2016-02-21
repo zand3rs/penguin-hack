@@ -59,6 +59,7 @@ module.exports = {
     var params = _.omitBy({
       name: req.param("name"),
       description: req.param("description"),
+      permission: req.param("permission"),
       manageApps: req.param("manageApps"),
       manageModels: req.param("manageModels"),
       manageMedia: req.param("manageMedia")
@@ -114,6 +115,7 @@ module.exports = {
     var params = _.omitBy({
       name: req.param("name"),
       description: req.param("description"),
+      permission: req.param("permission"),
       manageApps: req.param("manageApps"),
       manageModels: req.param("manageModels"),
       manageMedia: req.param("manageMedia")
