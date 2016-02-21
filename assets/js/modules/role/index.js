@@ -22,12 +22,12 @@ Penguin.module("Role.Index.Views", function(Views, Penguin, Backbone, Marionette
   // ### Roles Index Layout
   Views.Index = Marionette.LayoutView.extend({
     el: "#roles-index-view",
-    buildList: function() {
+    buildList: function(appId) {
       if (_.isEmpty(listItems)) {
         return;
       }
 
-      var collection = new RoleEntities.RolesCollection(listItems);
+      var collection = new RoleEntities.RolesCollection(listItems, {appId: appId});
       collection.meta = listMeta;
 
       var listView = new ListViews.List({
@@ -38,8 +38,8 @@ Penguin.module("Role.Index.Views", function(Views, Penguin, Backbone, Marionette
       });
     },
 
-    initialize: function() {
-      this.buildList();
+    initialize: function(appId) {
+      this.buildList(this.$el.data("app-id"));
     }
   });
 

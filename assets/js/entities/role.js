@@ -5,7 +5,7 @@ Penguin.module("Role.Entities", function(Entities, Penguin, Backbone, Marionette
   // ### Role
   Entities.Role = Backbone.Model.extend({
     urlRoot: function() {
-      return "/apps/ " + this.get("appId") + "roles/";
+      return "/apps/" + this.get("appId") + "/roles/";
     },
 
     defaults: function() {
@@ -97,12 +97,14 @@ Penguin.module("Role.Entities", function(Entities, Penguin, Backbone, Marionette
   // ### Roles Collection
   Entities.RolesCollection = Backbone.Collection.extend({
     model: Entities.Role,
-    baseUrl: "/roles/",
+    baseUrl: function() {
+      return "/apps/" + this.appId + "/roles/";
+    },
 
     nextPage: -1,
 
     url: function() {
-      var url = this.baseUrl;
+      var url = this.baseUrl();
 
       if (this.nextPage) {
         return url + "?page=" + this.nextPage;
@@ -137,6 +139,10 @@ Penguin.module("Role.Entities", function(Entities, Penguin, Backbone, Marionette
       });
 
       return defer.promise();
+    },
+
+    initialize: function(collection, options) {
+      this.appId = options.appId;
     }
 
   });
