@@ -29,13 +29,15 @@ module.exports.routes = {
   //-- Home
   "GET /"       : "Home.index",
   "GET /login"  : "Home.login",
-  
+
 
   //-- Session / Authentication
-  "GET /authenticate": "Session.authenticate",
-  "GET /authorize": "Session.authorize",
-  "GET /logout" : "Session.destroy",  
-  
+  "GET /authenticate" : "Session.authenticate",
+  "GET /authorize"    : "Session.authorize",
+  "GET /logout"       : "Session.destroy",
+
+  //-- Profile
+  "GET /profile"      : "Profile.show",
 
   //-- App
   "GET    /apps"           : "App.index",
@@ -47,7 +49,7 @@ module.exports.routes = {
 
   //-- Role
   "GET    /roles"           : "Role.index",
-  "GET    /roles/new"       : "Role.new"
+  "GET    /roles/new"       : "Role.new",
   "POST   /roles"           : "Role.create",
   "GET    /roles/:id/edit"  : "Role.edit",
   "PUT    /roles/:id"       : "Role.update",
