@@ -10,7 +10,6 @@ module.exports = {
     var limit = sails.config.limits.pageLimit;
     var appId = req.param("app_id");
 
-
     var tasks = {
       page: function(next) {
         AppUser.count({appId: appId}, function(err, result) {
@@ -115,26 +114,92 @@ module.exports = {
   //----------------------------------------------------------------------------
 
   edit: function(req, res) {
-    res.format({
-      html: function() {
-        res.view();
+    var id = req.param("id");
+    var appId = req.param("app_id");
+
+    var tasks = {
+      appUser: function (next) {
+        AppUser.findOne({id: id, appId: appId}, next);
       },
-      json: function() {
-        res.notFound();
-      }
+      user: ["appUser", function (next, result) {
+        var appUser = result.appUser || {};
+        User.findOne({id: appUser.userId}, next);
+      }]
+    };
+
+    async.auto(tasks, function (err, result) {
+      var appUser = result.appUser || {};
+      appUser.user = result.user || {};
+
+      res.format({
+        html: function() {
+          if (err) {
+            req.addFlash("error", "Error loading app user details");
+          } else if (_.isEmpty(appUser)) {
+            req.addFlash("error", "Application user not found!");
+          } else {
+            payload.appUser = appUser;
+          }
+          return res.view(payload);
+        },
+        json: function() {
+          return res.apiSuccess(appUser);
+        }
+      });   
     });
   },
 
   //----------------------------------------------------------------------------
 
   update: function(req, res) {
-    res.ok();
+    var id = req.param("id");
+    var params = _.omitBy({
+      appId: req.param("app_id"),
+      userId: req.param("user_id"),
+      roleId: req.param("role_id")
+    }, _.isNil);
+
+    AppUser.update({id: id}, params, function(err, appUser) {
+      var payload = (err) ? err : appUser;
+      res.format({
+        html: function () {
+          res.notFound();
+        },
+        json: function () {
+          if (err) {
+            return res.apiError(payload);
+          } else {
+            res.apiSuccess(payload);
+          }
+        }
+      });
+    });
   },
 
   //----------------------------------------------------------------------------
 
   destroy: function(req, res) {
-    res.ok();
+    var id = req.param("id");
+    var appId = req.param("app_id");
+
+    AppUser.destroy({id: id, appId: appId}, function(err, appUser) {
+      var payload = (err) ? err : appUser;
+
+      res.format({
+        html: function() {
+          res.notFound();
+        },
+        json: function() {
+          if (err) {
+            res.apiError(payload);
+          } else if (_.isEmpty(appUser)) {
+            res.apiError(new Exception.RecordNotFound("Application User Not Found"));
+          } else {
+            res.apiSuccess(payload);
+          }
+        }
+      })
+    });
   },
 
   //----------------------------------------------------------------------------

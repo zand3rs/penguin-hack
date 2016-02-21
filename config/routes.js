@@ -80,10 +80,12 @@ module.exports.routes = {
   "DELETE /apps/:app_id/categories/:id"       : "Category.destroy",
 
   //-- Users
-  "GET    /users/search"             : "User.search",
-  "GET    /apps/:app_id/users"       : "User.index",
-  "POST   /apps/:app_id/users"       : "User.create",
-  
+  "GET    /users/search"                      : "User.search",
+  "GET    /apps/:app_id/users"                : "User.index",
+  "POST   /apps/:app_id/users"                : "User.create",
+  "GET    /apps/:app_id/users/:id/edit"       : "User.edit",
+  "PUT    /apps/:app_id/users/:id"            : "User.update",
+  "DELETE /apps/:app_id/users/:id"            : "User.destroy",
 
 
 };
