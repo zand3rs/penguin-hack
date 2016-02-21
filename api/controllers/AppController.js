@@ -9,7 +9,6 @@ module.exports = {
   index: function(req, res) {
     var page = parseInt(req.param("page")) || 1;
     var limit = sails.config.limits.pageLimit;
-    var skip = (page-1) * limit;
 
     async.auto({
       page: function(next) {
@@ -24,8 +23,7 @@ module.exports = {
       },
       apps: function(next) {
         App.find()
-        .limit(limit)
-        .skip(skip)
+        .paginate({page: page, limit: limit})
         .exec(function(err, apps) {
           if (err) {
             return next(err);
