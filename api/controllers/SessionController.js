@@ -6,11 +6,22 @@
  */
 module.exports = {
 	
+  signin: function(req, res) {
+    PenguinPassport.fakeAuth(function(err, profile) {
+      req.login(profile, function (err) {
+        res.redirect("/");
+      });
+    })(req, res);
+  },
+
+  //----------------------------------------------------------------
+
   authenticate: function (req, res) {
     PenguinPassport.authenticate()(req, res);
   },
 
   //----------------------------------------------------------------
+
   authorize: function (req, res) {
     PenguinPassport.authorize(function (err, profile) {
       req.login(profile, function (err) {
@@ -20,6 +31,7 @@ module.exports = {
   },
 
   //----------------------------------------------------------------
+
   destroy: function (req, res) {
     req.logout();
     req.session.destroy();

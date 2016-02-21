@@ -10,12 +10,17 @@ module.exports = {
     res.view();
   },
 
+  //----------------------------------------------------------------------------
+
   login: function(req, res) {
-    //check if user is already logged-in
+    //-- check if user is already logged-in
     if (req.isAuthenticated()) { 
       return res.redirect("/");
-    }   
-    
-    return res.view();
+    }
+
+    User.find().exec(function(err, users) {
+      res.view({ users: users || [] });
+    });
   }
+
 };

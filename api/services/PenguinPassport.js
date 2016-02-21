@@ -69,8 +69,6 @@ module.exports = {
     User.findOrCreate({authId: user.id}, newUser, done);
   },  
 
-
-
   //----------------------------------------------------------------------------
 
   initialize: function(options) {
@@ -100,9 +98,14 @@ module.exports = {
   authenticate: function(done) {
     var self = this;
     return function (req, res) {
-      // passport.authenticate('google', {  scope:"profile email openid" })(req, res);
-      var scope = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.me", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"];
-      passport.authenticate('google', {  scope: scope })(req, res);
+      //var scope = "profile email openid";
+      var scope = [
+        "https://www.googleapis.com/auth/plus.login",
+        "https://www.googleapis.com/auth/plus.me",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile"
+      ];
+      passport.authenticate("google", { scope: scope })(req, res);
     }
   },
 
@@ -129,5 +132,15 @@ module.exports = {
       });
     }
   },
+
+  //----------------------------------------------------------------------------
+
+  fakeAuth: function(done) {
+    var self = this;
+    return function(req, res) {
+      var userId = req.param("id") || "";
+      User.findOne({id: userId}, done);
+    }
+  }
 
 }.initialize();
