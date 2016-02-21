@@ -79,5 +79,11 @@ module.exports.routes = {
   "PUT    /apps/:app_id/categories/:id"       : "Category.update",
   "DELETE /apps/:app_id/categories/:id"       : "Category.destroy",
 
+  //-- Users
+  "GET    /users/search"             : "User.search",
+  "GET    /apps/:app_id/users"       : "User.index",
+  "POST   /apps/:app_id/users"       : "User.create",
+  
+
 
 };
