@@ -19,9 +19,7 @@
         </ul>
       </div>
       <div class="list-body"></div>
-      <div class="pagination">
-        <a href="#" class="prev"><span class="ico ico-arrow-left3"></span></a><input type="text" value="1" class="page" /> of 4<a href="#" class="next"><span class="ico ico-arrow-right3"></span></a>
-      </div>
+      <div class="pagination-region"></div>
     </div>
 
   </div>
@@ -29,6 +27,7 @@
 
 <script>
   var listItems = <%- JSON.stringify(apps) %>;
+  var listMeta = <%- JSON.stringify(meta) %>;
 </script>
 
 <%- partial("app-templates") %>

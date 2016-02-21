@@ -22,6 +22,27 @@ Penguin.module("Entities", function(Entities, Penguin, Backbone, Marionette, $, 
   });
 
 
+  Entities.Pagination = Backbone.Model.extend({
+    defaults: function() {
+      return {
+        nextPage: 0,
+        previousPage: 0,
+        currentPage: 1,
+        totalPage: 1
+      }
+    },
+    resetValues: function(newValues){
+      var meta = _.defaults(newValues, {
+        nextPage: 0,
+        previousPage: 0,
+        currentPage: 1,
+        totalPage: 1}
+      );
+      this.set(meta);
+    }
+  });
+
+
 
   /* Collections
     --------------------------------------------------------------------------*/
@@ -29,6 +50,8 @@ Penguin.module("Entities", function(Entities, Penguin, Backbone, Marionette, $, 
   Entities.AppsCollection = Backbone.Collection.extend({
     model: Entities.App,
     baseUrl: "/apps/",
+
+    nextPage: -1,
 
     url: function() {
       var url = this.baseUrl;
@@ -41,6 +64,8 @@ Penguin.module("Entities", function(Entities, Penguin, Backbone, Marionette, $, 
     },
 
     parse: function(response) {
+      this.meta = response.meta || {};
+
       if (response.data && !_.isEmpty(response.data)) {
         this.nextPage++;
         return _.isArray(response.data) ? response.data : [response.data];
@@ -50,28 +75,19 @@ Penguin.module("Entities", function(Entities, Penguin, Backbone, Marionette, $, 
     },
 
     getApps: function(fetchOptions) {
+      var self = this;
       var defer = $.Deferred();
 
-      var options = {
-        data: {},
-        success: function(data, response) {
-          if (response.status == "success") {
-            defer.resolve(data);
-          } else {
-            defer.reject(response.data);
-          }
-        },
+      var fetch = self.fetch();
 
-        error: function(data, response) {
-          defer.reject(response.data);
+      fetch.done(function(response, xhr) {
+        if (response && _.isEmpty(response.error)) {
+          return defer.resolve(response.data);
         }
-      };
 
-      if (!_.isEmpty(fetchOptions)) {
-        options = _.extend(options, fetchOptions);
-      }
+        return defer.reject(response.error);
+      });
 
-      this.fetch(options);
       return defer.promise();
     }
 

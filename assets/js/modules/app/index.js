@@ -28,11 +28,12 @@ Penguin.module("App.Index.Views", function(Views, Penguin, Backbone, Marionette,
         return;
       }
 
+      var collection = new Entities.AppsCollection(listItems);
+      collection.meta = listMeta;
+
       var listView = new Views.List({
-        collection: new Entities.AppsCollection(listItems)
+        collection: collection
       });
-
-
     },
 
     initialize: function() {
@@ -66,43 +67,89 @@ Penguin.module("App.Index.Views", function(Views, Penguin, Backbone, Marionette,
       this.bindUIElements();
       this.render();
 
-      var pagination = new Views.Pagination(this.collection);
-      this.listenTo(pagination, "change:page", function(newPage) {
-
+      var paginationModel = new Entities.Pagination(this.collection.meta);
+      var pagination = new Views.Pagination({
+        model: paginationModel
+      }, {
+        collection: self.collection
       });
+
+      this.listenTo(pagination, "change:page", function(newPage) {
+        self.collection.nextPage = newPage;
+        var fetch = self.collection.getApps();
+        fetch.done(function() {
+          pagination.model.resetValues(self.collection.meta);
+        });
+      });
+
+      var region = new Marionette.Region({
+        el: ".pagination-region"
+      });
+      region.show(pagination);
     }
   });
 
 
   // ### Pagination
   Views.Pagination = Marionette.ItemView.extend({
-    el: ".pagination",
+    template: "#pagination-template",
+    className: "pagination",
     ui: {
       prevLink: ".prev",
       nextLink: ".next",
       pageInput: ".page"
     },
+    modelEvents: {
+      "change": "render"
+    },
     events: {
-      "change @ui.pageInput": "changePage",
+      "keypress @ui.pageInput": "changePage",
       "click @ui.prevLink": "prevPage",
       "click @ui.nextLink": "nextPage"
     },
-    changePage: function() {
-      var self = this;
-      var newPage = self.ui.pageInput.val();
-      this.trigger("change:page", newPage);
+    disableView: function() {
+      this.$el.addClass("disabled");
+      this.ui.pageInput.attr("readonly", true);
+    },
+    enableView: function() {
+      this.$el.removeClass("disabled");
+      this.ui.pageInput.attr("readonly", false);
+    },
+    changePage: function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
 
+        if (this.$el.hasClass("disabled")) {
+          return false;
+        }
+
+        var newPage = this.ui.pageInput.val();
+
+        if (newPage > this.model.get("totalPage")) {
+          this.ui.pageInput.val(this.model.get("totalPage"));
+        }
+
+        if (newPage != this.model.get("currentPage")) {
+          this.disableView();
+          this.trigger("change:page", newPage);
+        } else {
+          this.enableView();
+        }
+      }
+    },
+    prevPage: function(e) {
+      this.trigger("change:page", this.model.get("previousPage"));
       e.preventDefault();
     },
-    prevPage: function() {
-
+    nextPage: function(e) {
+      this.trigger("change:page", this.model.get("nextPage"));
+      e.preventDefault();
     },
-    nexPage: function() {
-
+    onRender: function() {
+      this.enableView();
     },
-    initialize: function(collection) {
-      this.bindUIElements();
-      this.collection = collection;
+    initialize: function(model, options) {
+      this.collection = options.collection;
     }
   });
 
