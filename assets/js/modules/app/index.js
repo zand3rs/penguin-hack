@@ -3,7 +3,6 @@ Penguin.module("App.Index", function(Index, Penguin, Backbone, Marionette, $, _)
   /* Start
     --------------------------------------------------------------------------*/
   var AppIndexViews = Penguin.module("App.Index.Views");
-  var Entities = Penguin.module("Entities");
 
   this.startWithParent = false;
   Index.on("start", function() {
@@ -16,6 +15,7 @@ Penguin.module("App.Index.Views", function(Views, Penguin, Backbone, Marionette,
   /* Required Modules
     --------------------------------------------------------------------------*/
   var Entities = Penguin.module("Entities");
+  var AppEntities = Penguin.module("App.Entities");
 
 
   /* Marionette Views
@@ -28,7 +28,7 @@ Penguin.module("App.Index.Views", function(Views, Penguin, Backbone, Marionette,
         return;
       }
 
-      var collection = new Entities.AppsCollection(listItems);
+      var collection = new AppEntities.AppsCollection(listItems);
       collection.meta = listMeta;
 
       var listView = new Views.List({
