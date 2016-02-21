@@ -97,16 +97,11 @@ module.exports = {
   update: function(req, res) {
     var id = req.param("id");
 
-    if (_.isEmpty(req.param("name")) || _.isEmpty(req.param("description"))) {
-      return res.apiError(new Exception.MissingRequiredParameterError());
-    }
-
     var params = {
       name: req.param("name") || "",
       description: req.param("description") || ""
     };
 
-    console.log(params);
     App.update({id: id}, params, function(err, app) {
       var payload = (err) ? err : app;
 
