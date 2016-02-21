@@ -33,12 +33,19 @@ module.exports.routes = {
   //-- Session / Authentication
   "GET /authenticate": "Session.authenticate",
   "GET /authorize": "Session.authorize",
-  
+
   //-- App
   "GET    /apps"           : "App.index",
   "POST   /apps"           : "App.create",
   "GET    /apps/:id/edit"  : "App.edit",
   "PUT    /apps/:id"       : "App.update",
   "DELETE /apps/:id"       : "App.destroy",
+
+  //-- Role
+  "GET    /roles"           : "Role.index",
+  "POST   /roles"           : "Role.create",
+  "GET    /roles/:id/edit"  : "Role.edit",
+  "PUT    /roles/:id"       : "Role.update",
+  "DELETE /roles/:id"       : "Role.destroy",
 
 };
