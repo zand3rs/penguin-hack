@@ -1,19 +1,21 @@
 <%- partial("../common/header") %>
 
+<% var actions = ["add","edit","view","publish", "delete", "archive"]; %>
 <div class="page-wrap">
 
   <% flash.get("error").forEach(function (message) { %>
     <%- message %>
   <% }) %>
 
-  <%- partial("../common/settings-nav", {currentMenu: "roles"}) %>
+  <%- partial("../common/settings-nav", {currentMenu: "apps"}) %>
 
   <div class="wrap">
     <div class="page-header">
       <h1 class="page-title">Add User Role</h1>
     </div>
 
-    <form action="/roles" method="POST" class="form wrap">
+    <form id="add-new-role-form" action="/roles" method="POST" class="form wrap">
+      <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />
       <div class="primary">
         <div class="field">
           <label>Name<span class="required">*</span></label>
@@ -27,13 +29,13 @@
         <hr>
         <h2 class="page-title-2">Admin Rights</h2>
         <div class="field">
-          <label class="checkbox"><input type="checkbox" name="checkbox" value="value">Applications</label>
+          <label class="checkbox"><input type="checkbox" name="manageApps" value="value">Applications</label>
         </div>
         <div class="field">
-          <label class="checkbox"><input type="checkbox" name="checkbox" value="value">Models</label>
+          <label class="checkbox"><input type="checkbox" name="manageModels" value="value">Models</label>
         </div>
         <div class="field">
-          <label class="checkbox"><input type="checkbox" name="checkbox" value="value">Media</label>
+          <label class="checkbox"><input type="checkbox" name="manageImages" value="value">Media</label>
         </div>
         <hr>
         <h2 class="page-title-2">Permissions</h2>
@@ -52,39 +54,27 @@
           <div class="list-body">
               <div class="item">
                 <div class="roles title">Draft</div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <% _.forEach(actions, function(action) { %>
+                  <div class="roles"><input type="checkbox" name="permission[draft][<%- action %>]" value="true"></div>
+                <% }) %>
               </div>
               <div class="item">
                 <div class="roles">Submitted</div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <% _.forEach(actions, function(action) { %>
+                  <div class="roles"><input type="checkbox" name="permission[submitted][<%- action %>]" value="true"></div>
+                <% }) %>
               </div>
               <div class="item">
                 <div class="roles">Published</div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <% _.forEach(actions, function(action) { %>
+                  <div class="roles"><input type="checkbox" name="permission[published][<%- action %>]" value="true"></div>
+                <% }) %>
               </div>
               <div class="item">
                 <div class="roles">Archived</div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
-                <div class="roles"><input type="checkbox" name="checkbox" value="value"></div>
+                <% _.forEach(actions, function(action) { %>
+                  <div class="roles"><input type="checkbox" name="permission[archived][<%- action %>]" value="true"></div>
+                <% }) %>
               </div>
           </div>
         </div>
