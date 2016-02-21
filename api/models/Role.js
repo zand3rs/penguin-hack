@@ -20,16 +20,19 @@ module.exports = {
     manageApps: {
       type: "boolean",
       required: true,
+      defaultsTo: false,
       columnName: "manage_apps"
     },
     manageModels: {
       type: "boolean",
       required: true,
+      defaultsTo: false,
       columnName: "manage_models"
     },
     manageMedia: {
       type: "boolean",
       required: true,
+      defaultsTo: false, 
       columnName: "manage_media"
     }
   },
