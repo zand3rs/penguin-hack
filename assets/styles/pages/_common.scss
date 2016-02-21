@@ -8,3 +8,24 @@
   overflow: hidden;
   height: 100%;
 }
+
+.page-wrap {
+  padding-top: $header-height;
+}
+
+.wrap {
+  @include clearfix();
+  max-width: pxEm(1024);
+  position: relative;
+  margin: auto;
+  width: 100%;
+}
+
+.cta-message {
+  text-align: center;
+  margin-top: 4em;
+
+  p {
+    margin-bottom: 1em;
+  }
+}
