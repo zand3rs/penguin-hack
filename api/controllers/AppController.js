@@ -45,10 +45,10 @@ module.exports = {
   },
 
   create: function(req, res) {
-    var params = {
+    var params = _.omitBy({
       name: req.param("name"),
       description: req.param("description")
-    };
+    }, _.isNil);
 
     App.create(params, function(err, app) {
       var payload = (err) ? err : app;
@@ -97,10 +97,10 @@ module.exports = {
   update: function(req, res) {
     var id = req.param("id");
 
-    var params = {
-      name: req.param("name") || "",
-      description: req.param("description") || ""
-    };
+    var params = _.omitBy({
+      name: req.param("name"),
+      description: req.param("description")
+    }, _.isNil);
 
     App.update({id: id}, params, function(err, app) {
       var payload = (err) ? err : app;

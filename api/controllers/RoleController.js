@@ -45,13 +45,13 @@ module.exports = {
   },
 
   create: function(req, res) {
-    var params = {
+    var params = _.omitBy({
       name: req.param("name"),
       description: req.param("description"),
       manageApps: req.param("manageApps"),
       manageModels: req.param("manageModels"),
       manageMedia: req.params("manageMedia")
-    };
+    }, _.isNil);
 
     Role.create(params, function(err, role) {
       var payload = (err) ? err : role;
@@ -100,13 +100,13 @@ module.exports = {
   update: function(req, res) {
     var id = req.param("id");
 
-    var params = {
-      name: req.param("name") || "",
-      description: req.param("description") || "",
-      manageApps: req.param("manageApps") || "",
-      manageModels: req.param("manageModels") || "",
-      manageMedia: req.param("manageMedia") || "",
-    };
+    var params = _.omitBy({
+      name: req.param("name"),
+      description: req.param("description"),
+      manageApps: req.param("manageApps"),
+      manageModels: req.param("manageModels"),
+      manageMedia: req.params("manageMedia")
+    }, _.isNil);
 
     Role.update({id: id}, params, function(err, role) {
       var payload = (err) ? err : role;
