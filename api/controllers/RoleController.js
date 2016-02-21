@@ -7,12 +7,13 @@
 module.exports = {
 
   index: function(req, res) {
+    var appId = req.param("app_id");
     var page = parseInt(req.param("page")) || 1;
     var limit = sails.config.limits.pageLimit;
 
     async.auto({
       page: function(next) {
-        Role.count({}, function(err, result) {
+        Role.count({appId: appId}, function(err, result) {
           if (err) {
             return next(err);
           }
@@ -23,6 +24,7 @@ module.exports = {
       },
       roles: function(next) {
         Role.find()
+        .where({appId: appId})
         .paginate({page: page, limit: limit})
         .exec(function(err, roles) {
           if (err) {
