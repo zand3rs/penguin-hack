@@ -22,11 +22,11 @@ module.exports = {
           var page = _.ceil(result/limit);
           return next(null, page);
         });
-      },      
+      },
       images: function (next) {
         var criteria = {
           or: [
-            {appId: appId}, 
+            {appId: appId},
             {public: true}
           ]
         };
@@ -58,7 +58,7 @@ module.exports = {
 
       if (_.lt(page, totalPage)) {
         meta.nextPage = page + 1;
-      }      
+      }
 
       res.format({
         html: function() {
@@ -80,12 +80,12 @@ module.exports = {
             res.apiSuccess(payload, meta);
           }
         }
-      });      
+      });
     });
 
   },
 
-  //--------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------
 
   new: function(req, res) {
     res.format({
@@ -96,7 +96,7 @@ module.exports = {
         res.notFound()
       }
     });
-  },  
+  },
 
   //--------------------------------------------------------------------------------------------------------------
 
@@ -108,12 +108,12 @@ module.exports = {
       public: req.param("public"),
       appId: req.param("app_id")
     };
-    var uploader = new ImageHelper({
+    var uploader = new ImageUploader({
       imageField: "picture"
     });
 
     uploader.create(newImage, function (err, image) {
-      var payload = {};      
+      var payload = {};
       res.format({
         html: function() {
           return res.notFound();
@@ -126,11 +126,11 @@ module.exports = {
             return res.apiSuccess(payload);
           }
         }
-      });             
+      });
     })(req);
   },
 
-  //--------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------
   edit: function (req, res) {
     var id = req.param("id");
     var appId = req.param("app_id");
@@ -151,11 +151,11 @@ module.exports = {
         json: function() {
           return res.apiSuccess(image);
         }
-      });      
+      });
     });
   },
 
-  //--------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------
   update: function (req, res) {
     var id = req.param("id");
     var appId = req.param("app_id");
@@ -182,10 +182,10 @@ module.exports = {
           }
         }
       });
-    });    
+    });
   },
 
-  //--------------------------------------------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------------------------------------------
   destroy: function(req, res) {
     var id = req.param("id");
     var appId = req.param("app_id");
@@ -208,7 +208,6 @@ module.exports = {
         }
       })
     });
-  }  
-	
-};
+  }
 
+};

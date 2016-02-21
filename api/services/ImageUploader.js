@@ -2,9 +2,9 @@ var fs = require("fs");
 var path = require("path");
 var cuttingboard = require("cuttingboard");
 
-module.exports = ImageHelper;
+module.exports = ImageUploader;
 
-function ImageHelper (options) {
+function ImageUploader (options) {
 
   var _options = options || {};
   var _imageField = _options.imageField || sails.config.image.defaultField;
@@ -49,7 +49,7 @@ function ImageHelper (options) {
 }
 
 
-ImageHelper.prototype.create = function (params, done) {
+ImageUploader.prototype.create = function (params, done) {
   var self = this;
 
   return function (req) {
@@ -75,7 +75,7 @@ ImageHelper.prototype.create = function (params, done) {
       }]
     }, function(err, result) {
       if (err) {
-        sails.log.error('ImageHelper.create:' + err);
+        sails.log.error('ImageUploader.create:' + err);
         return done(err);
       }
 
@@ -85,7 +85,6 @@ ImageHelper.prototype.create = function (params, done) {
         params.uri = path.join(sails.config.image.uploadPath, images.original);
       }
 
-      console.log(params.uri);
       Image.create(params, function (err, newImage) {
         if (err) {
           sails.log.error(err);
@@ -97,20 +96,19 @@ ImageHelper.prototype.create = function (params, done) {
   }
 }
 
-ImageHelper.prototype.process = function (params, done) {
+ImageUploader.prototype.process = function (params, done) {
   var self = this;
-  console.log(params);
+
   self.board.process({ src: params.src, name: params.name}, function(err, images) {
     if (err) {
       return done(err);
     }
 
-    console.log(images);
     //-- delete photo after successful process
     fs.unlink(params.src, function (err) {
       if (err) {
-        sails.log.error("ImageHelper#process: ", err);
-        sails.log.error("ImageHelper#process: Unable to delete photo source: ", params.src);
+        sails.log.error("ImageUploader#process: ", err);
+        sails.log.error("ImageUploader#process: Unable to delete photo source: ", params.src);
       }
     });
 
