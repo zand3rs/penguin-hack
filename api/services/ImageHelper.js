@@ -1,27 +1,46 @@
+var fs = require("fs");
 var path = require("path");
-module.exports = ImageHelper;
+var cuttingboard = require("cuttingboard");
 
+module.exports = ImageHelper;
 
 function ImageHelper (options) {
 
   var _options = options || {};
   var _imageField = _options.imageField || sails.config.image.defaultField;
   var _maxBytes = _options.maxBytes || sails.config.image.maxBytes;
-  var _uploadPath = _options.uploadPath || process.cwd() + sails.config.image.uploadPath
+  var _uploadPath = _options.uploadPath || process.cwd() + sails.config.image.uploadPath;
 
-  Object.defineProperty(this, 'imageField', {
+  //-- cuttingboard
+  var _board = new cuttingboard({
+    folder: "static_files/uploads",
+    baseUrl: "/uploads",
+    name: _options.name
+  });
+
+  _board.style("cover", {size: "480x320", method: "resize"})
+       .style("thumb", {size: "50x50", method: "resize"})
+       .style("large", {size: "683x273", method: "resize"});
+
+  Object.defineProperty(this, "board", {
+    get: function() {
+      return _board;
+    }
+  })
+
+  Object.defineProperty(this, "imageField", {
     get: function () {
       return _imageField;
     }
   });
 
-  Object.defineProperty(this, 'maxBytes', {
+  Object.defineProperty(this, "maxBytes", {
     get: function () {
       return _maxBytes;
     }
   });
 
-  Object.defineProperty(this, 'uploadPath', {
+  Object.defineProperty(this, "uploadPath", {
     get: function () {
       return _uploadPath;
     }
@@ -30,41 +49,71 @@ function ImageHelper (options) {
 }
 
 
-ImageHelper.prototype.create = function (params, next) {
+ImageHelper.prototype.create = function (params, done) {
   var self = this;
 
   return function (req) {
-    
-    req.file(self.imageField).upload({
-      maxBytes: self.maxBytes,
-      dirname: self.uploadPath,
-      // saveAs: function (__newFileStream,cb) { console.log(__newFileStream); cb(null, 'theUploadedFile.foo'); }  //experiment on this!!!
-    }, function (err, uploadedFiles) {
+
+    async.auto({
+      upload: function(next) {
+        req.file(self.imageField).upload({
+          maxBytes: self.maxBytes,
+          dirname: self.uploadPath,
+        }, function (err, uploadedFiles) {
+          if (err) {
+            return next(err);
+          }
+
+          var file = _.first(uploadedFiles) || {};
+
+          return next(null, file.fd || "");
+        });
+      },
+      process: ["upload", function(next, result) {
+        var filePath = result.upload;
+        self.process({src: filePath, name: params.name}, next);
+      }]
+    }, function(err, result) {
       if (err) {
         sails.log.error('ImageHelper.create:' + err);
-        return next(err);
+        return done(err);
       }
-      var file = _.first(uploadedFiles) || {};
-      var filename = path.basename( file.fd || "");
-      if (!_.isEmpty(filename) ) {
-        params.uri = path.join(sails.config.image.uploadPath, filename);
+
+      var images = result.process;
+
+      if (!_.isEmpty(images) ) {
+        params.uri = path.join(sails.config.image.uploadPath, images.original);
       }
-      
+
+      console.log(params.uri);
       Image.create(params, function (err, newImage) {
         if (err) {
           sails.log.error(err);
-          return next(err);
+          return done(err);
         }
-        return next(null, newImage);
+        return done(null, newImage);
       });
     });
   }
 }
 
-
-ImageHelper.prototype.saveImage = function (params, cb) {
-
-  console.log("saveImage");
+ImageHelper.prototype.process = function (params, done) {
+  var self = this;
   console.log(params);
-  cb();
+  self.board.process({ src: params.src, name: params.name}, function(err, images) {
+    if (err) {
+      return done(err);
+    }
+
+    console.log(images);
+    //-- delete photo after successful process
+    fs.unlink(params.src, function (err) {
+      if (err) {
+        sails.log.error("ImageHelper#process: ", err);
+        sails.log.error("ImageHelper#process: Unable to delete photo source: ", params.src);
+      }
+    });
+
+    return done(null, images);
+  });
 }
