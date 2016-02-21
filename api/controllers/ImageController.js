@@ -8,7 +8,6 @@
 module.exports = {
 
   index: function (req, res) {
-
     var criteria = {};
     var appId = req.param("app_id");
 
@@ -26,7 +25,6 @@ module.exports = {
       .sort("updatedAt desc")
       .exec(function (err, imageList) {
         var payload = {};
-
         res.format({
           html: function() {
             if (err) {
@@ -34,8 +32,7 @@ module.exports = {
             } else {
               payload.images = imageList;
             }
-
-            res.view(payload);
+            return res.view(payload);
           },
           json: function() {
             payload = (err) ? err : imageList;
@@ -46,11 +43,22 @@ module.exports = {
             }
           }
         });        
-
       });
 
-    
   },
+
+  //--------------------------------------------------------------------------------------------------------------  
+
+  new: function(req, res) {
+    res.format({
+      html: function () {
+        res.view()
+      },
+      json: function() {
+        res.notFound()
+      }
+    });
+  },  
 
   //--------------------------------------------------------------------------------------------------------------
 
@@ -87,7 +95,84 @@ module.exports = {
         }
       });             
     })(req);
-  }
+  },
+
+  //--------------------------------------------------------------------------------------------------------------  
+  edit: function (req, res) {
+    var id = req.param("id");
+
+    Image.findOne({id: id}, function (err, image) {
+      var payload = {};
+      res.format({
+        html: function() {
+          if (err) {
+            req.addFlash("error", "Error loading image details");
+          } else if (_.isEmpty(image)) {
+            req.addFlash("error", "Image not found!");
+          } else {
+            payload.image = image;
+          }
+          return res.view(payload);
+        },
+        json: function() {
+          return res.apiSuccess(image);
+        }
+      });      
+    });
+  },
+
+  //--------------------------------------------------------------------------------------------------------------  
+  update: function (req, res) {
+    var id = req.param("id");
+    var params = _.omitBy({
+      name: req.param("name"),
+      description : req.param("description"),
+      public: req.param("public"),
+      appId: req.param("app_id")
+    }, _.isNil);
+
+    Image.update({id: id}, params, function(err, image) {
+      var payload = (err) ? err : image;
+      res.format({
+        html: function() {
+          res.notFound();
+        },
+        json: function() {
+          if (err) {
+            res.apiError(payload);
+          } else if (_.isEmpty(image)) {
+            res.apiError(new Exception.RecordNotFound("Image Not Found"));
+          } else {
+            res.apiSuccess(payload);
+          }
+        }
+      });
+    });    
+  },
+
+  //--------------------------------------------------------------------------------------------------------------  
+  destroy: function(req, res) {
+    var id = req.param("id");
+
+    Image.destroy({id: id}, function(err, image) {
+      var payload = (err) ? err : image;
+
+      res.format({
+        html: function() {
+          res.notFound();
+        },
+        json: function() {
+          if (err) {
+            res.apiError(payload);
+          } else if (_.isEmpty(image)) {
+            res.apiError(new Exception.RecordNotFound("Image Not Found"));
+          } else {
+            res.apiSuccess(payload);
+          }
+        }
+      })
+    })
+  }  
 	
 };
 

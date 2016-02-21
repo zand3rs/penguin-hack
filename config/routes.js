@@ -60,7 +60,10 @@ module.exports.routes = {
   "PUT /permissions/:id"    : "Permission.update",
 
   //-- Image | media
-  "GET /media":   "Image.index",
-  "POST /media": "Image.create",
-  
+  "GET /media"              : "Image.index",
+  "GET /media/new"          : "Image.new",
+  "POST /media"             : "Image.create",
+  "GET /media/:id/edit"     : "Image.edit",
+  "PUT /media/:id"          : "Image.update",
+  "DELETE /media/:id"       : "Image.destroy"
 };
