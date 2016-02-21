@@ -11,6 +11,11 @@ module.exports = {
   },
 
   login: function(req, res) {
-    res.view();
+    //check if user is already logged-in
+    if (req.isAuthenticated()) { 
+      return res.redirect("/");
+    }   
+    
+    return res.view();
   }
 };

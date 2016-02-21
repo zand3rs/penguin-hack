@@ -29,10 +29,13 @@ module.exports.routes = {
   //-- Home
   "GET /"       : "Home.index",
   "GET /login"  : "Home.login",
+  
 
   //-- Session / Authentication
   "GET /authenticate": "Session.authenticate",
   "GET /authorize": "Session.authorize",
+  "GET /logout" : "Session.destroy",  
+  
 
   //-- App
   "GET    /apps"           : "App.index",

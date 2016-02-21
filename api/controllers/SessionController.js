@@ -23,6 +23,7 @@ module.exports = {
   destroy: function (req, res) {
     req.logout();
     req.session.destroy();
+    return res.redirect("/login");
   }
 };
 

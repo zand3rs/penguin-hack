@@ -26,5 +26,12 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  "*": ["default"]
+  "*": ["default"],
+
+  "Session": "default",
+
+  "Home": {
+    "index": ["default", "sessionAuth"],
+    "login": "default"
+  },
 };
