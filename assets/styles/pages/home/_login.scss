@@ -1,5 +1,8 @@
 .home.login {
   text-align: center;
+  background: url($img-dir + "iceage.png") no-repeat center top;
+  background-size: cover;
+  background-attachment: fixed;
 
   .penguin-logo {
     width: 197px;
