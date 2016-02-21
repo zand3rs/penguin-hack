@@ -35,6 +35,7 @@
     "sails": "~0.11.0",
     "sails-hook-flash": "^0.2.1",
     "sails-mongo": "^0.12.0",
+    "skipper": "^0.5.9",
     "stderror": "^0.2.1",
     "winston": "^2.1.1"
   },
