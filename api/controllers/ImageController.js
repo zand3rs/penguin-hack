@@ -8,42 +8,84 @@
 module.exports = {
 
   index: function (req, res) {
-    var criteria = {};
-    var appId = req.param("app_id");
 
-    if (!_.isEmpty(appId)) {
-      criteria = {
-        or: [
-          {appId: appId}, 
-          {public: true}
-        ]
-      }
-    }
+    var page = parseInt(req.param("page")) || 1;
+    var limit = sails.config.limits.pageLimit;
 
-    Image.find()
-      .where(criteria)
-      .sort("updatedAt desc")
-      .exec(function (err, imageList) {
-        var payload = {};
-        res.format({
-          html: function() {
-            if (err) {
-              req.addFlash("error", "Error loading images / media");
-            } else {
-              payload.images = imageList;
-            }
-            return res.view(payload);
-          },
-          json: function() {
-            payload = (err) ? err : imageList;
-            if (err) {
-              return res.apiError(payload);
-            } else {
-              return res.apiSuccess(payload);
-            }
+    var tasks = {
+      page: function(next) {
+        Image.count({}, function(err, result) {
+          if (err) {
+            return next(err);
           }
-        });        
-      });
+          var page = _.ceil(result/limit);
+          return next(null, page);
+        });
+      },      
+      images: function (next) {
+        var criteria = {};
+        var appId = req.param("app_id");
+
+        if (!_.isEmpty(appId)) {
+          criteria = {
+            or: [
+              {appId: appId}, 
+              {public: true}
+            ]
+          }
+        }
+
+        Image.find()
+          .where(criteria)
+          .paginate({page: page, limit: limit})
+          .exec(function(err, images) {
+            if (err) {
+              return next(err);
+            }
+            return next(null, images);
+          });
+      }
+    };
+
+    async.auto(tasks, function (err, result) {
+      var images = result.images;
+      var totalPage = result.page;
+      var payload = {};
+
+      var meta = {
+        currentPage: page,
+        totalPage: totalPage
+      };
+      if (_.gt(page, 1)) {
+        meta.previousPage = page - 1;
+      }
+
+      if (_.lt(page, totalPage)) {
+        meta.nextPage = page + 1;
+      }      
+
+      res.format({
+        html: function() {
+          if (err) {
+            req.addFlash("error", "Error loading images");
+          } else {
+            payload.images = images;
+            payload.meta = meta;
+          }
+
+          res.view(payload);
+        },
+        json: function() {
+          payload = (err) ? err : images;
+
+          if (err) {
+            return res.apiError(payload);
+          } else {
+            res.apiSuccess(payload, meta);
+          }
+        }
+      });      
+    });
 
   },
 
@@ -78,12 +120,7 @@ module.exports = {
       var payload = {};      
       res.format({
         html: function() {
-          if (err) {
-            req.addFlash("error", "Uploading Images");
-          } else {
-            payload.image = image;
-          }
-          return res.view(payload);
+          return res.notFound();
         },
         json: function() {
           payload = (err) ? err : image;
