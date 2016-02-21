@@ -50,7 +50,7 @@ module.exports = {
       description: req.param("description"),
       manageApps: req.param("manageApps"),
       manageModels: req.param("manageModels"),
-      manageMedia: req.params("manageMedia")
+      manageMedia: req.param("manageMedia")
     }, _.isNil);
 
     Role.create(params, function(err, role) {
@@ -105,7 +105,7 @@ module.exports = {
       description: req.param("description"),
       manageApps: req.param("manageApps"),
       manageModels: req.param("manageModels"),
-      manageMedia: req.params("manageMedia")
+      manageMedia: req.param("manageMedia")
     }, _.isNil);
 
     Role.update({id: id}, params, function(err, role) {
