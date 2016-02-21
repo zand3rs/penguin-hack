@@ -8,8 +8,51 @@
 module.exports = {
 
   index: function (req, res) {
-    res.ok();
+
+    var criteria = {};
+    var appId = req.param("app_id");
+
+    if (!_.isEmpty(appId)) {
+      criteria = {
+        or: [
+          {appId: appId}, 
+          {public: true}
+        ]
+      }
+    }
+
+    Image.find()
+      .where(criteria)
+      .sort("updatedAt desc")
+      .exec(function (err, imageList) {
+        var payload = {};
+
+        res.format({
+          html: function() {
+            if (err) {
+              req.addFlash("error", "Error loading images / media");
+            } else {
+              payload.images = imageList;
+            }
+
+            res.view(payload);
+          },
+          json: function() {
+            payload = (err) ? err : imageList;
+            if (err) {
+              return res.apiError(payload);
+            } else {
+              return res.apiSuccess(payload);
+            }
+          }
+        });        
+
+      });
+
+    
   },
+
+  //--------------------------------------------------------------------------------------------------------------
 
   create: function (req, res) {
 
@@ -24,8 +67,25 @@ module.exports = {
     });
 
     uploader.create(newImage, function (err, image) {
-      console.log(err);
-      console.log(image);
+      var payload = {};      
+      res.format({
+        html: function() {
+          if (err) {
+            req.addFlash("error", "Uploading Images");
+          } else {
+            payload.image = image;
+          }
+          return res.view(payload);
+        },
+        json: function() {
+          payload = (err) ? err : image;
+          if (err) {
+            return res.apiError(payload);
+          } else {
+            return res.apiSuccess(payload);
+          }
+        }
+      });             
     })(req);
   }
 	

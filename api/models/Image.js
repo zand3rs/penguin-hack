@@ -19,7 +19,8 @@ module.exports = {
     },
     uri: {
       type: "string",
-      columnName: "uri"
+      columnName: "uri",
+      required: true
     },
     public: {
       type: "boolean",

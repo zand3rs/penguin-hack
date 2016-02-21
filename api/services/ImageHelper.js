@@ -44,9 +44,12 @@ ImageHelper.prototype.create = function (params, next) {
         sails.log.error('ImageHelper.create:' + err);
         return next(err);
       }
-
-      var filename = path.basename( _.first(uploadedFiles).fd);
-      params.uri = sails.config.image.uploadPath + "/" + filename;
+      var file = _.first(uploadedFiles) || {};
+      var filename = path.basename( file.fd || "");
+      if (!_.isEmpty(filename) ) {
+        params.uri = path.join(sails.config.image.uploadPath, filename);
+      }
+      
       Image.create(params, function (err, newImage) {
         if (err) {
           sails.log.error(err);
