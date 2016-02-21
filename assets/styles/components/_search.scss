@@ -1,0 +1,16 @@
+.search-wrap {
+  background: $color-white-4;
+  padding: 1em;
+
+  .search-trigger {
+    border-bottom: 1px solid $color-gray-4;
+    color: $color-gray-6;
+    font-size: pxEm(14);
+    line-height: 30px;
+    height: 30px;
+  }
+
+  .search-box {
+    display: none;
+  }
+}

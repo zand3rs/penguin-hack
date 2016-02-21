@@ -2,13 +2,15 @@
 @import "components/forms";
 @import "components/text";
 @import "components/modals";
+
 @import "components/header";
 @import "components/drawer";
 
+@import "components/page-header";
+@import "components/search";
+
 @import "pages/common";
 @import "pages/home/login";
-
-
 
 @import "pages/settings";
 @import "pages/profile/show";
