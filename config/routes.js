@@ -36,6 +36,7 @@ module.exports.routes = {
 
   //-- App
   "GET    /apps"           : "App.index",
+  "GET    /apps/new"       : "App.new"
   "POST   /apps"           : "App.create",
   "GET    /apps/:id/edit"  : "App.edit",
   "PUT    /apps/:id"       : "App.update",
@@ -43,6 +44,7 @@ module.exports.routes = {
 
   //-- Role
   "GET    /roles"           : "Role.index",
+  "GET    /roles/new"       : "Role.new"
   "POST   /roles"           : "Role.create",
   "GET    /roles/:id/edit"  : "Role.edit",
   "PUT    /roles/:id"       : "Role.update",

@@ -44,6 +44,17 @@ module.exports = {
     });
   },
 
+  new: function(req, res) {
+    res.format({
+      html: function () {
+        res.view()
+      },
+      json: function() {
+        res.notFound()
+      }
+    });
+  },
+
   create: function(req, res) {
     var params = _.omitBy({
       name: req.param("name"),
