@@ -2,9 +2,7 @@
 
 <div class="page-wrap">
 
-  <% flash.get("error").forEach(function (message) { %>
-    <%- message %>
-  <% }) %>
+  <div id="growl-region"></div>
 
   <%- partial("../common/settings-nav", {currentMenu: "apps"}) %>
 

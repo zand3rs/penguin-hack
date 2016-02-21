@@ -13,6 +13,7 @@ Penguin.module("App.Create", function(Create, Penguin, Backbone, Marionette, $, 
 
 Penguin.module("App.Create.Views", function(Views, Penguin, Backbone, Marionette, $, _) {
   var AppEntities = Penguin.module("App.Entities");
+  var CommonViews = Penguin.module("Common.Views");
 
   Views.AddNewForm = Marionette.ItemView.extend({
     el: "#add-new-app-form",
@@ -25,10 +26,12 @@ Penguin.module("App.Create.Views", function(Views, Penguin, Backbone, Marionette
       "submit": "submitForm"
     },
     showSuccess: function() {
-      console.log("success!");
+      CommonViews.showGrowl("success", "Congratulations! App successfully added!", function() {
+        window.location.href="/apps";
+      });
     },
     showErrors: function(invalid) {
-      console.log("error", invalid);
+      CommonViews.showGrowl("error", "You have errors: " + invalid.join(", "));
     },
     submitForm: function(e) {
       var self = this;

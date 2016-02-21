@@ -1,0 +1,16 @@
+#growl-region {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  width: 300px;
+}
+
+.growl {
+  &.success {
+
+  }
+
+  &.error {
+
+  }
+}

@@ -48,5 +48,6 @@ Marionette.Region.Dialog = Marionette.Region.extend({
 Penguin.addRegions({
   dialogRegion: Marionette.Region.Dialog.extend({
     el: "#dialog-region"
-  })
+  }),
+  growlRegion: "#growl-region"
 });

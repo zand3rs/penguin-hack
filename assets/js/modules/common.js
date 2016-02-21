@@ -61,4 +61,57 @@ Penguin.module("Common.Views", function(Views, Penguin, Backbone, Marionette, $,
       this.bindUIElements();
     }
   });
+
+
+  Views.showGrowl = function(type, message, callback) {
+    var view = new Views.Growl({
+      model: new Backbone.Model({
+        type: type,
+        message: message
+      })
+    }, {
+      callback: callback
+    });
+    Penguin.growlRegion.show(view);
+  };
+
+
+  Views.Growl = Marionette.ItemView.extend({
+    template: "#growl-template",
+    ui: {
+      closeButton: ".close-button"
+    },
+    events: {
+      "click @ui.closeButton": "destroyGrowl"
+    },
+    destroyGrowl: function() {
+      var self = this;
+      self.$el.fadeOut(function() {
+        Penguin.growlRegion.empty();
+        if(self.callback) {
+          self.callback();
+        }
+      });
+    },
+    initialize: function(model, options) {
+      var self = this;
+      console.log(options);
+
+      if( _.isFunction(options.callback)) {
+        self.callback = options.callback;
+      }
+
+      _.delay(function() {
+        self.$el.fadeOut(function() {
+          Penguin.growlRegion.empty();
+
+          if(self.callback) {
+            self.callback();
+          }
+
+        });
+      }, 2000);
+    }
+  });
+
 });
