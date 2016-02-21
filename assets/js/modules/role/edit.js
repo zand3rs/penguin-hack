@@ -72,7 +72,9 @@ Penguin.module("Role.Update.Views", function(Views, Penguin, Backbone, Marionett
 
       var destroy = self.model.destroyRole();
       destroy.done(function(role){
-        self.showSuccess();
+        CommonViews.showGrowl("success", "Congratulations! Role successfully deleted!", function() {
+          window.location.href="/apps/" + self.model.get("appId") + "/roles/";
+        });
       });
 
       destroy.fail(function(error, meta) {

@@ -71,7 +71,9 @@ Penguin.module("App.Update.Views", function(Views, Penguin, Backbone, Marionette
 
       var destroy = self.model.destroyApp();
       destroy.done(function(app){
-        self.showSuccess();
+        CommonViews.showGrowl("success", "Congratulations! App successfully deleted!", function() {
+          window.location.href="/apps/";
+        });
       });
 
       destroy.fail(function(error, meta) {
