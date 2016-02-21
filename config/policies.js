@@ -34,4 +34,9 @@ module.exports.policies = {
     "index": ["default", "sessionAuth"],
     "login": "default"
   },
+  "App": ["default", "sessionAuth"],
+  "Permission": ["default", "sessionAuth"],
+  "Profile": ["default", "sessionAuth"],
+  "Role": ["default", "sessionAuth"]
+
 };
