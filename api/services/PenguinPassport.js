@@ -29,22 +29,16 @@ module.exports = {
 
   _saveUser: function(user, done) {
     var self = this;
-    User.findOne({authId: user.id}, function (err, foundUser) {
-      if (!_.isEmpty(foundUser)) {
-        done(err, foundUser)
-      } else {
-        var newUser = {
-          authId: user.id,
-          authType: "google",
-          displayName: user.displayName,
-          firstName: user.name.givenName,
-          lastName: user.name.familyName,
-          email: _.first(user.emails).value,
-          picture: _.first(user.photos).value
-        };
-        User.create(newUser, done);
-      }
-    });
+    var newUser = {
+      authId: user.id,
+      authType: "google",
+      displayName: user.displayName,
+      firstName: user.name.givenName,
+      lastName: user.name.familyName,
+      email: _.first(user.emails).value,
+      picture: _.first(user.photos).value
+    };    
+    User.findOrCreate({authId: user.id}, newUser, done);
   },  
 
 
