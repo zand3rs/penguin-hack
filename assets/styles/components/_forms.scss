@@ -8,8 +8,6 @@ input[type="password"] {
   font-size: 14px;
   color: $color-black-2;
   padding-left: 10px;
-  margin-top: 4px;
-  margin-bottom: 4px;
   display: inline-block;
 }
 
@@ -19,7 +17,6 @@ input[type="email"] {
   outline: 0;
   font-family: $base-font;
 }
-
 select ::after {
   content: "hello:";
 }
@@ -29,7 +26,7 @@ select ::after {
   width: 100%;
   max-width: 450px;
   border: 0 !important;
-  font-size: 16px !important;;
+  font-size: 16px !important;
   color: $color-black-2;
   padding-left: 10px;
   margin-top: 4px;
@@ -50,25 +47,51 @@ select ::after {
   position: relative;
 
   .icon-select {
-    zoom: .7;
+    zoom: 0.7;
     position: absolute;
     top: 10px;
-    right: 10px;
 
+    right: 10px;
   }
 
 }
 
 .select-small {
- border: 0;
- background: none;
- padding: 5px -2px 5px 10px;
- width: 90px;
- font-size: 13px;
- color: $color-gray-3;
- font-weight: 400;
- -webkit-appearance: none;
- -moz-appearance: none;
- appearance: none;
- z-index: 100;
+  border: 0;
+  background: none;
+  padding: 5px -2px 5px 10px;
+  width: 90px;
+  font-size: 13px;
+  color: $color-gray-3;
+  font-weight: 400;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  z-index: 100;
+}
+
+.form {
+  input[readonly] {
+    background-color: $color-white-2;
+  }
+
+  .field {
+    @include clearfix();
+    margin-bottom: 1em;
+  }
+
+  label {
+    float: left;
+    width: 25%;
+    font-size: pxEm(13);
+    letter-spacing: 1px;
+    color: $color-black;
+    text-transform: uppercase;
+    line-height: 32px;
+  }
+
+  .value {
+    float: right;
+    width: 75%;
+  }
 }

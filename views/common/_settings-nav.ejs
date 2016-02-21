@@ -1,0 +1,14 @@
+<%
+var menu = {};
+menu["profile"] = currentMenu == "profile" ? "current-menu" : "";
+menu["apps"] = currentMenu == "apps" ? "current-menu" : "";
+menu["roles"] = currentMenu == "roles" ? "current-menu" : "";
+%>
+
+<nav class="settings-nav">
+  <ul class="wrap">
+    <li><a href="/profile" class="current-menu">Profile</a></li>
+    <li><a href="/apps">Applications</a></li>
+    <li><a href="/roles">User Roles</a></li>
+  </ul>
+</nav>

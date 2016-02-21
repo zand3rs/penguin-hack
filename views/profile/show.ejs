@@ -1,0 +1,24 @@
+<%- partial("../common/header") %>
+
+<div class="page-wrap">
+  <%- partial("../common/settings-nav", {currentMenu: "profile"}) %>
+
+  <% var userPicture = user.picture ? 'style="background-image: url(' + user.picture + ')"' : ""; %>
+  <div class="user-profile form wrap">
+    <div class="avatar" <%- userPicture %>></div>
+    <div class="field">
+      <label>First Name</label>
+      <input type="text" readonly value="<%- user.firstName %>" class="value" />
+    </div>
+
+    <div class="field">
+      <label>Last Name</label>
+      <input type="text" readonly value="<%- user.lastName %>" class="value" />
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <input type="text" readonly value="<%- user.email %>" class="value" />
+    </div>
+  </div>
+</div>

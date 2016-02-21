@@ -1,0 +1,16 @@
+.profile.show .user-profile{
+  max-width: 600px;
+  margin: auto;
+  padding: pxEm(60) pxEm(10);
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    @include border-radius(100%);
+    border: 2px solid $color-white;
+    margin: 0 auto 2em;
+    background-color: $color-white-2;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
