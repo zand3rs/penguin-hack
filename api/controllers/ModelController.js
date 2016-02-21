@@ -12,7 +12,7 @@ module.exports = {
 
     async.auto({
       page: function(next) {
-        Model.count({}, function(err, result) {
+        Model.count({appId: appId}, function(err, result) {
           if (err) {
             return next(err);
           }
@@ -25,7 +25,7 @@ module.exports = {
         Model.find()
         .where({appId: appId})
         .paginate({page: page, limit: limit})
-        .exec(function(err, model) {
+        .exec(function(err, models) {
           if (err) {
             return next(err);
           }
@@ -34,7 +34,7 @@ module.exports = {
         });
       }
     }, function(err, result) {
-      var apps = result.models;
+      var models = result.models;
       var totalPage = result.page;
       var payload = {};
 
