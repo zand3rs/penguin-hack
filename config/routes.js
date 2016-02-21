@@ -48,12 +48,12 @@ module.exports.routes = {
   "DELETE /apps/:id"       : "App.destroy",
 
   //-- Role
-  "GET    /roles"           : "Role.index",
-  "GET    /roles/new"       : "Role.new",
-  "POST   /roles"           : "Role.create",
-  "GET    /roles/:id/edit"  : "Role.edit",
-  "PUT    /roles/:id"       : "Role.update",
-  "DELETE /roles/:id"       : "Role.destroy",
+  "GET    /apps/:app_id/roles"           : "Role.index",
+  "GET    /apps/:app_id/roles/new"       : "Role.new",
+  "POST   /apps/:app_id/roles"           : "Role.create",
+  "GET    /apps/:app_id/roles/:id/edit"  : "Role.edit",
+  "PUT    /apps/:app_id/roles/:id"       : "Role.update",
+  "DELETE /apps/:app_id/roles/:id"       : "Role.destroy",
 
   //-- Permission
   "POST /permissions"    : "Permission.create",
