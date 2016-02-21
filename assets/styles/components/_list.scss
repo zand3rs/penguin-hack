@@ -1,0 +1,84 @@
+.list {
+  color: $color-gray-3;
+  padding-bottom: 5em;
+
+  .list-header {
+    @include clearfix();
+    letter-spacing: 1px;
+    font-size: pxEm(12);
+    text-transform: uppercase;
+    color: $color-black-2;
+    padding-bottom: 1em;
+    border-bottom: 2px solid $color-gray-7;
+
+
+    li {
+      float: left;
+      width: 25%;
+    }
+  }
+
+  .list-body {
+    margin-bottom: 5em;
+  }
+
+  .item {
+    @include clearfix();
+    border-bottom: 1px solid $color-white-3;
+
+    & > div {
+      float: left;
+      width: 25%;
+      font-size: pxEm(13);
+      height: 50px;
+      padding: 18px 0;
+      line-height: 14px;
+    }
+
+    a {
+      color: $color-gray-3;
+    }
+
+    .main {
+      font-size: pxEm(14);
+      color: $color-black-2;
+      font-weight: 500;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    .image .icon{
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 16px;
+      height: 16px;
+      background: $color-white-2;
+      margin: auto;
+    }
+  }
+
+  .pagination {
+    color: $color-black-2;
+    font-size: 14px;
+    text-align: center;
+
+    input[type="text"] {
+      width: 50px;
+    }
+
+    a {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .prev {
+      margin-right: pxEm(8);
+    }
+
+    .next {
+      margin-left: pxEm(8);
+    }
+  }
+}
