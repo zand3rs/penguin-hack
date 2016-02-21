@@ -16,6 +16,75 @@ Penguin.module("App.Entities", function(Entities, Penguin, Backbone, Marionette,
         updatedAt: "",
         picture: ""
       };
+    },
+
+    getApp: function() {
+      var self = this;
+      var defer = $.Deferred();
+
+      var fetch = self.fetch();
+
+      fetch.done(function(response, xhr) {
+        if (response && _.isEmpty(response.error)) {
+          return defer.resolve(response.data);
+        }
+
+        return defer.reject(response.error);
+      });
+
+      return defer.promise();
+    },
+
+    createApp: function(fields) {
+      var self = this;
+      var defer = $.Deferred();
+
+      fields = fields || {};
+
+      var save = self.save(fields);
+      save.done(function(response, xhr) {
+        if (response && _.isEmpty(response.error)) {
+          return defer.resolve(response.data);
+        }
+
+        return defer.reject(response.error, response.meta);
+      });
+
+      return defer.promise();
+    },
+
+    updateApp: function(fields) {
+      var self = this;
+      var defer = $.Deferred();
+
+      fields = fields || {};
+
+      var save = self.save(fields);
+      save.done(function(response, xhr) {
+        if (response && _.isEmpty(response.error)) {
+          return defer.resolve(response.data);
+        }
+
+        return defer.reject(response.error, response.meta);
+      });
+
+      return defer.promise();
+    },
+
+    destroyApp: function() {
+      var self = this;
+      var defer = $.Deferred();
+
+      var destroy = self.destroy();
+      destroy.done(function(response, xhr) {
+        if (response && _.isEmpty(response.error)) {
+          return defer.resolve(response.data);
+        }
+
+        return defer.reject(response.error, response.meta);
+      });
+
+      return defer.promise();
     }
   });
 
@@ -49,7 +118,7 @@ Penguin.module("App.Entities", function(Entities, Penguin, Backbone, Marionette,
       this.nextPage = -1;
     },
 
-    getApps: function(fetchOptions) {
+    getApps: function() {
       var self = this;
       var defer = $.Deferred();
 

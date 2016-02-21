@@ -13,7 +13,8 @@
       <h1 class="page-title">Edit Application</h1>
     </div>
 
-    <form action="/apps" method="POST" class="form wrap">
+    <form id="update-app-form" action="/apps" method="POST" class="form wrap">
+      <input type="hidden" name="id" value="<%- app.id %>" />
       <div class="primary">
         <div class="field">
           <label>Name<span class="required">*</span></label>
@@ -28,7 +29,7 @@
 
       <div class="actions">
         <div class="field">
-          <input type="submit" value="Save" class="primary-button" />
+          <input type="submit" value="Save" class="primary-button save-button" />
         </div>
         <hr>
         <div class="history">
@@ -46,7 +47,7 @@
         </div>
         <hr>
         <div class="field">
-          <a href="#"><span class="ico ico-trash"></span>Delete this application</a>
+          <a href="#" class="delete-button"><span class="ico ico-trash"></span>Delete this application</a>
         </div>
       </div>
     </form>
