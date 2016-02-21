@@ -32,7 +32,7 @@ select ::after {
 }
 
 .dropdown-small {
-  border: 1px solid $color-aquamarine;
+  border: 1px solid $color-gray-4;
   background: $color-white;
   font-size: 13px;
   color: $color-gray-3;
@@ -44,7 +44,7 @@ select ::after {
   position: relative;
 
   .icon-select {
-    zoom: 0.7;
+    zoom: 0.6;
     position: absolute;
     top: 10px;
 
