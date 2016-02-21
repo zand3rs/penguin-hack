@@ -1,6 +1,6 @@
 <%- partial("../common/header") %>
 
-<% var actions = ["add","edit","view","publish", "delete", "archive"]; %>
+<% var actions = ["canAdd","canEdit","canView","canPublish", "canDelete", "canArchive"]; %>
 <div class="page-wrap">
 
   <% flash.get("error").forEach(function (message) { %>

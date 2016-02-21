@@ -45,7 +45,12 @@ Penguin.module("Role.Entities", function(Entities, Penguin, Backbone, Marionette
 
       fields = fields || {};
 
-      var save = self.save(fields);
+      var save = $.ajax({
+        url: this.urlRoot(),
+        type: "POST",
+        data: fields
+      });
+
       save.done(function(response, xhr) {
         if (response && _.isEmpty(response.error)) {
           return defer.resolve(response.data);
@@ -63,7 +68,12 @@ Penguin.module("Role.Entities", function(Entities, Penguin, Backbone, Marionette
 
       fields = fields || {};
 
-      var save = self.save(fields);
+      var save = $.ajax({
+        url: this.urlRoot() + this.get("id"),
+        type: "PUT",
+        data: fields
+      });
+
       save.done(function(response, xhr) {
         if (response && _.isEmpty(response.error)) {
           return defer.resolve(response.data);

@@ -43,10 +43,7 @@ Penguin.module("Role.Create.Views", function(Views, Penguin, Backbone, Marionett
       var self = this;
       self.ui.saveButton.addClass("loading");
 
-      var fields = {
-        name: self.ui.name.val(),
-        description: self.ui.description.val()
-      };
+      var fields = self.$el.serialize();
 
       var create = self.model.createRole(fields);
       create.done(function(role){
