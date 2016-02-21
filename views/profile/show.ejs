@@ -3,7 +3,7 @@
 <div class="page-wrap">
   <%- partial("../common/settings-nav", {currentMenu: "profile"}) %>
 
-  <% var userPicture = user.picture ? 'style="background-image: url(' + user.picture + ')"' : ""; %>
+  <% var userPicture = user.picture ? 'style="background-image: url(' + user.picture.replace('sz=50', 'sz=200') + ')"' : ""; %>
   <div class="user-profile form wrap">
     <div class="avatar" <%- userPicture %>></div>
     <div class="field">
