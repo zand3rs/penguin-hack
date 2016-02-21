@@ -6,13 +6,15 @@ module.exports = {
   //----------------------------------------------------------------------------
 
   _serializeUser: function(user, done) {
-    done(null, user);
+    var userId = _.isObject(user) ? user.id : user;
+    done(null, userId);
   },
 
   //----------------------------------------------------------------------------
 
   _deserializeUser: function(user, done) {
-    return done(null, user);
+    var userId = _.isObject(user) ? user.id : user;
+    User.findOne({id: userId}, done);
   },  
 
   //----------------------------------------------------------------------------
