@@ -61,5 +61,14 @@ module.exports.routes = {
   "POST /media"             : "Image.create",
   "GET /media/:id/edit"     : "Image.edit",
   "PUT /media/:id"          : "Image.update",
-  "DELETE /media/:id"       : "Image.destroy"
+  "DELETE /media/:id"       : "Image.destroy",
+
+  //-- Categories
+  "GET /categories"              : "Category.index",
+  "GET /categories/new"          : "Category.new",
+  "POST /categories"             : "Category.create",
+  "GET /categories/:id/edit"     : "Category.edit",
+  "PUT /categories/:id"          : "Category.update",
+  "DELETE /categories/:id"       : "Category.destroy",
+
 };
