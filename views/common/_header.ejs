@@ -18,10 +18,18 @@
       </ul>
     </nav>
 
+    <% if (req.user) { %>
     <div id="current-user-nav">
-      <a href="#" class="name">Resurii</a>
-      <div class="user-nav"></div>
+      <a href="#" id="user-menu-link"><%- req.user.firstName %></a>
+      <nav id="user-menu">
+        <ul>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/settings">Settings</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
     </div>
+    <% } %>
   </header>
 
   <div id="drawer">

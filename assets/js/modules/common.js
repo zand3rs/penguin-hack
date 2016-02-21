@@ -23,12 +23,15 @@ Penguin.module("Common.Views", function(Views, Penguin, Backbone, Marionette, $,
     ui: {
       drawerLink: "#drawer-menu-link",
       drawer: "#drawer",
-      drawerOverlay: ".drawer-overlay"
+      drawerOverlay: ".drawer-overlay",
+      userMenuLink: "#user-menu-link",
+      userMenu: "#user-menu"
     },
 
     events: {
       "click @ui.drawerLink": "toggleDrawer",
-      "click @ui.drawerOverlay": "hideDrawer"
+      "click @ui.drawerOverlay": "hideDrawer",
+      "click @ui.userMenuLink": "toggleUserMenu"
     },
 
     toggleDrawer: function(e) {
@@ -46,6 +49,11 @@ Penguin.module("Common.Views", function(Views, Penguin, Backbone, Marionette, $,
     hideDrawer: function(e) {
       this.ui.drawer.removeClass("expanded");
       Helpers.enableScrolling();
+      e.preventDefault();
+    },
+
+    toggleUserMenu: function(e) {
+      this.ui.userMenu.toggleClass("expanded");
       e.preventDefault();
     },
 
