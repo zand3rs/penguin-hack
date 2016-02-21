@@ -31,8 +31,9 @@ Penguin.module("Role.Create.Views", function(Views, Penguin, Backbone, Marionett
       "submit": "submitForm"
     },
     showSuccess: function() {
+      var self = this;
       CommonViews.showGrowl("success", "Congratulations! Role successfully added!", function() {
-        window.location.href="/roles";
+        window.location.href="/apps/" + self.model.get("appId") + "/roles";
       });
     },
     showErrors: function(invalid) {
