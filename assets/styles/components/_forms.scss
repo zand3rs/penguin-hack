@@ -98,4 +98,45 @@ select ::after {
     float: right;
     width: 75%;
   }
+
+  .required {
+    color: $color-red;
+  }
+
+  .primary {
+    float: left;
+    width: 70%;
+    max-width: 600px;
+  }
+
+  .actions {
+    float: right;
+    width: 30%;
+    padding: 0 pxEm(10);
+  }
+
+  .normal-text {
+    font-size: pxEm(13);
+    color: $color-gray-2;
+  }
+
+  hr {
+    height: 1px;
+    background: $color-white-3;
+    border: 0;
+    margin: 2em 0;
+  }
+
+  .history {
+    .field {
+      margin-bottom: 2em;
+    }
+
+    label {
+      line-height: 1;
+      margin-bottom: pxEm(8);
+      display: block;
+      width: 100%;
+    }
+  }
 }

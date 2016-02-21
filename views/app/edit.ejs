@@ -1,0 +1,55 @@
+<%- partial("../common/header") %>
+
+<div class="page-wrap">
+
+  <% flash.get("error").forEach(function (message) { %>
+    <%- message %>
+  <% }) %>
+
+  <%- partial("../common/settings-nav", {currentMenu: "apps"}) %>
+
+  <div class="wrap">
+    <div class="page-header">
+      <h1 class="page-title">Edit Application</h1>
+    </div>
+
+    <form action="/apps" method="POST" class="form wrap">
+      <div class="primary">
+        <div class="field">
+          <label>Name<span class="required">*</span></label>
+          <input type="text" name="name" value="<%- app.name %>" class="value" />
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <input type="text" name="description" value="<%- app.description %>" class="value" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="field">
+          <input type="submit" value="Save" class="primary-button" />
+        </div>
+        <hr>
+        <div class="history">
+          <div class="field">
+            <label>Last updated</label>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', app.updatedAt) %></div>
+          </div>
+          <div class="field">
+            <label>Created</label>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', app.createdAt) %></div>
+          </div>
+          <div class="field">
+            <a href="#"><span class="ico ico-clock3"></span>View edit history</a>
+          </div>
+        </div>
+        <hr>
+        <div class="field">
+          <a href="#"><span class="ico ico-trash"></span>Delete this application</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
