@@ -169,3 +169,11 @@ select ::after {
     }
   }
 }
+
+.page {
+  height: 32px;
+  width: 30px !important;
+  border: 0 !important;
+  border-bottom: 1px solid $color-gray-4 !important;
+  text-align: center;
+}
