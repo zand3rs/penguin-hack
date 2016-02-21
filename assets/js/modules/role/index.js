@@ -1,40 +1,40 @@
-// # App Index
-Penguin.module("App.Index", function(Index, Penguin, Backbone, Marionette, $, _) {
+// # Role Index
+Penguin.module("Role.Index", function(Index, Penguin, Backbone, Marionette, $, _) {
   /* Start
     --------------------------------------------------------------------------*/
-  var AppIndexViews = Penguin.module("App.Index.Views");
+  var RoleIndexViews = Penguin.module("Role.Index.Views");
 
   this.startWithParent = false;
   Index.on("start", function() {
-    new AppIndexViews.Index();
+    new RoleIndexViews.Index();
   });
 });
 
 
-Penguin.module("App.Index.Views", function(Views, Penguin, Backbone, Marionette, $, _) {
+Penguin.module("Role.Index.Views", function(Views, Penguin, Backbone, Marionette, $, _) {
   /* Required Modules
     --------------------------------------------------------------------------*/
-  var AppEntities = Penguin.module("App.Entities");
+  var RoleEntities = Penguin.module("Role.Entities");
   var ListViews = Penguin.module("List.Views");
 
   /* Marionette Views
     --------------------------------------------------------------------------*/
-  // ### Apps Index Layout
+  // ### Roles Index Layout
   Views.Index = Marionette.LayoutView.extend({
-    el: "#apps-index-view",
+    el: "#roles-index-view",
     buildList: function() {
       if (_.isEmpty(listItems)) {
         return;
       }
 
-      var collection = new AppEntities.AppsCollection(listItems);
+      var collection = new RoleEntities.RolesCollection(listItems);
       collection.meta = listMeta;
 
       var listView = new ListViews.List({
         collection: collection
       }, {
-        model: Views.App,
-        next: "getApps"
+        model: Views.Role,
+        next: "getRoles"
       });
     },
 
@@ -44,9 +44,9 @@ Penguin.module("App.Index.Views", function(Views, Penguin, Backbone, Marionette,
   });
 
 
-  // ### App
-  Views.App = Marionette.ItemView.extend({
-    template: "#apps-item-template",
+  // ### Role
+  Views.Role = Marionette.ItemView.extend({
+    template: "#roles-item-template",
     className: "item",
     templateHelpers: function() {
       return {

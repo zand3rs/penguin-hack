@@ -5,6 +5,8 @@ Penguin.on("start", function() {
 
   if ($body.hasClass("app")) {
     Penguin.module("App").start();
+  } else if ($body.hasClass("role")) {
+    Penguin.module("Role").start();
   }
 });
 
