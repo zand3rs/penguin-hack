@@ -55,10 +55,6 @@ module.exports.routes = {
   "PUT    /apps/:app_id/roles/:id"       : "Role.update",
   "DELETE /apps/:app_id/roles/:id"       : "Role.destroy",
 
-  //-- Permission
-  "POST /permissions"    : "Permission.create",
-  "PUT /permissions/:id"    : "Permission.update",
-
   //-- Image | media
   "GET /media"              : "Image.index",
   "GET /media/new"          : "Image.new",
