@@ -63,6 +63,14 @@ module.exports.routes = {
   "PUT    /apps/:app_id/roles/:id"       : "Role.update",
   "DELETE /apps/:app_id/roles/:id"       : "Role.destroy",
 
+  //-- models
+  "GET    /apps/:app_id/models"           : "Model.index",
+  "GET    /apps/:app_id/models/new"       : "Model.new",
+  "POST   /apps/:app_id/models"           : "Model.create",
+  "GET    /apps/:app_id/models/:id/edit"  : "Model.edit",
+  "PUT    /apps/:app_id/models/:id"       : "Model.update",
+  "DELETE /apps/:app_id/models/:id"       : "Model.destroy",
+
   //-- Image | media
   "GET /media"              : "Image.index",
   "GET /media/new"          : "Image.new",
