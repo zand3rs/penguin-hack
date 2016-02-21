@@ -10,6 +10,11 @@ module.exports = {
 
   tableName: "roles",
   attributes: {
+    appId: {
+      type: "string",
+      required: true,
+      columnName: "app_id"
+    },
     name: {
       type: "string",
       required: true,

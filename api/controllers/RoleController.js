@@ -87,6 +87,7 @@ module.exports = {
 
   create: function(req, res) {
     var params = _.omitBy({
+      appId: req.param("app_id"),
       name: req.param("name"),
       description: req.param("description"),
       permission: req.param("permission"),
@@ -143,6 +144,7 @@ module.exports = {
     var id = req.param("id");
 
     var params = _.omitBy({
+      appId: req.param("app_id"),
       name: req.param("name"),
       description: req.param("description"),
       permission: req.param("permission"),
