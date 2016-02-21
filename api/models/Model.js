@@ -17,10 +17,10 @@ module.exports = {
       required: true,
       columnName: "name"
     },
-    attributes: {
+    attrs: {
       type: "string",
       required: true,
-      columnName: "attributes"
+      columnName: "attrs"
     },
     createdAt: {
       type: "datetime",
