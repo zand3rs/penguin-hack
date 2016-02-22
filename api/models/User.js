@@ -29,7 +29,7 @@ module.exports = {
     },
     email: {
       type: "email",
-      columnName: "name"
+      columnName: "email"
     },
     picture: {
       type: "string",
