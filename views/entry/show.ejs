@@ -1,0 +1,28 @@
+<%- partial("../common/header") %>
+
+<div class="page-wrap">
+  <%- partial("../common/settings-nav", {currentMenu: "apps"}) %>
+
+  <div id="entries-index-view" class="wrap" data-app-id="<%- req.param('app_id') %>" data-model-id="<%- req.param('model_id') %>">
+    <div class="page-header">
+      <h1 class="page-title">Entries</h1> <a href="/apps/<%- req.param('app_id') %>/models/<%- req.param('model_id') %>/entries/new" class="add-new"><span class="ico ico-circle-plus"></span></a>
+    </div>
+
+    <div class="list">
+      <div class="list-header">
+        <ul>
+          <li class="role">Role</li>
+          <li class="description">Description</li>
+          <li class="date">Date</li>
+        </ul>
+      </div>
+      <div class="list-body"></div>
+      <div class="pagination-region"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var listItems = <%- JSON.stringify(entries) %>;
+</script>
