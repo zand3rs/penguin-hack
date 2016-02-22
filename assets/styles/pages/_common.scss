@@ -36,6 +36,14 @@
 }
 
 .error-container {
-  display: block;
-  margin: 0 auto;
+  margin: 10%;
+
+  h1 {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .back {
+    text-align: center;
+  }
 }
