@@ -30,13 +30,23 @@ module.exports = {
           if (err) {
             return next(err);
           }
-
           return next(null, entries);
         });
+      },
+      models: function (next) {
+        Model.find()
+          .where({appId: appId})
+          .exec(function (err, models) {
+            if (err) {
+              return next(err);
+            }
+          return next(null, models);            
+          });
       }
     }, function(err, result) {
       var entries = result.entries;
       var totalPage = result.page;
+      var models = result.models;
       var payload = {};
 
       var meta = {
@@ -58,13 +68,13 @@ module.exports = {
             req.addFlash("error", "Error loading entries");
           } else {
             payload.entries = entries;
+            payload.models = models;
             payload.meta = meta;
           }
-
           res.view(payload);
         },
         json: function() {
-          payload = (err) ? err : entries;
+          payload = (err) ? err : {entries: entries, models: models};
 
           if (err) {
             return res.apiError(payload);
