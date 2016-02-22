@@ -87,6 +87,13 @@ Penguin.module("Model.Create.Views", function(Views, Penguin, Backbone, Marionet
         $(this).parent().parent().parent().remove();
       });
 
+      this.$el.on("click", ".add-new-model-link", function(e) {
+        var html = $("#new-field-template").html();
+        $("#sortable").append(html);
+
+        e.preventDefault();
+      });
+
     }
 
   });

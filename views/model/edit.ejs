@@ -15,7 +15,7 @@
           <input type="text" name="name" class="value" value="<%- model.name %>" />
         </div>
         <hr>
-        <h2 class="page-title-2">Fields</h2>
+        <h2 class="page-title-2">Fields <a href="#" class="add-new-model-link"><span class="ico ico-circle-plus"></span></a></h2>
         <div class="field">
           <ul id="sortable" class="accordion-one">
             <% _.forEach(model.attrs, function(attr, key) { %>
@@ -107,4 +107,36 @@
     });
   });
 
+  </script>
+
+  <script type="text/template" id="new-field-template">
+    <li class="sort-item ui-state-default">
+      <div class="accordion-bar">
+        <div class="title"><input type="text" placeholder="Add new field.." name="fieldName" value=""></div>
+        <div class="arrow"><span class="ico ico-arrow-right3"></span></div>
+      </div>
+      <div class="accordion-body">
+        <div class="field">
+          <label>type</label>
+          <div class="dropdown-big">
+            <select class="select-big" name="type">
+            <option value="">Types</option>
+            <option value="string">string</option>
+            <option value="boolean">boolean</option>
+            <option value="integer">number</option>
+            </select>
+            <span class="ico ico-arrow-down3 icon-select"></span>
+          </div>
+          <hr>
+          <div class="field">
+            <label>required</label>
+            <input type="checkbox" name="required" class="value" value="true" />
+          </div>
+        </div>
+        <hr>
+        <div class="field delete">
+          <a href="#"><span class="ico ico-trash"></span>Delete</a>
+        </div>
+      </div>
+    </li>
   </script>
