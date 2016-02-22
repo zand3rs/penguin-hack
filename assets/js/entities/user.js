@@ -93,12 +93,14 @@ Penguin.module("User.Entities", function(Entities, Penguin, Backbone, Marionette
   // ### Users Collection
   Entities.UsersCollection = Backbone.Collection.extend({
     model: Entities.User,
-    baseUrl: "/apps/" + this.appId + "/users/",
+    baseUrl: function() {
+      return "/apps/" + this.appId + "/users/";
+    },
 
     nextPage: -1,
 
     url: function() {
-      var url = this.baseUrl;
+      var url = this.baseUrl();
 
       if (this.nextPage) {
         return url + "?page=" + this.nextPage;
