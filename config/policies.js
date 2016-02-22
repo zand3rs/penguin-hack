@@ -35,8 +35,12 @@ module.exports.policies = {
     "login": "default"
   },
   "App": ["default", "sessionAuth"],
-  "Permission": ["default", "sessionAuth"],
+  "Category": ["default", "sessionAuth"],
+  "Entry": ["default", "sessionAuth"],
+  "Image": ["default", "sessionAuth"],
+  "Model": ["default", "sessionAuth"],
   "Profile": ["default", "sessionAuth"],
-  "Role": ["default", "sessionAuth"]
+  "Role": ["default", "sessionAuth"],
+  "User": ["default", "sessionAuth"]
 
 };
