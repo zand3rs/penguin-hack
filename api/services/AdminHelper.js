@@ -5,16 +5,28 @@
 
 module.exports = {
 
-  canManageApp: function() {
-    return true;
+  canManageApp: function(user, app) {
+    var appId = _.get(app, "id");
+    var ownerRole = _.find((user || {}).roles, {id: "0"});
+    var canManage = _.filter((user || {}).roles, {appId: appId, manageApps: true});
+
+    return (ownerRole || canManage) ? true : false;
   },
 
-  canManageModel: function() {
-    return true;
+  canManageModel: function(user, app) {
+    var appId = _.get(app, "id");
+    var ownerRole = _.find((user || {}).roles, {id: "0"});
+    var canManage = _.filter((user || {}).roles, {appId: appId, manageModels: true});
+
+    return (ownerRole || canManage) ? true : false;
   },
 
-  canManageImage: function() {
-    return true;
+  canManageImage: function(user, app) {
+    var appId = _.get(app, "id");
+    var ownerRole = _.find((user || {}).roles, {id: "0"});
+    var canManage = _.filter((user || {}).roles, {appId: appId, manageImages: true});
+
+    return (ownerRole || canManage) ? true : false;
   },
 
   canAddEntry: function() {
