@@ -52,7 +52,7 @@
         </div>
         <ul>
           <% _.forEach(req.user.apps, function(app) { %>
-            <li><a href="/apps/<%- app.id %>"><span class="drawer-icon"></span><span class="app-icon"></span><%- app.name %></a></li>
+            <li><a href="/apps/<%- app.id %>"><span class="drawer-icon ico ico-box"></span><span class="app-icon"></span><%- app.name %></a></li>
           <% }) %>
         </ul>
       <% } %>
