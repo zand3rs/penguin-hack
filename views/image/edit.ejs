@@ -1,0 +1,112 @@
+<%- partial("../common/header") %>
+
+<% var actions = ["canAdd","canEdit","canView","canPublish", "canDelete", "canArchive"]; %>
+<div class="page-wrap">
+
+  <% flash.get("error").forEach(function (message) { %>
+    <%- message %>
+  <% }) %>
+
+  <%- partial("../common/settings-nav", {currentMenu: "roles"}) %>
+
+  <div class="wrap">
+    <div class="page-header">
+      <h1 class="page-title">Edit User Role</h1>
+    </div>
+
+    <form id="update-role-form" action="/roles" method="POST" class="form wrap">
+      <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />
+      <input type="hidden" name="id" value="<%- req.param('id') %>" />
+
+      <div class="primary">
+        <div class="field">
+          <label>Name<span class="required">*</span></label>
+          <input type="text" name="name" class="value" value="<%- role.name %>" />
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <input type="text" name="description" class="value" value="<%- role.description %>" />
+        </div>
+        <hr>
+        <h2 class="page-title-2">Admin Rights</h2>
+        <div class="field">
+          <label class="checkbox"><input type="checkbox" name="manageApps" value="true" <%- role.manageApps ? "checked='checked'" : "" %>>Applications</label>
+        </div>
+        <div class="field">
+          <label class="checkbox"><input type="checkbox" name="manageModels" value="true" <%- role.manageModels ? "checked='checked'" : "" %>>Models</label>
+        </div>
+        <div class="field">
+          <label class="checkbox"><input type="checkbox" name="manageImages" value="true" <%- role.manageImages ? "checked='checked'" : "" %>>Media</label>
+        </div>
+        <hr>
+        <h2 class="page-title-2">Permissions</h2>
+        <div class="list">
+          <div class="list-header">
+            <ul>
+              <li class="roles">&nbsp;</li>
+              <li class="roles">ADD</li>
+              <li class="roles">EDIT</li>
+              <li class="roles">VIEW</li>
+              <li class="roles">PUBLISH</li>
+              <li class="roles">DELETE</li>
+              <li class="roles">ARCHIVE</li>
+            </ul>
+          </div>
+
+          <div class="list-body">
+              <div class="item">
+                <div class="roles title">Draft</div>
+                <% _.forEach(actions, function(action) { %>
+                  <div class="roles"><input type="checkbox" name="permission[draft][<%- action %>]" <%- _.has(role.permission, "draft." + action) ? "checked='checked'" : "" %> value="true"></div>
+                <% }) %>
+              </div>
+              <div class="item">
+                <div class="roles">Submitted</div>
+                <% _.forEach(actions, function(action) { %>
+                  <div class="roles"><input type="checkbox" name="permission[submitted][<%- action %>]" <%- _.has(role.permission, "submitted." + action) ? "checked='checked'" : "" %> value="true"></div>
+                <% }) %>
+              </div>
+              <div class="item">
+                <div class="roles">Published</div>
+                <% _.forEach(actions, function(action) { %>
+                  <div class="roles"><input type="checkbox" name="permission[published][<%- action %>]" <%- _.has(role.permission, "published." + action) ? "checked='checked'" : "" %> value="true"></div>
+                <% }) %>
+              </div>
+              <div class="item">
+                <div class="roles">Archived</div>
+                <% _.forEach(actions, function(action) { %>
+                  <div class="roles"><input type="checkbox" name="permission[archived][<%- action %>]" <%- _.has(role.permission, "archived." + action) ? "checked='checked'" : "" %> value="true"></div>
+                <% }) %>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="field">
+          <input type="submit" value="Save" class="primary-button save-button" />
+        </div>
+        <hr>
+        <div class="history">
+          <div class="field">
+            <label>Last updated</label>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', role.updatedAt) %></div>
+          </div>
+          <div class="field">
+            <label>Created</label>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', role.createdAt) %></div>
+          </div>
+          <div class="field">
+            <a href="#"><span class="ico ico-clock3"></span>View edit history</a>
+          </div>
+        </div>
+        <hr>
+        <div class="field">
+          <a href="#" class="delete-button"><span class="ico ico-trash"></span>Delete this role</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

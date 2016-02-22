@@ -1,0 +1,23 @@
+<%- partial("../common/header") %>
+
+<div class="page-wrap">
+
+  <div id="roles-index-view" class="wrap" data-app-id="<%- req.param('app_id') %>">
+    <div class="page-header">
+      <h1 class="page-title">Images</h1> <a href="/apps/<%- req.param('app_id') %>/images/new" class="add-new"><span class="ico ico-circle-plus"></span></a>
+    </div>
+
+    <div class="list">
+      <div class="list-header">
+        <ul>
+          <li class="role">Role</li>
+          <li class="description">Description</li>
+          <li class="date">Date</li>
+        </ul>
+      </div>
+      <div class="list-body"></div>
+      <div class="pagination-region"></div>
+    </div>
+
+  </div>
+</div>

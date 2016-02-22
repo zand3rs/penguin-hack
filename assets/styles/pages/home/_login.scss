@@ -15,4 +15,46 @@
   .logo-title {
     margin-bottom: 1em;
   }
+
+  .cta-button {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  .dropdown-login {
+    border: 1px solid $color-gray-4;
+    background: $color-white;
+    font-size: 13px;
+    color: $color-gray-3;
+    display: inline-block;
+    @include border-radius(4px);
+    padding-left: 0px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    position: relative;
+
+    .icon-select {
+      zoom: 1;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      pointer-events:none;
+    }
+
+  }
+
+  .select-login {
+    border: 0;
+    background: none;
+    padding: 5px -2px 5px 20px;
+    padding-left: 10px;
+    width: 300px;
+    font-size: 16px;
+    color: $color-black-2;
+    font-weight: 700;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    z-index: 100;
+  }
 }
