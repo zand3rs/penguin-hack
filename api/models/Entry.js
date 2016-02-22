@@ -3,7 +3,11 @@
 *
 */
 
+var validStatus = ["draft", "submitted", "published", "archived"];
+
 module.exports = {
+
+  status: validStatus,
 
   tableName: "entries",
   attributes: {
@@ -31,6 +35,14 @@ module.exports = {
       type: "array",
       defaultsTo: [],
       columnName: "tags"
+    },
+    status: {
+      type: "string",
+      defaultsTo: "draft",
+      get in() {
+        return validStatus;
+      },
+      columnName: "status"
     },
     createdAt: {
       type: "datetime",
