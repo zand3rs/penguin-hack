@@ -18,7 +18,7 @@ module.exports = {
       columnName: "name"
     },
     attrs: {
-      type: "string",
+      type: "json",
       required: true,
       columnName: "attrs"
     },
