@@ -25,14 +25,25 @@ module.exports = {
   //----------------------------------------------------------------------------
 
   new: function(req, res) {
-    res.format({
-      html: function() {
-        res.view();
-      },
-      json: function() {
-        res.notFound();
-      }
-    });
+
+    var modelId = req.param("model_id");
+    var appId = req.param("app_id");
+
+    Model.find()
+      .exec(function (err, models) {
+        var payload = {};
+        res.format({
+          html: function() {
+            payload.models = models;
+            payload.model = _.find(models, {id: modelId});
+            res.view(payload);
+          },
+          json: function() {
+            res.notFound();
+          }
+        });        
+      });
+
   },
 
   //----------------------------------------------------------------------------
