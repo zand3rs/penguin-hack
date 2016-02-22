@@ -224,19 +224,21 @@ module.exports = {
       if (_.lt(page, totalPage)) {
         meta.nextPage = page + 1;
       }
+
+      payload.entries = entries;
+      payload.models = models;
+      payload.meta = meta;
+
       res.format({
         html: function() {
           if (err) {
             req.addFlash("error", "Error loading entries");
           } else {
-            payload.entries = entries;
-            payload.models = models;
-            payload.meta = meta;
+            res.view(payload);
           }
-          res.view(payload);
         },
         json: function() {
-          res.notFound();
+          res.apiSuccess(payload);
         }
       });
     });
