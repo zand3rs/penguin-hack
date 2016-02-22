@@ -15,7 +15,7 @@
       </ul>
     </div>
 
-    <form id="edit-new-entry-form" action="/roles" method="POST" class="form wrap">
+    <form id="update-entry-form" action="/roles" method="POST" class="form wrap">
       <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />
       <input type="hidden" name="modelId" value="<%- req.param('model_id') %>" />
       <div class="primary">
@@ -60,84 +60,13 @@
         </div>
         <hr>
         <div class="history">
-          <label class="page-text-1">Created by</label>
-          <div class="page-text-2"><%- req.user.displayName %></div>
-        </div>
-      </div>
-    </form>
-
-  </div>
-</div>
-
-
-
-
-
-<%- partial("../common/header") %>
-
-<% var actions = ["canAdd","canEdit","canView","canPublish", "canDelete", "canArchive"]; %>
-<div class="page-wrap">
-
-  <% flash.get("error").forEach(function (message) { %>
-    <%- message %>
-  <% }) %>
-
-
-  <div class="wrap">
-    <div class="page-header">
-      <h1 class="page-title">Edit Article</h1>
-    </div>
-
-    <form id="add-new-role-form" action="/roles" method="POST" class="form wrap">
-      <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />
-      <div class="primary">
-        <div class="field">
-          <label>Name<span class="required">*</span></label>
-          <input type="text" name="name" class="value" />
-        </div>
-
-
-        <div class="field">
-          <label>Body</label>
-          <input type="text" name="name" class="value" />
-        </div>
-
-        <hr>
-
-        <div class="field">
-          <label>Tags</label>
-          <input type="text" name="name" class="value" />
-        </div>
-
-
-      </div>
-
-      <div class="actions">
-        <div class="history">
-          <label class="page-text-1">status</label>
-          <div class="dropdown-small">
-            <select class="select-small">
-            <option value="model">dffsfdsfsd</option>
-            <option value="saab">saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-            </select>
-            <span class="ico ico-arrow-down3 icon-select"></span>
-          </div>
-          <br><br>
-        </div>
-        <div class="field">
-          <input type="submit" value="Save" class="primary-button save-button" />
-        </div>
-        <hr>
-        <div class="history">
           <div class="field">
             <label>Last updated</label>
-            <div class="normal-text">date</div>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', entry.updatedAt) %></div>
           </div>
           <div class="field">
             <label>Created</label>
-            <div class="normal-text">date</div>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', entry.createdAt) %></div>
           </div>
           <div class="field">
             <a href="#"><span class="ico ico-clock3"></span>View edit history</a>
