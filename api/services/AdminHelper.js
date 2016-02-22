@@ -7,26 +7,41 @@ module.exports = {
 
   canManageApp: function(user, app) {
     var appId = _.get(app, "id");
+    var userApp = _.find((user || {}).apps, {id: appId});
     var ownerRole = _.find((user || {}).roles, {id: "0"});
     var canManage = _.filter((user || {}).roles, {appId: appId, manageApps: true});
 
-    return (ownerRole || canManage) ? true : false;
+    if (!userApp) return false;
+    if (ownerRole) return true;
+    if (canManage) return true;
+
+    return false;
   },
 
   canManageModel: function(user, app) {
     var appId = _.get(app, "id");
+    var userApp = _.find((user || {}).apps, {id: appId});
     var ownerRole = _.find((user || {}).roles, {id: "0"});
     var canManage = _.filter((user || {}).roles, {appId: appId, manageModels: true});
 
-    return (ownerRole || canManage) ? true : false;
+    if (!userApp) return false;
+    if (ownerRole) return true;
+    if (canManage) return true;
+
+    return false;
   },
 
   canManageImage: function(user, app) {
     var appId = _.get(app, "id");
+    var userApp = _.find((user || {}).apps, {id: appId});
     var ownerRole = _.find((user || {}).roles, {id: "0"});
-    var canManage = _.filter((user || {}).roles, {appId: appId, manageImages: true});
+    var canManage = _.find((user || {}).roles, {appId: appId, manageImages: true});
 
-    return (ownerRole || canManage) ? true : false;
+    if (!userApp) return false;
+    if (ownerRole) return true;
+    if (canManage) return true;
+
+    return false;
   },
 
   canAddEntry: function() {
