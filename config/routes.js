@@ -66,12 +66,12 @@ module.exports.routes = {
   "DELETE /apps/:app_id/models/:id"       : "Model.destroy",
 
   //-- Entries
-  "GET    /apps/:app_id/entires"           : "Entry.index",
-  "GET    /apps/:app_id/entires/new"       : "Entry.new",
-  "POST   /apps/:app_id/entires"           : "Entry.create",
-  "GET    /apps/:app_id/entires/:id/edit"  : "Entry.edit",
-  "PUT    /apps/:app_id/entires/:id"       : "Entry.update",
-  "DELETE /apps/:app_id/entires/:id"       : "Entry.destroy",
+  "GET    /apps/:app_id/entries"           : "Entry.index",
+  "GET    /apps/:app_id/entries/new"       : "Entry.new",
+  "POST   /apps/:app_id/entries"           : "Entry.create",
+  "GET    /apps/:app_id/entries/:id/edit"  : "Entry.edit",
+  "PUT    /apps/:app_id/entries/:id"       : "Entry.update",
+  "DELETE /apps/:app_id/entries/:id"       : "Entry.destroy",
 
   //-- Image | media
   "GET    /apps/:app_id/images"            : "Image.index",
@@ -92,7 +92,7 @@ module.exports.routes = {
   //-- Users
   "GET    /users/search"                      : "User.search",
   "GET    /apps/:app_id/users"                : "User.index",
-  "GET    /apps/:app_id/users/new"            : "User.new",  
+  "GET    /apps/:app_id/users/new"            : "User.new",
   "POST   /apps/:app_id/users"                : "User.create",
   "GET    /apps/:app_id/users/:id/edit"       : "User.edit",
   "PUT    /apps/:app_id/users/:id"            : "User.update",
