@@ -29,7 +29,7 @@ module.exports = {
     var modelId = req.param("model_id");
     var appId = req.param("app_id");
 
-    Model.find()
+    Model.find({appId: appId})
       .exec(function (err, models) {
         var payload = {};
         res.format({
@@ -78,11 +78,23 @@ module.exports = {
   //----------------------------------------------------------------------------
 
   edit: function(req, res) {
+    var appId = req.param("app_id");
+    var modelId = req.param("model_id");
     var id = req.param("id");
 
-    Entry.findOne({id: id}, function(err, entry) {
-      var payload = {};
+    var tasks = {
+      models: function (next) {
+        Model.find({appId: appId}, next);
+      },
+      entry: function (next) {
+        Entry.findOne({id: id}, next);
+      }
+    };
 
+    async.auto(tasks, function (err, result) {
+      var entry = result.entry || {};
+      var models = result.models || [];
+      var payload = {};
       res.format({
         html: function() {
           if (err) {
@@ -91,15 +103,16 @@ module.exports = {
             req.addFlash("error", "Entry Not Found");
           } else {
             payload.entry = entry;
+            payload.models = models;
           }
-
           res.view(payload);
         },
         json: function() {
           res.notFound();
         }
-      });
+      });      
     });
+
   },
 
   //----------------------------------------------------------------------------
@@ -163,27 +176,42 @@ module.exports = {
   //----------------------------------------------------------------------------
 
   show: function(req, res) {
-    var modelId = req.param("model_id");
-    var appId = req.param("app_id");
 
-    Entry.find()
-      .where({modelId: modelId, appId: appId})
-      .exec(function (err, entries) {
-        var payload = {};
-        res.format({
-          html: function() {
-            if (err) {
-              req.addFlash("error", "Error loading entries");
-            } else {
-              payload.entries = entries;
-            }
-            res.view(payload);
-          },
-          json: function() {
-            res.notFound();
+    var appId = req.param("app_id");
+    var modelId = req.param("model_id");
+    var id = req.param("id");
+
+    var tasks = {
+      models: function (next) {
+        Model.find({appId: appId}, next);
+      },
+      entries: function (next) {
+        Entry.find()
+          .where({modelId: modelId, appId: appId})
+          .exec(next);
+      }
+    };
+
+    async.auto(tasks, function (err, result) {
+      var entries = result.entries || {};
+      var models = result.models || [];
+      var payload = {};
+      res.format({
+        html: function() {
+          if (err) {
+            req.addFlash("error", "Error loading entries");
+          } else {
+            payload.entries = entries;
+            payload.models = models;
           }
-        });
-      });
+          res.view(payload);
+        },
+        json: function() {
+          res.notFound();
+        }
+      });      
+    });
+
   }
 
 };
