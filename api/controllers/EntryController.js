@@ -176,18 +176,30 @@ module.exports = {
   //----------------------------------------------------------------------------
 
   show: function(req, res) {
-
+    var page = parseInt(req.param("page")) || 1;
+    var limit = sails.config.limits.pageLimit;
     var appId = req.param("app_id");
     var modelId = req.param("model_id");
     var id = req.param("id");
 
     var tasks = {
+
       models: function (next) {
         Model.find({appId: appId}, next);
       },
+      page: function(next) {
+        Entry.count({modelId: modelId, appId: appId}, function(err, result) {
+          if (err) {
+            return next(err);
+          }
+          var page = _.ceil(result/limit);
+          return next(null, page);
+        });
+      },      
       entries: function (next) {
         Entry.find()
           .where({modelId: modelId, appId: appId})
+          .paginate({page: page, limit: limit})
           .exec(next);
       }
     };
@@ -195,7 +207,21 @@ module.exports = {
     async.auto(tasks, function (err, result) {
       var entries = result.entries || {};
       var models = result.models || [];
+      var totalPage = result.page;      
       var payload = {};
+
+      var meta = {
+        currentPage: page,
+        totalPage: totalPage
+      };
+      if (_.gt(page, 1)) {
+        meta.previousPage = page - 1;
+      }
+
+      if (_.lt(page, totalPage)) {
+        meta.nextPage = page + 1;
+      }
+
       res.format({
         html: function() {
           if (err) {
@@ -203,6 +229,7 @@ module.exports = {
           } else {
             payload.entries = entries;
             payload.models = models;
+            payload.meta = meta;            
           }
           res.view(payload);
         },
