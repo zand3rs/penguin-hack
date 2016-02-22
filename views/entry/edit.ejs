@@ -18,6 +18,7 @@
     <form id="update-entry-form" action="/roles" method="POST" class="form wrap">
       <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />
       <input type="hidden" name="modelId" value="<%- req.param('model_id') %>" />
+      <input type="hidden" name="id" value="<%- req.param('id') %>" />
       <div class="primary">
 
         <% _.forEach(model.attrs, function(attr, key) { %>
@@ -74,7 +75,7 @@
         </div>
         <hr>
         <div class="field">
-          <a href="#" class="delete-button"><span class="ico ico-trash"></span>Delete this role</a>
+          <a href="#" class="delete-button"><span class="ico ico-trash"></span>Delete this entry</a>
         </div>
       </div>
     </form>

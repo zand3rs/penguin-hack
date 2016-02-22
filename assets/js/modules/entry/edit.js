@@ -19,22 +19,17 @@ Penguin.module("Entry.Update.Views", function(Views, Penguin, Backbone, Marionet
     el: "#update-entry-form",
     ui: {
       id: "input[name='id']",
-      name: "input[name='name']",
-      description: "input[name='description']",
       appId: "input[name='appId']",
-      manageRoles: "input[name='manageApps']",
-      manageModels: "input[name='manageModels']",
-      manageImages: "input[name='manageImages']",
-      permission: ".roles input[type='checkbox']",
+      modelId: "input[name='modelId']",
       saveButton: ".save-button",
       deleteButton: ".delete-button"
     },
     events: {
       "submit": "submitForm",
-      "click @ui.deleteButton": "deleteRole"
+      "click @ui.deleteButton": "deleteEntry"
     },
     showSuccess: function() {
-      CommonViews.showGrowl("success", "Congratulations! Role successfully updated!", function() {
+      CommonViews.showGrowl("success", "Congratulations! Entry successfully updated!", function() {
         window.location.reload();
       });
     },
@@ -47,7 +42,7 @@ Penguin.module("Entry.Update.Views", function(Views, Penguin, Backbone, Marionet
 
       var fields = self.$el.serialize();
 
-      var update = self.model.updateRole(fields);
+      var update = self.model.updateEntry(fields);
       update.done(function(role){
         self.showSuccess();
       });
@@ -66,14 +61,14 @@ Penguin.module("Entry.Update.Views", function(Views, Penguin, Backbone, Marionet
       e.preventDefault();
     },
 
-    deleteRole: function(e) {
+    deleteEntry: function(e) {
       var self = this;
       self.ui.deleteButton.addClass("loading");
 
-      var destroy = self.model.destroyRole();
+      var destroy = self.model.destroyEntry();
       destroy.done(function(role){
         CommonViews.showGrowl("success", "Congratulations! Role successfully deleted!", function() {
-          window.location.href="/apps/" + self.model.get("appId") + "/roles/";
+          window.location.href="/apps/" + self.model.get("appId") + "/models/" + self.model.get("modelId") + "/entries";
         });
       });
 
@@ -93,9 +88,10 @@ Penguin.module("Entry.Update.Views", function(Views, Penguin, Backbone, Marionet
 
     initialize: function() {
       this.bindUIElements();
-      this.model = new RoleEntities.Role({
+      this.model = new EntryEntities.Entry({
         id: this.ui.id.val(),
-        appId: this.ui.appId.val()
+        appId: this.ui.appId.val(),
+        modelId: this.ui.modelId.val()
       });
 
     }
