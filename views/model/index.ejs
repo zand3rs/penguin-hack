@@ -1,8 +1,7 @@
 <%- partial("../common/header") %>
 
 <div class="page-wrap">
-
-  <div id="apps-index-view" class="wrap">
+  <div id="models-index-view" class="wrap" data-app-id="<%- req.param('app_id') %>">
     <div class="page-header">
       <h1 class="page-title">Models</h1> <a href="/apps/<%- req.param('app_id') %>/models/new" class="add-new"><span class="ico ico-circle-plus"></span></a>
     </div>
@@ -10,16 +9,21 @@
     <div class="list">
       <div class="list-header">
         <ul>
-          <li class="image"><input type="checkbox" name="checkbox" value="value"></li>
-          <li class="name">Name</li>
-          <li class="link">User</li>
-          <li class="user">Date</li>
+          <li class="model">Model</li>
+          <li class="description">Description</li>
+          <li class="date">Date</li>
         </ul>
       </div>
       <div class="list-body"></div>
       <div class="pagination-region"></div>
     </div>
 
-
   </div>
 </div>
+
+<script>
+  var listItems = <%- JSON.stringify(models) %>;
+  var listMeta = <%- JSON.stringify(meta) %>;
+</script>
+
+<%- partial("model-templates") %>

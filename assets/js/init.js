@@ -9,6 +9,8 @@ Penguin.on("start", function() {
     Penguin.module("Role").start();
   } else if ($body.hasClass("user")) {
     Penguin.module("User").start();
+  } else if ($body.hasClass("model")) {
+    Penguin.module("Model").start();
   }
 });
 
