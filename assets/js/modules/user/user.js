@@ -7,11 +7,11 @@ Penguin.module("User", function(User, Penguin, Backbone, Marionette, $, _) {
   User.on("start", function() {
 
     var $body = $("body");
-    if ($body.hasClass("app index")) {
+    if ($body.hasClass("user index")) {
       Penguin.module("User.Index").start();
-    } else if ($body.hasClass("app new")) {
+    } else if ($body.hasClass("user new")) {
       Penguin.module("User.Create").start();
-    } else if ($body.hasClass("app edit")) {
+    } else if ($body.hasClass("user edit")) {
       Penguin.module("User.Update").start();
     }
   });
