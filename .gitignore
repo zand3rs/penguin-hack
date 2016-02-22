@@ -135,5 +135,3 @@ tmp
 *.dat
 *.gz
 *.todo
-
-static_files
