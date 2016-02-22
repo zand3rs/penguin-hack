@@ -29,13 +29,33 @@ module.exports = {
           }
           return next(null, appUsers);
         });        
-      }
+      },
+      roles: ["appUsers", function (next, result) {
+        var appUsers = result.appUsers;
+        var roleIds = _.map(appUsers, "roleId");
+        Role.find({id: roleIds}, next);
+      }],
+      users: ["appUsers", function (next, result) {
+        var users = result.appUsers;
+        var userIds = _.map(users, "userId");
+        User.find({id: userIds}, next);
+      }]
     };
 
     async.auto(tasks, function (err, result) {
-      var appUsers = result.appUsers;
+      var _appUsers = result.appUsers;
+      var _roles = result.roles;
+      var _users = result.users;
       var totalPage = result.page;
       var payload = {};
+
+      var appUsers = [];
+
+      _.each(_appUsers, function (appUser) {
+        appUser.role = _.find(_roles, {id: appUser.roleId});
+        appUser.user = _.find(_users, {id: appUser.userId});
+        appUsers.push(appUser);
+      });
 
       var meta = {
         currentPage: page,
@@ -150,6 +170,7 @@ module.exports = {
     };
 
     async.auto(tasks, function (err, result) {
+      // var payload = {};
       var appUser = result.appUser || {};
       appUser.user = result.user || {};
 
