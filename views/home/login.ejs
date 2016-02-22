@@ -5,26 +5,21 @@
   <div id="userGuest" class="dropdown-login">
     <select class="select-login">
       <% _.forEach(users, function(user){ %>
-        <option value="<%- user.authId %>"><%- user.displayName %></option>
+        <option value="<%- user.id %>"><%- user.displayName %></option>
       <%})%>
     </select>
     <span class="ico ico-arrow-down3 icon-select"></span>
   </div><br>
-  <a href="/authenticate" class="cta-button" id="cta-button">Sign in</a>
+  <a href="#" class="cta-button" id="cta-button" onclick='getAuthUser()'>Sign in</a>
 </div>
 
-
+<script src="/js/lib/jquery.js"></script>
 <script type="text/javascript">
   function getAuthUser()
   {
-    var e = document.getElementById("userGuest");
-    // var auth_user = e.options[e.selectedIndex].value;
-
-    document.getElementById("cta-button").href="/hh/";
-
-    return false;
+    var newUserUrl = $( "#userGuest option:selected" ).val();
+    $("#cta-button").attr("href", 'signin' + '/' + newUserUrl);
 
   }
-    // return false;
 
 </script>
