@@ -24,7 +24,7 @@
       <nav id="user-menu">
         <ul>
           <li><a href="/profile">Profile</a></li>
-          <li><a href="/apps">Settings</a></li>
+          <li><a href="/apps">Applications</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
       </nav>
@@ -38,7 +38,7 @@
         <div class="menu-drawer-title">Applications <a href="/apps/new"><span class="ico ico-circle-plus"></a></div>
         <ul>
           <% _.forEach(req.user.apps, function(app) { %>
-            <li><a href="/apps/<%- app.id %>"><span class="drawer-icon"></span><span class="app-icon"></span><%- app.name %></a></li>  
+            <li><a href="/apps/<%- app.id %>"><span class="drawer-icon"></span><span class="app-icon"></span><%- app.name %></a></li>
           <% }) %>
         </ul>
       <% } %>
