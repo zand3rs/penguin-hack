@@ -238,7 +238,13 @@ module.exports = {
           }
         },
         json: function() {
-          res.apiSuccess(payload);
+          payload = (err) ? err : entries;
+
+          if (err) {
+            return res.apiError(payload);
+          } else {
+            res.apiSuccess(payload, meta);
+          }
         }
       });
     });
