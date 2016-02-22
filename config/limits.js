@@ -1,3 +1,3 @@
 module.exports.limits = {
-  pageLimit: 2
+  pageLimit: 10
 }
