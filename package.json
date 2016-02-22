@@ -41,7 +41,7 @@
     "winston": "^2.1.1"
   },
   "scripts": {
-    "start": "node app.js --prod",
+    "start": "forever app.js --prod",
     "debug": "node debug app.js"
   },
   "main": "app.js",
