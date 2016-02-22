@@ -1,7 +1,14 @@
 <%- partial("../common/header") %>
 
 <div class="page-wrap">
-  <%- partial("../common/settings-nav", {currentMenu: "apps"}) %>
+
+  <div class="sidebar">
+    <ul>
+      <% _.forEach(models, function(modelObj) { %>
+        <li><a class="<%- model.id == modelObj.id ? 'current-item' : '' %>" href="/apps/<%- req.param('app_id') %>/models/<%- modelObj.id %>/entries"><%- modelObj.name %></a></li>
+      <% }) %>
+    </ul>
+  </div>
 
   <div id="entries-index-view" class="wrap" data-app-id="<%- req.param('app_id') %>" data-model-id="<%- req.param('model_id') %>">
     <div class="page-header">
@@ -25,4 +32,10 @@
 
 <script>
   var listItems = <%- JSON.stringify(entries) %>;
+  var listMeta = {};
+</script>
+
+<script type="text/template" id="entries-item-template">
+  <div class="main"><a href="/apps/<?- appId ?>/models/<?- modelId ?>/entries/<?- id ?>/edit"><?- id ?></a></div>
+  <div class="date"><?= date() ?></div>
 </script>

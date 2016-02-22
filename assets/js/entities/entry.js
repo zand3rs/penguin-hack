@@ -5,13 +5,14 @@ Penguin.module("Entry.Entities", function(Entities, Penguin, Backbone, Marionett
   // ### Entry
   Entities.Entry = Backbone.Model.extend({
     urlRoot: function() {
-      return "/apps/" + this.get("appId") + "/" + this.get("modelId") + "/entries/";
+      return "/apps/" + this.get("appId") + "/models/" + this.get("modelId") + "/entries/";
     },
 
     defaults: function() {
       return {
         createdAt: "",
-        updatedAt: ""
+        updatedAt: "",
+        status: ""
       };
     },
 
@@ -101,7 +102,7 @@ Penguin.module("Entry.Entities", function(Entities, Penguin, Backbone, Marionett
   Entities.EntryCollection = Backbone.Collection.extend({
     model: Entities.Entry,
     baseUrl: function() {
-      return "/apps/" + this.appId + "/" + this.modelId + "/entries/";
+      return "/apps/" + this.appId + "/models/" + this.modelId + "/entries/";
     },
 
     nextPage: -1,

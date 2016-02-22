@@ -1,26 +1,32 @@
 <%- partial("../common/header") %>
 
-
 <div class="page-wrap">
 
   <div class="wrap">
     <div class="page-header">
-      <h1 class="page-title">Add Article</h1>
+      <h1 class="page-title">Add <%- model.name %></h1>
     </div>
 
-    <form id="add-new-role-form" action="/roles" method="POST" class="form wrap">
+    <div class="sidebar">
+      <ul>
+        <% _.forEach(models, function(modelObj) { %>
+          <li><a class="<%- model.id == modelObj.id ? 'current-item' : '' %>" href="/apps/<%- req.param('app_id') %>/models/<%- modelObj.id %>/entries"><%- modelObj.name %></a></li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <form id="add-new-entry-form" action="/roles" method="POST" class="form wrap">
       <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />
+      <input type="hidden" name="modelId" value="<%- req.param('model_id') %>" />
       <div class="primary">
-        <div class="field">
-          <label>Name<span class="required">*</span></label>
-          <input type="text" name="name" class="value" />
-        </div>
 
+        <% _.forEach(model.attrs, function(attr, key) { %>
+          <div class="field">
+            <label><%- key %><% if(attr.required) { %><span class="required"></span><% } %></label>
+            <input type="text" name="attrs[<%- key %>]" class="value" />
+          </div>
 
-        <div class="field">
-          <label>Body</label>
-          <input type="text" name="name" class="value" />
-        </div>
+        <% }) %>
 
         <hr>
 
@@ -36,7 +42,7 @@
         <div class="history">
           <label class="page-text-1">status</label>
           <div class="dropdown-small">
-            <select class="select-small">
+            <select class="select-small" name="status">
               <option value=""></option>
               <option value="draft">draft</option>
               <option value="submitted">submitted</option>
@@ -48,7 +54,7 @@
           <br><br>
         </div>
         <div class="field">
-          <input type="submit" value="Save" class="primary-button" />
+          <input type="submit" value="Save" class="primary-button save-button" />
         </div>
         <hr>
         <div class="history">

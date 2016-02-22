@@ -27,7 +27,7 @@ Penguin.module("Entry.Index.Views", function(Views, Penguin, Backbone, Marionett
         return;
       }
 
-      var collection = new EntryEntities.EntrysCollection(listItems, {appId: appId, modelId: modelId});
+      var collection = new EntryEntities.EntryCollection(listItems, {appId: appId, modelId: modelId});
       collection.meta = listMeta;
 
       var listView = new ListViews.List({

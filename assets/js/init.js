@@ -11,6 +11,8 @@ Penguin.on("start", function() {
     Penguin.module("User").start();
   } else if ($body.hasClass("model")) {
     Penguin.module("Model").start();
+  } else if ($body.hasClass("entry")) {
+    Penguin.module("Entry").start();
   }
 });
 
