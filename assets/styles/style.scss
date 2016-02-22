@@ -1,3 +1,28 @@
 @import "base-imports";
 @import "module-imports";
 @import "no-svg";
+
+.sidebar {
+  width: 180px;
+  padding: 40px 20px;
+  float: left;
+  background: #f0f0f0;
+  margin-right:15px;
+}
+
+.sidebar ul {
+  margin: 0px;
+}
+.sidebar li a {
+  display: block;
+  padding: 15px 15px;
+  text-decoration: none;
+  color: #4a4a4a;
+  font-size: 14px;
+  font-weight:bold;
+
+}
+
+.sidebar li:hover {
+      background: #f0f0f0
+}

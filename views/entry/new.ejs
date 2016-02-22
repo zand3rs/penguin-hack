@@ -2,11 +2,6 @@
 
 <div class="page-wrap">
 
-  <div class="wrap">
-    <div class="page-header">
-      <h1 class="page-title">Add <%- model.name %></h1>
-    </div>
-
     <div class="sidebar">
       <ul>
         <% _.forEach(models, function(modelObj) { %>
@@ -14,6 +9,12 @@
         <% }) %>
       </ul>
     </div>
+
+  <div class="wrap">
+    <div class="page-header">
+      <h1 class="page-title">Add <%- model.name %></h1>
+    </div>
+
 
     <form id="add-new-entry-form" action="/roles" method="POST" class="form wrap">
       <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />

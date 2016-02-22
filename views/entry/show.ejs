@@ -3,11 +3,13 @@
 <div class="page-wrap">
 
   <div class="sidebar">
-    <ul>
+    
+    <ul id="test">
       <% _.forEach(models, function(modelObj) { %>
         <li><a class="<%- req.param('model_id') == modelObj.id ? 'current-item' : '' %>" href="/apps/<%- req.param('app_id') %>/models/<%- modelObj.id %>/entries"><%- modelObj.name %></a></li>
       <% }) %>
     </ul>
+
   </div>
 
   <div id="entries-index-view" class="wrap" data-app-id="<%- req.param('app_id') %>" data-model-id="<%- req.param('model_id') %>">
