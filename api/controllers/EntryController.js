@@ -229,6 +229,7 @@ module.exports = {
           } else {
             payload.entries = entries;
             payload.models = models;
+            payload.meta = meta;
           }
           res.view(payload);
         },
