@@ -1,0 +1,116 @@
+.accordion-one {
+  width: 100%;
+
+  .ui-state-default {
+    background-color: $color-white-4;
+    @include border-radius(4px);
+    margin-bottom: 10px;
+    padding-left: 3px;
+    cursor: move;
+
+  }
+
+  .accordion-bar {
+    height: 50px;
+
+    .title {
+      display: inline-block;
+      height: 50px;
+      width: 94%;
+      padding-top: 10px;
+      font-size: 15px;
+      letter-spacing: .4px;
+      font-weight: 700;
+      color: $color-black-2;
+    }
+
+    .arrow {
+      display: inline-block;
+      height: 50px;
+
+      .ico {
+        zoom: 1;
+        margin-bottom: -7px;
+        margin-left: 1px;
+      }
+    }
+
+    input[type="text"] {
+      max-width: 99% !important;
+    }
+  }
+
+  .accordion-body {
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 12px;
+
+    .delete {
+    }
+
+    input[type=checkbox] {
+      margin-top: 8px;
+    }
+
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .field {
+      margin-bottom: 5px !important;
+
+      label {
+        margin-left: 10px;
+      }
+      input {
+        width: auto !important;
+        width: 390px !important;
+        margin-right: 35px;
+      }
+
+      .limit-text {
+        width: 100px !important;
+        float: left;
+      }
+    }
+
+  }
+}
+
+
+.dropdown-big {
+  border: 1px solid $color-gray-4;
+  background: $color-white;
+  font-size: 13px;
+  color: $color-gray-3;
+  display: inline-block;
+  @include border-radius(4px);
+  padding-left: 0px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  position: relative;
+
+  .icon-select {
+    zoom: 0.6;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+}
+
+.select-big {
+  border: 0;
+  background: none;
+  padding: 5px -2px 5px 20px;
+  padding-left: 10px;
+  width: 390px;
+  font-size: 16px;
+  color: $color-black-2;
+  font-weight: 700;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  z-index: 100;
+}
