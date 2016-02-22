@@ -170,7 +170,7 @@ module.exports = {
     };
 
     async.auto(tasks, function (err, result) {
-      // var payload = {};
+      var payload = {};
       var appUser = result.appUser || {};
       appUser.user = result.user || {};
 
