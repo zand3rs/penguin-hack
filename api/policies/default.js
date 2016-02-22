@@ -23,6 +23,7 @@ module.exports = function(req, res, next) {
   var err = (!res.view) ? new Exception.InternalServerError() : null;
 
   res.locals._ = _;
+  res.locals.AdminHelper = AdminHelper;
 
   next(err);
 };
