@@ -205,7 +205,7 @@ module.exports = {
         req.addFlash("error", "Unable to load app!");
       }
       if (app) {
-        req.currentApp = req.session.currentApp = app;
+        req.session.currentApp = app;
       }
       return res.redirect("/");
     });

@@ -10,8 +10,11 @@
 module.exports = function(req, res, next) {
 
   if (req.isAuthenticated()) {
-    return next(null, true);
+    //-- current app alias
+    req.currentApp = req.session.currentApp || {};
+    return next();
   } else {
     return res.redirect("/login");  
   }
+
 };
