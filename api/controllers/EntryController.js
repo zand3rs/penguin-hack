@@ -104,6 +104,7 @@ module.exports = {
           } else {
             payload.entry = entry;
             payload.models = models;
+            payload.model = _.find(models, {id: modelId});            
           }
           res.view(payload);
         },
@@ -220,8 +221,7 @@ module.exports = {
 
       if (_.lt(page, totalPage)) {
         meta.nextPage = page + 1;
-      }
-
+      }      
       res.format({
         html: function() {
           if (err) {
@@ -229,7 +229,6 @@ module.exports = {
           } else {
             payload.entries = entries;
             payload.models = models;
-            payload.meta = meta;            
           }
           res.view(payload);
         },
