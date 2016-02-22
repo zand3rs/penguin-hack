@@ -75,14 +75,36 @@ module.exports = {
   //----------------------------------------------------------------------------
 
   new: function(req, res) {
-    res.format({
-      html: function() {
-        res.view();
+
+    var appId = req.param("app_id");
+
+    var tasks = {
+      users: function (next) {
+        User.find({}, next);
       },
-      json: function() {
-        res.notFound();
+      roles: function (next) {
+        Role.find({appId: appId}, next);
       }
+    };
+
+    async.auto(tasks, function (err, result) {
+      var payload = {};
+
+      res.format({
+        html: function() {
+          if (err) {
+            req.addFlash("error", "Error Loading User Lists");
+          } else {
+            payload = result;
+          }
+          return res.view(payload);
+        },
+        json: function() {
+          return res.apiSuccess(payload);
+        }        
+      });
     });
+
   },
 
   //----------------------------------------------------------------------------
