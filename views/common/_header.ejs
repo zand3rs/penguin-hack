@@ -13,14 +13,14 @@
     <nav id="section-nav">
       <ul>
 
-        <li><a href="#" class="menu-title current-menu">Entries</a></li>
+        <li><a href="/apps/<%- req.currentApp.id %>/entries" class="menu-title">Entries</a></li>
 
         <% if (AdminHelper.canManageImage(req.user, req.currentApp)) { %>
-          <li><a href="#" class="menu-title">Images</a></li>
-        <% } %>
+          <li><a href="/apps/<%- req.currentApp.id %>/images" class="menu-title">Images</a></li>
+        <% } %>  
 
         <% if (AdminHelper.canManageModel(req.user, req.currentApp)) { %>
-          <li><a href="#" class="menu-title">Models</a></li>
+          <li><a href="/apps/<%- req.currentApp.id %>/models" class="menu-title">Models</a></li>
         <% } %>
 
       </ul>
@@ -52,7 +52,7 @@
         </div>
         <ul>
           <% _.forEach(req.user.apps, function(app) { %>
-            <li><a href="/apps/<%- app.id %>"><span class="drawer-icon ico ico-box"></span><span class="app-icon"></span><%- app.name %></a></li>
+            <li><a href="/apps/<%- app.id %>"><span class="drawer-icon"></span><span class="app-icon"></span><%- app.name %></a></li>
           <% }) %>
         </ul>
       <% } %>
