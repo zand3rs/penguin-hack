@@ -6,5 +6,6 @@ mongo penguin apps.js
 mongo penguin roles.js
 mongo penguin app_users.js
 mongo penguin models.js
+mongo penguin entries.js
 
 exit 0;
