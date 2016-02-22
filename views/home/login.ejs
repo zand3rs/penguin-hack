@@ -2,14 +2,29 @@
   <a href="/" class="penguin-logo">Penguin CMS</a>
   <h1 class="logo-title">Penguin</h1>
   <h1 class="app-title">Sign in as Guest</h1>
-  <div class="dropdown-login">
+  <div id="userGuest" class="dropdown-login">
     <select class="select-login">
-    <option value="model">Model</option>
-    <option value="saab">saab</option>
-    <option value="opel">Opel</option>
-    <option value="audi">Audi</option>
+      <% _.forEach(users, function(user){ %>
+        <option value="<%- user.authId %>"><%- user.displayName %></option>
+      <%})%>
     </select>
     <span class="ico ico-arrow-down3 icon-select"></span>
   </div><br>
-  <a href="/authenticate" class="cta-button">Sign in</a>
+  <a href="/authenticate" class="cta-button" id="cta-button">Sign in</a>
 </div>
+
+
+<script type="text/javascript">
+  function getAuthUser()
+  {
+    var e = document.getElementById("userGuest");
+    // var auth_user = e.options[e.selectedIndex].value;
+
+    document.getElementById("cta-button").href="/hh/";
+
+    return false;
+
+  }
+    // return false;
+
+</script>
