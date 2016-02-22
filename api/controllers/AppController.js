@@ -95,7 +95,24 @@ module.exports = {
       description: req.param("description")
     }, _.isNil);
 
-    App.create(params, function(err, app) {
+    async.auto({
+      app: function(next) {
+        App.create(params, next);
+      },
+      appUser: ["app", function(next, result) {
+        var appId = result.app.id;
+        var userId = req.user.id;
+
+        var params = {
+          appId: appId,
+          userId: userId,
+          roleId: "0",
+        };
+
+        AppUser.create(params, next);
+      }]
+    }, function(err, result) {
+      var app = result.app;
       var payload = (err) ? err : app;
 
       res.format({
