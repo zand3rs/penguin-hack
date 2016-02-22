@@ -35,6 +35,6 @@
 </script>
 
 <script type="text/template" id="entries-item-template">
-  <div class="main"><a href="/apps/<?- appId ?>/models/<?- modelId ?>/entries/<?- id ?>/edit"><?- id ?></a></div>
+  <div class="main"><a href="/apps/<%- req.param('app_id') %>/models/<%- req.param('model_id') %>/entries/<?- id ?>/edit"><?- id ?></a></div>
   <div class="date"><?= date() ?></div>
 </script>
