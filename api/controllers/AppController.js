@@ -223,8 +223,10 @@ module.exports = {
       }
       if (app) {
         req.session.currentApp = app;
+        res.redirect("/apps/" + app.id + "/entries");
+      } else {
+        res.redirect("/");
       }
-      return res.redirect("/");
     });
   }
 
