@@ -32,7 +32,7 @@ module.exports.routes = {
 
 
   //-- Session / Authentication
-  "GET /signin"       : "Session.signin",
+  "GET /signin/:id"   : "Session.signin",
   "GET /authenticate" : "Session.authenticate",
   "GET /authorize"    : "Session.authorize",
   "GET /logout"       : "Session.destroy",
