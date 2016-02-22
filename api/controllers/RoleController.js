@@ -99,7 +99,7 @@ module.exports = {
       permission: req.param("permission"),
       manageApps: req.param("manageApps"),
       manageModels: req.param("manageModels"),
-      manageMedia: req.param("manageMedia")
+      manageImage: req.param("manageImage")
     }, _.isNil);
 
     Role.create(params, function(err, role) {
@@ -159,7 +159,7 @@ module.exports = {
       permission: req.param("permission"),
       manageApps: req.param("manageApps"),
       manageModels: req.param("manageModels"),
-      manageMedia: req.param("manageMedia")
+      manageImage: req.param("manageImage")
     }, _.isNil);
 
     Role.update({id: id}, params, function(err, role) {
