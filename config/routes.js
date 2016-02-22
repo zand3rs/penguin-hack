@@ -66,12 +66,21 @@ module.exports.routes = {
   "DELETE /apps/:app_id/models/:id"       : "Model.destroy",
 
   //-- Entries
-  "GET    /apps/:app_id/entries"           : "Entry.index",
-  "GET    /apps/:app_id/entries/new"       : "Entry.new",
-  "POST   /apps/:app_id/entries"           : "Entry.create",
-  "GET    /apps/:app_id/entries/:id/edit"  : "Entry.edit",
-  "PUT    /apps/:app_id/entries/:id"       : "Entry.update",
-  "DELETE /apps/:app_id/entries/:id"       : "Entry.destroy",
+  "GET    /apps/:app_id/entries"                            : "Entry.index",
+  "GET    /apps/:app_id/models/:model_id/entries/new"       : "Entry.new",
+  "POST   /apps/:app_id/models/:model_id/entries"           : "Entry.create",
+  "GET    /apps/:app_id/models/:model_id/entries"           : "Entry.show",
+  "GET    /apps/:app_id/models/:model_id/entries/:id/edit"  : "Entry.edit",
+  "PUT    /apps/:app_id/models/:model_id/entries/:id"       : "Entry.update",
+  "DELETE /apps/:app_id/models/:model_id/entries/:id"       : "Entry.destroy",
+  
+  //-- Entries
+  // "GET    /apps/:app_id/entries"           : "Entry.index",
+  // "GET    /apps/:app_id/entries/new"       : "Entry.new",
+  // "POST   /apps/:app_id/entries"           : "Entry.create",
+  // "GET    /apps/:app_id/entries/:id/edit"  : "Entry.edit",
+  // "PUT    /apps/:app_id/entries/:id"       : "Entry.update",
+  // "DELETE /apps/:app_id/entries/:id"       : "Entry.destroy",
 
   //-- Image | media
   "GET    /apps/:app_id/images"            : "Image.index",

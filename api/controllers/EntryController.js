@@ -7,83 +7,19 @@ module.exports = {
 
   index: function(req, res) {
     var appId = req.param("app_id");
-    var modelId = req.param("model_id");
-    var page = parseInt(req.param("page")) || 1;
-    var limit = sails.config.limits.pageLimit;
-
-    async.auto({
-      page: function(next) {
-        Entry.count({appId: appId, modelId: modelId}, function(err, result) {
-          if (err) {
-            return next(err);
-          }
-
-          var page = _.ceil(result/limit);
-          return next(null, page);
-        });
-      },
-      entries: function(next) {
-        Entry.find()
-        .where({appId: appId, modelId: modelId})
-        .paginate({page: page, limit: limit})
-        .exec(function(err, entries) {
-          if (err) {
-            return next(err);
-          }
-          return next(null, entries);
-        });
-      },
-      models: function (next) {
-        Model.find()
-          .where({appId: appId})
-          .exec(function (err, models) {
-            if (err) {
-              return next(err);
-            }
-          return next(null, models);            
-          });
-      }
-    }, function(err, result) {
-      var entries = result.entries;
-      var totalPage = result.page;
-      var models = result.models;
-      var payload = {};
-
-      var meta = {
-        currentPage: page,
-        totalPage: totalPage
-      };
-
-      if (_.gt(page, 1)) {
-        meta.previousPage = page - 1;
-      }
-
-      if (_.lt(page, totalPage)) {
-        meta.nextPage = page + 1;
-      }
-
-      res.format({
-        html: function() {
-          if (err) {
-            req.addFlash("error", "Error loading entries");
-          } else {
-            payload.entries = entries;
-            payload.models = models;
-            payload.meta = meta;
-          }
-          res.view(payload);
-        },
-        json: function() {
-          payload = (err) ? err : {entries: entries, models: models};
-
-          if (err) {
-            return res.apiError(payload);
-          } else {
-            res.apiSuccess(payload, meta);
-          }
+    Model.find()
+      .where({appId: appId})
+      .exec(function (err, models) {
+        if (err) {
+          req.addFlash("error", "Error loading entries");
         }
-      });
-    });
+        if (_.isEmpty(models)) {
+          return res.view();
+        } else {
+          var model = _.first(models) || {};
+          return res.redirect("/apps/" + appId + "/models/" + model.id + "/" + "entries");
+        }
+      });    
   },
 
   //----------------------------------------------------------------------------
@@ -211,6 +147,32 @@ module.exports = {
         }
       })
     })
+  },
+
+  //----------------------------------------------------------------------------
+
+  show: function(req, res) {
+    var modelId = req.param("model_id");
+    var appId = req.param("app_id");
+
+    Entry.find()
+      .where({modelId: modelId, appId: appId})
+      .exec(function (err, entries) {
+        var payload = {};
+        res.format({
+          html: function() {
+            if (err) {
+              req.addFlash("error", "Error loading entries");
+            } else {
+              payload.entries = entries;
+            }
+            res.view(payload);
+          },
+          json: function() {
+            res.notFound();
+          }
+        });
+      });
   }
 
 };
