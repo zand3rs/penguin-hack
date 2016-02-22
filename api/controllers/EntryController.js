@@ -19,7 +19,7 @@ module.exports = {
           var model = _.first(models) || {};
           return res.redirect("/apps/" + appId + "/models/" + model.id + "/" + "entries");
         }
-      });    
+      });
   },
 
   //----------------------------------------------------------------------------
@@ -41,7 +41,7 @@ module.exports = {
           json: function() {
             res.notFound();
           }
-        });        
+        });
       });
 
   },
@@ -53,6 +53,7 @@ module.exports = {
       appId: req.param("app_id"),
       modelId: req.param("model_id"),
       attrs: req.param("attrs"),
+      status: req.param("status"),
       categories: req.param("categories"),
       tags: req.param("tags")
     }, _.isNil);
@@ -104,14 +105,14 @@ module.exports = {
           } else {
             payload.entry = entry;
             payload.models = models;
-            payload.model = _.find(models, {id: modelId});            
+            payload.model = _.find(models, {id: modelId});
           }
           res.view(payload);
         },
         json: function() {
           res.notFound();
         }
-      });      
+      });
     });
 
   },
@@ -125,6 +126,7 @@ module.exports = {
       appId: req.param("app_id"),
       modelId: req.param("model_id"),
       attrs: req.param("attrs"),
+      status: req.param("status"),
       categories: req.param("categories"),
       tags: req.param("tags")
     }, _.isNil);
@@ -196,7 +198,7 @@ module.exports = {
           var page = _.ceil(result/limit);
           return next(null, page);
         });
-      },      
+      },
       entries: function (next) {
         Entry.find()
           .where({modelId: modelId, appId: appId})
@@ -208,7 +210,7 @@ module.exports = {
     async.auto(tasks, function (err, result) {
       var entries = result.entries || {};
       var models = result.models || [];
-      var totalPage = result.page;      
+      var totalPage = result.page;
       var payload = {};
 
       var meta = {
@@ -221,7 +223,7 @@ module.exports = {
 
       if (_.lt(page, totalPage)) {
         meta.nextPage = page + 1;
-      }      
+      }
       res.format({
         html: function() {
           if (err) {
@@ -236,7 +238,7 @@ module.exports = {
         json: function() {
           res.notFound();
         }
-      });      
+      });
     });
 
   }
