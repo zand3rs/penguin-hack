@@ -36,12 +36,12 @@ $drawer-z-index: 10;
   transition: all 0.25s ease;
 
   .drawer-icon {
-    background-repeat: no-repeat;
-    background-position: center;
+    // background-repeat: no-repeat;
+    // background-position: center;
     width: 30px;
     height: 30px;
-    background-size: cover;
-    background-color: gray;
+    // background-size: cover;
+    // background-color: #fff;
     margin: pxEm(-8) pxEm(8) pxEm(10) 0;
     float: left;
   }
