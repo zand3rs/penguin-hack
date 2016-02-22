@@ -11,7 +11,7 @@
   <div class="wrap">
     <div class="page-header">
       <h3 class="page-sub-title">VOLTRON</h3>
-      <h1 class="page-title">Add User</h1>
+      <h1 class="page-title">Edit User</h1>
     </div>
 
     <form id="edit-user-form" action="/users" method="POST" class="form wrap">
@@ -24,7 +24,7 @@
             <select name="userId" class="select-small">
             <option value="">Users</option>
             <% _.forEach(users, function(userObj) { %>
-              <option value="<%- user.id %>" <%- user.id == userObj.id ? 'selected="selected"' : '' %>><%- user.displayName %></option>
+              <option value="<%- userObj.id %>" <%- appUser.userId == userObj.id ? 'selected="selected"' : '' %>><%- userObj.displayName %></option>
             <% }) %>
             </select>
             <span class="ico ico-arrow-down3 icon-select"></span>
@@ -37,7 +37,7 @@
             <select name="roleId" class="select-small">
               <option value="">Roles</option>
               <% _.forEach(roles, function(role) { %>
-                <option value="<%- role.id %>"><%- role.name %></option>
+                <option value="<%- role.id %>"  <%- appUser.roleId == role.id ? 'selected="selected"' : '' %>><%- role.name %></option>
               <% }) %>
             </select>
             <span class="ico ico-arrow-down3 icon-select"></span>
@@ -53,11 +53,11 @@
         <div class="history">
           <div class="field">
             <label>Last updated</label>
-            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', user.updatedAt) %></div>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', appUser.updatedAt) %></div>
           </div>
           <div class="field">
             <label>Created</label>
-            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', user.createdAt) %></div>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', appUser.createdAt) %></div>
           </div>
           <div class="field">
             <a href="#"><span class="ico ico-clock3"></span>View edit history</a>

@@ -1,4 +1,4 @@
-// # User update
+// # User New
 Penguin.module("User.Update", function(Update, Penguin, Backbone, Marionette, $, _) {
   /* Start
     --------------------------------------------------------------------------*/
@@ -16,16 +16,12 @@ Penguin.module("User.Update.Views", function(Views, Penguin, Backbone, Marionett
   var CommonViews = Penguin.module("Common.Views");
 
   Views.UpdateForm = Marionette.ItemView.extend({
-    el: "#update-user-form",
+    el: "#edit-user-form",
     ui: {
       id: "input[name='id']",
-      name: "input[name='name']",
-      description: "input[name='description']",
       appId: "input[name='appId']",
-      manageUsers: "input[name='manageApps']",
-      manageModels: "input[name='manageModels']",
-      manageImages: "input[name='manageImages']",
-      permission: ".users input[type='checkbox']",
+      userId: "select[name='userId']",
+      roleId: "select[name='roleId']",
       saveButton: ".save-button",
       deleteButton: ".delete-button"
     },
@@ -34,6 +30,7 @@ Penguin.module("User.Update.Views", function(Views, Penguin, Backbone, Marionett
       "click @ui.deleteButton": "deleteUser"
     },
     showSuccess: function() {
+      var self = this;
       CommonViews.showGrowl("success", "Congratulations! User successfully updated!", function() {
         window.location.reload();
       });
@@ -45,7 +42,10 @@ Penguin.module("User.Update.Views", function(Views, Penguin, Backbone, Marionett
       var self = this;
       self.ui.saveButton.addClass("loading");
 
-      var fields = self.$el.serialize();
+      var fields = {
+        user_id: self.ui.userId.val(),
+        role_id: self.ui.roleId.val()
+      };
 
       var update = self.model.updateUser(fields);
       update.done(function(user){
@@ -94,8 +94,8 @@ Penguin.module("User.Update.Views", function(Views, Penguin, Backbone, Marionett
     initialize: function() {
       this.bindUIElements();
       this.model = new UserEntities.User({
-        id: this.ui.id.val(),
-        appId: this.ui.appId.val()
+        appId: this.ui.appId.val(),
+        id: this.ui.id.val()
       });
 
     }
