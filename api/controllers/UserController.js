@@ -166,12 +166,20 @@ module.exports = {
       user: ["appUser", function (next, result) {
         var appUser = result.appUser || {};
         User.findOne({id: appUser.userId}, next);
-      }]
+      }],
+      users: function (next) {
+        User.find({}, next);
+      },
+      roles: function (next) {
+        Role.find({appId: appId}, next);
+      }
     };
 
     async.auto(tasks, function (err, result) {
       var payload = {};
       var appUser = result.appUser || {};
+      var roles = result.roles || [];
+      var users = result.users || [];
       appUser.user = result.user || {};
 
       res.format({
@@ -182,7 +190,10 @@ module.exports = {
             req.addFlash("error", "Application user not found!");
           } else {
             payload.appUser = appUser;
+            payload.roles = roles;
+            payload.users = users;
           }
+
           return res.view(payload);
         },
         json: function() {
