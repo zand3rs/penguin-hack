@@ -18,8 +18,9 @@ Penguin.module("User.Create.Views", function(Views, Penguin, Backbone, Marionett
   Views.AddNewForm = Marionette.ItemView.extend({
     el: "#add-new-user-form",
     ui: {
-      id: "input[name='id']",
-      role: "input[name='role']",
+      appId: "input[name='appId']",
+      userId: "select[name='userId']",
+      roleId: "select[name='roleId']",
       saveButton: ".save-button"
     },
     events: {
@@ -39,8 +40,8 @@ Penguin.module("User.Create.Views", function(Views, Penguin, Backbone, Marionett
       self.ui.saveButton.addClass("loading");
 
       var fields = {
-        id: self.ui.id.val(),
-        role: self.ui.role.val()
+        user_id: self.ui.userId.val(),
+        role_id: self.ui.roleId.val()
       };
 
       var create = self.model.createUser(fields);

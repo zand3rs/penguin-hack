@@ -6,35 +6,39 @@
     <%- message %>
   <% }) %>
 
-  <%- partial("../common/settings-nav", {currentMenu: "apps"}) %>
+  <%- partial("../common/settings-nav", {currentMenu: "users"}) %>
 
   <div class="wrap">
     <div class="page-header">
       <h3 class="page-sub-title">VOLTRON</h3>
-      <h1 class="page-title">Edit User</h1>
+      <h1 class="page-title">Add User</h1>
     </div>
 
-    <form id="add-new-app-form" action="/apps" method="POST" class="form wrap">
+    <form id="edit-user-form" action="/users" method="POST" class="form wrap">
+      <input type="hidden" name="id" value="<%- req.param('id') %>" />
+      <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />
       <div class="primary">
         <div class="field">
           <label>Name<span class="required">*</span></label>
-          <input type="text" name="name" class="value" />
-        </div>
-
-        <div class="field">
-          <label>Email<span class="required">*</span></label>
-          <input type="text" name="email" class="value" />
+          <div class="dropdown-small">
+            <select name="userId" class="select-small">
+            <option value="">Users</option>
+            <% _.forEach(users, function(userObj) { %>
+              <option value="<%- user.id %>" <%- user.id == userObj.id ? 'selected="selected"' : '' %>><%- user.displayName %></option>
+            <% }) %>
+            </select>
+            <span class="ico ico-arrow-down3 icon-select"></span>
+          </div>
         </div>
 
         <div class="field">
           <label>Role<span class="required">*</span></label>
           <div class="dropdown-small">
-            <select class="select-small">
-            <option value="model">Model</option>
-            <option value="saab">saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-
+            <select name="roleId" class="select-small">
+              <option value="">Roles</option>
+              <% _.forEach(roles, function(role) { %>
+                <option value="<%- role.id %>"><%- role.name %></option>
+              <% }) %>
             </select>
             <span class="ico ico-arrow-down3 icon-select"></span>
           </div>
@@ -43,17 +47,17 @@
 
       <div class="actions">
         <div class="field">
-          <input type="submit" value="Save" class="primary-button" />
+          <input type="submit" value="Save" class="primary-button save-button" />
         </div>
         <hr>
         <div class="history">
           <div class="field">
             <label>Last updated</label>
-            <div class="normal-text">date</div>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', user.updatedAt) %></div>
           </div>
           <div class="field">
             <label>Created</label>
-            <div class="normal-text">date</div>
+            <div class="normal-text"><%- strftime('%B %d, %Y &nbsp;&nbsp; %I:%M %p', user.createdAt) %></div>
           </div>
           <div class="field">
             <a href="#"><span class="ico ico-clock3"></span>View edit history</a>
@@ -61,8 +65,9 @@
         </div>
         <hr>
         <div class="field">
-          <a href="#"><span class="ico ico-trash"></span>Delete this application</a>
+          <a href="#" class="delete-button"><span class="ico ico-trash"></span>Delete this application</a>
         </div>
+
       </div>
     </form>
 

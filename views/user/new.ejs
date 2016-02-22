@@ -20,11 +20,11 @@
         <div class="field">
           <label>Name<span class="required">*</span></label>
           <div class="dropdown-small">
-            <select name="id" class="select-small">
+            <select name="userId" class="select-small">
             <option value="">Users</option>
-            <option value="saab">saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+            <% _.forEach(users, function(user) { %>
+              <option value="<%- user.id %>"><%- user.displayName %></option>
+            <% }) %>
             </select>
             <span class="ico ico-arrow-down3 icon-select"></span>
           </div>
@@ -33,12 +33,11 @@
         <div class="field">
           <label>Role<span class="required">*</span></label>
           <div class="dropdown-small">
-            <select name="role" class="select-small">
-            <option value="model">Roles</option>
-            <option value="saab">saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-
+            <select name="roleId" class="select-small">
+              <option value="">Roles</option>
+              <% _.forEach(roles, function(role) { %>
+                <option value="<%- role.id %>"><%- role.name %></option>
+              <% }) %>
             </select>
             <span class="ico ico-arrow-down3 icon-select"></span>
           </div>
