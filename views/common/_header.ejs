@@ -6,7 +6,7 @@
       </a>
       <div class="current-app">
         <span class="app-icon"></span>
-        <span class="app-title">Penguin</span>
+        <span class="app-title"><%- (req.currentApp.name) ?  req.currentApp.name : "Penguin"%></span>
       </div>
     </div>
 
@@ -17,7 +17,7 @@
 
         <% if (AdminHelper.canManageImage(req.user, req.currentApp)) { %>
           <li><a href="/apps/<%- req.currentApp.id %>/images" class="menu-title">Images</a></li>
-        <% } %>  
+        <% } %>
 
         <% if (AdminHelper.canManageModel(req.user, req.currentApp)) { %>
           <li><a href="/apps/<%- req.currentApp.id %>/models" class="menu-title">Models</a></li>
