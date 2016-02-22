@@ -83,6 +83,7 @@ module.exports.routes = {
   //-- Users
   "GET    /users/search"                      : "User.search",
   "GET    /apps/:app_id/users"                : "User.index",
+  "GET    /apps/:app_id/users/new"            : "User.new",  
   "POST   /apps/:app_id/users"                : "User.create",
   "GET    /apps/:app_id/users/:id/edit"       : "User.edit",
   "PUT    /apps/:app_id/users/:id"            : "User.update",
