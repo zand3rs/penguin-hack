@@ -170,7 +170,7 @@ module.exports = {
     });
   },
 
-  //--------------------------------------------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------
 
   destroy: function(req, res) {
     var id = req.param("id");
@@ -193,5 +193,22 @@ module.exports = {
         }
       })
     })
+  },
+
+  //-----------------------------------------------------------------------------
+
+  show: function(req, res) {
+    var id = req.param("id");
+
+    App.findOne({id: id}, function(err, app) {
+      if (err) {
+        req.addFlash("error", "Unable to load app!");
+      }
+      if (app) {
+        req.currentApp = req.session.currentApp = app;
+      }
+      return res.redirect("/");
+    });
   }
+
 };

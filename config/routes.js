@@ -47,6 +47,7 @@ module.exports.routes = {
   "GET    /apps/:id/edit"  : "App.edit",
   "PUT    /apps/:id"       : "App.update",
   "DELETE /apps/:id"       : "App.destroy",
+  "GET    /apps/:id"       : "App.show",
 
   //-- Role
   "GET    /apps/:app_id/roles"           : "Role.index",
