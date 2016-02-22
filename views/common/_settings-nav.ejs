@@ -8,6 +8,10 @@ menu["roles"] = currentMenu == "roles" ? "current-menu" : "";
 <nav class="settings-nav">
   <ul class="wrap">
     <li><a href="/profile" class="<%- menu['profile'] %>">Profile</a></li>
-    <li><a href="/apps" class="<%- menu['apps'] %>">Applications</a></li>
+
+    <% if (AdminHelper.canManageApp(req.user, req.currentApp)) { %>
+      <li><a href="/apps" class="<%- menu['apps'] %>">Applications</a></li>
+    <% } %>
+    
   </ul>
 </nav>
