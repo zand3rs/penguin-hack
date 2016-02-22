@@ -1,34 +1,36 @@
-// # Model New
-Penguin.module("Model.Create", function(Create, Penguin, Backbone, Marionette, $, _) {
+// # Model update
+Penguin.module("Model.Update", function(Update, Penguin, Backbone, Marionette, $, _) {
   /* Start
     --------------------------------------------------------------------------*/
-  var ModelCreateViews = Penguin.module("Model.Create.Views");
+  var ModelUpdateViews = Penguin.module("Model.Update.Views");
 
   this.startWithParent = false;
-  Create.on("start", function() {
-    new ModelCreateViews.AddNewForm();
+  Update.on("start", function() {
+    new ModelUpdateViews.UpdateForm();
   });
 });
 
 
-Penguin.module("Model.Create.Views", function(Views, Penguin, Backbone, Marionette, $, _) {
+Penguin.module("Model.Update.Views", function(Views, Penguin, Backbone, Marionette, $, _) {
   var ModelEntities = Penguin.module("Model.Entities");
   var CommonViews = Penguin.module("Common.Views");
 
-  Views.AddNewForm = Marionette.ItemView.extend({
-    el: "#add-new-model-form",
+  Views.UpdateForm = Marionette.ItemView.extend({
+    el: "#update-model-form",
     ui: {
-      appId:"input[name='appId']",
+      id: "input[name='id']",
       name: "input[name='name']",
-      saveButton: ".save-button"
+      appId: "input[name='appId']",
+      saveButton: ".save-button",
+      deleteButton: ".delete-button"
     },
     events: {
-      "submit": "submitForm"
+      "submit": "submitForm",
+      "click @ui.deleteButton": "deleteModel"
     },
     showSuccess: function() {
-      var self = this;
-      CommonViews.showGrowl("success", "Congratulations! Model successfully added!", function() {
-        window.location.href="/apps/" + self.model.get("appId") + "/models";
+      CommonViews.showGrowl("success", "Congratulations! Model successfully updated!", function() {
+        window.location.reload();
       });
     },
     showErrors: function(invalid) {
@@ -58,20 +60,45 @@ Penguin.module("Model.Create.Views", function(Views, Penguin, Backbone, Marionet
 
       fields.attrs = fieldObj;
 
-      var create = self.model.createModel(fields);
-      create.done(function(model){
+      var update = self.model.updateModel(fields);
+      update.done(function(model){
         self.showSuccess();
       });
 
-      create.fail(function(error, meta) {
+      update.fail(function(error, meta) {
         if (error) {
           var invalid = meta.invalidAttributes || [];
           self.showErrors(invalid);
         }
       });
 
-      create.always(function(){
+      update.always(function(){
         self.ui.saveButton.removeClass("loading");
+      });
+
+      e.preventDefault();
+    },
+
+    deleteModel: function(e) {
+      var self = this;
+      self.ui.deleteButton.addClass("loading");
+
+      var destroy = self.model.destroyModel();
+      destroy.done(function(model){
+        CommonViews.showGrowl("success", "Congratulations! Model successfully deleted!", function() {
+          window.location.href="/apps/" + self.model.get("appId") + "/models/";
+        });
+      });
+
+      destroy.fail(function(error, meta) {
+        if (error) {
+          var invalid = meta.invalidAttributes || [];
+          self.showErrors(invalid);
+        }
+      });
+
+      destroy.always(function(){
+        self.ui.deleteButton.removeClass("loading");
       });
 
       e.preventDefault();
@@ -80,13 +107,13 @@ Penguin.module("Model.Create.Views", function(Views, Penguin, Backbone, Marionet
     initialize: function() {
       this.bindUIElements();
       this.model = new ModelEntities.Model({
+        id: this.ui.id.val(),
         appId: this.ui.appId.val()
       });
 
       this.$el.on("click", ".delete-sortable", function() {
         $(this).parent().parent().parent().remove();
       });
-
     }
 
   });

@@ -1,11 +1,6 @@
 <%- partial("../common/header") %>
 
 <div class="page-wrap">
-
-  <% flash.get("error").forEach(function (message) { %>
-    <%- message %>
-  <% }) %>
-
   <div class="wrap">
     <div class="page-header">
       <h1 class="page-title">Add Model</h1>
@@ -17,11 +12,6 @@
         <div class="field">
           <label>Name<span class="required">*</span></label>
           <input type="text" name="name" class="value" />
-        </div>
-
-        <div class="field">
-          <label>Description</label>
-          <input type="text" name="description" class="value" />
         </div>
         <hr>
         <h2 class="page-title-2">Fields</h2>

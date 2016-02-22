@@ -22,12 +22,12 @@ Penguin.module("Model.Index.Views", function(Views, Penguin, Backbone, Marionett
   // ### Models Index Layout
   Views.Index = Marionette.LayoutView.extend({
     el: "#models-index-view",
-    buildList: function() {
+    buildList: function(appId) {
       if (_.isEmpty(listItems)) {
         return;
       }
 
-      var collection = new ModelEntities.ModelsCollection(listItems);
+      var collection = new ModelEntities.ModelsCollection(listItems, {appId: appId});
       collection.meta = listMeta;
 
       var listView = new ListViews.List({
@@ -39,7 +39,7 @@ Penguin.module("Model.Index.Views", function(Views, Penguin, Backbone, Marionett
     },
 
     initialize: function() {
-      this.buildList();
+      this.buildList(this.$el.data("app-id"));
     }
   });
 

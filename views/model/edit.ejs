@@ -1,105 +1,54 @@
 <%- partial("../common/header") %>
 
 <div class="page-wrap">
-
-  <% flash.get("error").forEach(function (message) { %>
-    <%- message %>
-  <% }) %>
-
   <div class="wrap">
     <div class="page-header">
       <h1 class="page-title">Edit Model</h1>
     </div>
 
-    <form id="add-new-app-form" action="/apps" method="POST" class="form wrap">
+    <form id="update-model-form" action="/apps" method="POST" class="form wrap">
+      <input type="hidden" name="appId" value="<%- req.param('app_id') %>" />
+      <input type="hidden" name="id" value="<%- req.param('id') %>" />
       <div class="primary">
         <div class="field">
           <label>Name<span class="required">*</span></label>
-          <input type="text" name="name" class="value" />
-        </div>
-
-        <div class="field">
-          <label>Description</label>
-          <input type="text" name="description" class="value" />
+          <input type="text" name="name" class="value" value="<%- model.name %>" />
         </div>
         <hr>
         <h2 class="page-title-2">Fields</h2>
         <div class="field">
           <ul id="sortable" class="accordion-one">
-            <li class="ui-state-default">
-              <div class="accordion-bar">
-                <div class="title"><input type="text" placeholder="Add new field.." name="name" value=""></div>
-                <div class="arrow"><span class="ico ico-arrow-right3"></span></div>
-              </div>
-              <div class="accordion-body">
-                <div class="field">
-                  <label>type</label>
-                  <div class="dropdown-big">
-                    <select class="select-big">
-                    <option value="model">Model</option>
-                    <option value="saab">saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                    </select>
-                    <span class="ico ico-arrow-down3 icon-select"></span>
+            <% _.forEach(model.attrs, function(attr, key) { %>
+              <li class="sort-item ui-state-default">
+                <div class="accordion-bar">
+                  <div class="title"><input type="text" placeholder="Add new field.." name="fieldName" value="<%- key %>"></div>
+                  <div class="arrow"><span class="ico ico-arrow-right3"></span></div>
+                </div>
+                <div class="accordion-body">
+                  <div class="field">
+                    <label>type</label>
+                    <div class="dropdown-big">
+                      <select class="select-big" name="type">
+                      <option value="">Types</option>
+                      <option value="string" <%- attr.type == "string" ? "selected='selected'" : "" %>>string</option>
+                      <option value="boolean" <%- attr.type == "boolean" ? "selected='selected'" : "" %>>boolean</option>
+                      <option value="integer" <%- attr.type == "number" ? "selected='selected'" : "" %>>number</option>
+                      </select>
+                      <span class="ico ico-arrow-down3 icon-select"></span>
+                    </div>
+                    <hr>
+                    <div class="field">
+                      <label>required</label>
+                      <input type="checkbox" name="required" class="value" value="true" <%- attr.required ? "checked='checked'" : "" %> />
+                    </div>
                   </div>
                   <hr>
-                  <div class="field">
-                    <label>RICHTEXT</label>
-                    <input type="checkbox" name="richtext" class="value" />
-                  </div>
-                  <div class="field">
-                    <label>required</label>
-                    <input type="checkbox" name="required" class="value" />
+                  <div class="field delete">
+                    <a href="#" class="delete-sortable"><span class="ico ico-trash"></span>Delete</a>
                   </div>
                 </div>
-                <div class="field">
-                  <label>limit</label>
-                  <input type="text" name="description" class="value limit-text" />
-                </div>
-                <hr>
-                <div class="field delete">
-                  <a href="#"><span class="ico ico-trash"></span>Delete</a>
-                </div>
-              </div>
-            </li>
-            <li class="ui-state-default">
-              <div class="accordion-bar">
-                <div class="title"><input type="text" placeholder="Add new field.." name="name" value=""></div>
-                <div class="arrow"><span class="ico ico-arrow-right3"></span></div>
-              </div>
-              <div class="accordion-body">
-                <div class="field">
-                  <label>type</label>
-                  <div class="dropdown-big">
-                    <select class="select-big">
-                    <option value="model">Model</option>
-                    <option value="saab">saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                    </select>
-                    <span class="ico ico-arrow-down3 icon-select"></span>
-                  </div>
-                  <hr>
-                  <div class="field">
-                    <label>RICHTEXT</label>
-                    <input type="checkbox" name="richtext" class="value" />
-                  </div>
-                  <div class="field">
-                    <label>required</label>
-                    <input type="checkbox" name="required" class="value" />
-                  </div>
-                </div>
-                <div class="field">
-                  <label>limit</label>
-                  <input type="text" name="description" class="value limit-text" />
-                </div>
-                <hr>
-                <div class="field delete">
-                  <a href="#"><span class="ico ico-trash"></span>Delete</a>
-                </div>
-              </div>
-            </li>
+              </li>
+            <% }) %>
           </ul>
         </div>
       </div>
