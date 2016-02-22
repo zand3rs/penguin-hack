@@ -31,7 +31,7 @@
 
 <script>
   var listItems = <%- JSON.stringify(entries) %>;
-  var listMeta = {};
+  var listMeta = <%- JSON.stringify(meta) %>;
 </script>
 
 <script type="text/template" id="entries-item-template">
